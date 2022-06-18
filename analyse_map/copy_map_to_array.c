@@ -32,18 +32,23 @@ char	**fill_map_array(int fd)
 	i = 0;
 	while (tmp_line)
 	{
-		map_array[i] = tmp_line;
-		map_array = add_new_line_in_array_map(map_array, count_lines);
-		count_lines++;
+		if (is_line_empty(tmp_line) == 0)
+		{
+			map_array[i] = tmp_line;
+			i++;
+			map_array = add_new_line_in_array_map(map_array, count_lines);
+			count_lines++;
+		}
+		else
+			free(tmp_line);
 		tmp_line = get_next_line(fd);
-		i++;
 	}
 	return (map_array);
 }
 
-void print_array_map(char **map_array)
+void	print_array_map(char **map_array)
 {
-	int i = 0;
+	int	i = 0;
 
 	while (map_array[i])
 	{
@@ -60,6 +65,8 @@ int	copy_map_to_array(char *map_name)
 
 	fd = open_file_map(map_name);
 	map_array = fill_map_array(fd);
+	if (!map_array[0])
+		exit_error("Error fill_map_array\n");
 	print_array_map(map_array);
 	return (0);
 }
