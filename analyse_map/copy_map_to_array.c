@@ -58,15 +58,24 @@ void	print_array_map(char **map_array)
 	}
 }
 
+void	print_textures(t_textures *txtrs)
+{
+	printf("NO = %s \n SO = %s \n WE = %s \n EA = %s \n ", txtrs->north,txtrs->south, txtrs->west, txtrs->east);
+	printf("F = %d \n C = %d \n", txtrs->floor, txtrs->ceilling);
+}
+
 int	copy_map_to_array(char *map_name)
 {
-	int		fd;
-	char	**map_array;
+	int			fd;
+	char		**map_array;
+	t_textures	txtures;
 
 	fd = open_file_map(map_name);
 	map_array = fill_map_array(fd);
 	if (!map_array[0])
 		exit_error("Error fill_map_array\n");
 	print_array_map(map_array);
+	txtures = init_texture_struct(map_array);
+	print_textures(&txtures);
 	return (0);
 }
