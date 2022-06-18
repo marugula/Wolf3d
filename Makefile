@@ -66,7 +66,7 @@ $(MINILIBX):
 clean:
 	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -C $(MINILIBX_DIRECTORY) clean
-	@rm -f $(OBJECTS) $(OBJS_DIR)
+	@rm -rf $(OBJECTS) $(OBJS_DIR)
 	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
