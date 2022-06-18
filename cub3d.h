@@ -6,5 +6,11 @@
 # include "gnl/get_next_line.h"
 
 int	return_error(char *str);
+int	exit_error(char *str);
+
+int	check_format_map(char *map_name);
+int	copy_map_to_array(char *map_name);
+
+
 
 #endif
