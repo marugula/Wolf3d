@@ -15,13 +15,15 @@ MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-HEADER = cub3d.h $(GNL_D)/get_next_line.h
+HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h
 HEADERS_DIRECTORY = .
 
 GNL_S = get_next_line.c get_next_line_utils.c
 GNL_D = gnl/
 
-ANLS_MAP_S = copy_map_to_array.c
+ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c init_texture_struct.c get_color_image_texture.c write_textures_to_struct.c \
+				check_game_map.c trim_game_map.c checker_function.c check_utils.c
+
 ANLS_MAP_D = analyse_map/
 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
@@ -29,7 +31,8 @@ DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
 SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
-			handling_errors.c
+			handling_errors.c\
+			ft_isspace.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/
@@ -66,7 +69,7 @@ $(MINILIBX):
 clean:
 	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -C $(MINILIBX_DIRECTORY) clean
-	@rm -f $(OBJECTS) $(OBJS_DIR)
+	@rm -rf $(OBJECTS) $(OBJS_DIR)
 	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
