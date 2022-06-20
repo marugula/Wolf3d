@@ -58,6 +58,8 @@ void	print_array_map(char **map_array)
 	}
 }
 
+
+
 char **copy_map_to_array(char *map_name)
 {
 	int		fd;
@@ -68,5 +70,9 @@ char **copy_map_to_array(char *map_name)
 	if (!map_array[0])
 		exit_error("Error fill_map_array\n");
 	print_array_map(map_array);
+	if (check_game_map(map_array) == VALID_ERR)
+		printf("ERROR MAP\n");
+	else
+		printf("MAP IS OK\n");
 	return (map_array);
 }

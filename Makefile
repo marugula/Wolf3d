@@ -15,13 +15,13 @@ MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h 
+HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h
 HEADERS_DIRECTORY = .
 
 GNL_S = get_next_line.c get_next_line_utils.c
 GNL_D = gnl/
 
-ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c
+ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c check_game_map.c
 ANLS_MAP_D = analyse_map/
 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
