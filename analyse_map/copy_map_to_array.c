@@ -101,7 +101,7 @@ char **copy_map_to_array(char *map_name)
 		printf("ERROR MAP\n");
 	else
 		printf("MAP IS OK\n");
-
+	// нужна запись в структуру
 	/* Временно:*/
 	clear_arr_str(game_map);
 	return (0);

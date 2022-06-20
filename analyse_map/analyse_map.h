@@ -8,6 +8,11 @@
 # define VALID_OK	0
 # define VALID_ERR	1
 
+typedef struct t_move_on_map
+{
+	int	x;
+	int	y;
+} t_dot;
 
 /* check_format_map.c */
 int			check_format_map(char *map_name);
@@ -17,12 +22,20 @@ int			check_game_map(char **map);
 
 
 /* trim_game_map.c */
-char	**trim_map(char **map);
+char		**trim_map(char **map);
 
 
+/* check_utils.c */
+int			strarr_len(char **arr);
+int			is_player_ch(char ch);
+int			is_allowed_ch(char ch);
+char		get_ch_in_dot(int x, int y, char **map);
 
-int	strarr_len(char **arr);
 
+/* checker_function.c */
+int			check_all_dot(char **map);
+int			check_side_wals(char **map);
+int			check_first_or_last_line(char *line);
 
 
 /* init_array_map.c */
