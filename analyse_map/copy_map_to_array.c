@@ -58,21 +58,52 @@ void	print_array_map(char **map_array)
 	}
 }
 
+void	print_textures(t_textures *txtrs)
+{
+	printf("NO = %s \n SO = %s \n WE = %s \n EA = %s \n ", txtrs->north,txtrs->south, txtrs->west, txtrs->east);
+	printf("F = %d \n C = %d \n", txtrs->floor, txtrs->ceilling);
+}
+
+void *clear_arr_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (str);
+}
 
 
 char **copy_map_to_array(char *map_name)
 {
-	int		fd;
-	char	**map_array;
+	int			fd;
+	char		**map_array;
+	char		**game_map;
+	t_textures	txtures;
 
 	fd = open_file_map(map_name);
 	map_array = fill_map_array(fd);
 	if (!map_array[0])
 		exit_error("Error fill_map_array\n");
 	print_array_map(map_array);
-	if (check_game_map(map_array) == VALID_ERR)
+	txtures = init_texture_struct(map_array);
+	print_textures(&txtures);
+	game_map = trim_map(map_array);
+	clear_arr_str(map_array);
+	if (game_map == NULL)
+		printf("ERROR MAP\n");
+	if (check_game_map(game_map) == VALID_ERR)
 		printf("ERROR MAP\n");
 	else
 		printf("MAP IS OK\n");
-	return (map_array);
+
+	/* Временно:*/
+	clear_arr_str(game_map);
+	return (0);
+
 }

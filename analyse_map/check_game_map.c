@@ -1,14 +1,10 @@
 #include "analyse_map.h"
 
-
-
-
 typedef struct t_move_on_map
 {
 	int	x;
 	int	y;
 } t_dot;
-
 
 int	strarr_len(char **arr)
 // Длинна массива строк
@@ -31,9 +27,6 @@ char	get_ch_in_dot(int x, int y, char **map)
 		return (0);
 }
 
-
-
-
 int	check_first_or_last_line(char *line)
 {
 	char	*checked_line;
@@ -54,7 +47,6 @@ int	check_first_or_last_line(char *line)
 	return (0);
 }
 
-
 int	check_first_and_last_char(char	*str)
 /* Проверка на первый и последний ряд карты (только 1 и _) */
 {
@@ -71,7 +63,6 @@ int	check_first_and_last_char(char	*str)
 	free(checked_line);
 	return (ret_val);
 }
-
 
 int	check_side_wals(char **map)
 /* 2) Проверка первых символов строк (после пробелов только 1) */
@@ -125,17 +116,17 @@ int	check_all_space(char **map)
 	return (VALID_OK);
 }
 
-
-
 int	check_game_map(char **map)
 // 0 if map is correct, 1 if is not
 {
 	if (strarr_len(map) < 3)
-		return (0);
+		return (VALID_ERR);
 	if (check_first_or_last_line(map[0]) == VALID_ERR || \
 		check_first_or_last_line(map[strarr_len(map) - 1]) == VALID_ERR || \
 		check_side_wals(map) == VALID_ERR || \
 		check_all_space(map) == VALID_ERR)
+		// Проверка на лишние символы и
+		// ЕДИНСТВЕННОЕ обозначение игрока
 		return (VALID_ERR);
 	return (VALID_OK);
 }

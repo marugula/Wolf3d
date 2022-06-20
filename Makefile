@@ -21,7 +21,9 @@ HEADERS_DIRECTORY = .
 GNL_S = get_next_line.c get_next_line_utils.c
 GNL_D = gnl/
 
-ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c check_game_map.c
+ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c init_texture_struct.c get_color_image_texture.c write_textures_to_struct.c \
+				check_game_map.c trim_game_map.c
+
 ANLS_MAP_D = analyse_map/
 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
@@ -29,7 +31,8 @@ DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
 SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
-			handling_errors.c
+			handling_errors.c\
+			ft_isspace.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/
