@@ -1,5 +1,8 @@
 #include "analyse_map.h"
 
+
+
+
 char	**init_array_map(void)
 {
 	char	**new_array;
