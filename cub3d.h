@@ -42,10 +42,27 @@ typedef struct s_textures
 	int		ceilling;
 }	t_textures;
 
+typedef struct s_img_info
+{
+	void	*img;
+	int		width;
+	int		height;
+}	t_img_info;
+
+typedef struct s_imgs
+{
+	t_img_info	north;
+	t_img_info	south;
+	t_img_info	west;
+	t_img_info	east;
+}	t_imgs;
+
 typedef struct s_map_data
 {
-	char		**map;
-	t_textures	texture;
+	char			**map;
+	t_textures		texture;
+	t_game_window	window;
+	t_imgs			imgs;
 }	t_data;
 
 int	return_error(char *str);
