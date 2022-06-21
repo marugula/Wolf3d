@@ -57,7 +57,6 @@ int	is_line_map(char *map_line)
 	return (0);
 }
 
-
 void	save_one_texture(char *map_line, t_textures *textures, int txtr_nbr)
 {
 	if (txtr_nbr == NO)

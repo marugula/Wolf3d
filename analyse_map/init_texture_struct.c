@@ -10,9 +10,6 @@ void	set_default_textures(t_textures *textures)
 	textures->ceilling = -1;
 }
 
-
-
-
 void	fill_struct_textures(char **map_array, t_textures *textures)
 {
 	int	i;
@@ -32,7 +29,7 @@ void	check_all_textures_presented(t_textures *textures)
 	if (textures->north == NULL || textures->south == NULL
 		|| textures->west == NULL || textures->east == NULL
 		|| textures->floor == -1 || textures->ceilling == -1)
-		exit_error("check_all_textures_presented\n");
+		exit_error("error check_all_textures_presented\n");
 }
 
 t_textures	init_texture_struct(char **map_array)

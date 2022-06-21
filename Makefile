@@ -30,7 +30,8 @@ SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			handling_errors.c\
-			ft_isspace.c
+			ft_isspace.c\
+			draw_map.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

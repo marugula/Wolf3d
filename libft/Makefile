@@ -28,7 +28,7 @@ OBJECTS_B = $(SOURCES_B:%.c=%.o)
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -I $(HEADER) -g
+FLAGS = -Wall -Wextra -Werror -I $(HEADER)
 
 .PHONY: all clean fclean re bonus
 
