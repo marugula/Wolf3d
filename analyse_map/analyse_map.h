@@ -55,8 +55,6 @@ int			is_line_texture(char *map_line);
 int			is_line_map(char *map_line);
 void		save_one_texture(char *map_line, t_textures *textures, int txtr_nbr);
 
-/* copy_map_to_array.c */
-char		**copy_map_to_array(char *map_name);
 
 
 # define NO 0

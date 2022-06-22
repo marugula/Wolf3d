@@ -69,14 +69,14 @@ int	return_error(char *str);
 int	exit_error(char *str);
 
 int	check_format_map(char *map_name);
-char **copy_map_to_array(char *map_name);
+char **copy_map_to_array(char *map_name, t_textures *textures);
 
 int	ft_isspace(char c);
 int	ft_atoi_base(char *str, int base);
 
 
 /* marugula game)))) */
-void game();
+void game(char **map, t_textures textures);
 
 
 int	init_game(void);

@@ -4,23 +4,18 @@ unsigned int	get_color_in_pixel(int x, int y, t_img_info img)
 {
 	char	*dst;
 
-	// printf("x = %d   y = %d    img.size_line = %d    img.bits_p_pix = %d \n\n", x, y, img.size_line, img.bits_p_pix);
 	if (y < 0 || y >= img.height || x < 0 || x >= img.width)
 		return (0);
 	dst = img.addr + (y * img.size_line + x * (img.bits_p_pix / 8));
-
-	// printf("color = %x\n", *(unsigned int*)dst);
 	return (*(unsigned int*)dst);
 }
 
-void change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color)
+void	change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color)
 {
 	char	*dst;
 
-	// printf("y = %d ,  x = %d  img->height = %d  img->width = %d\n", x, y, img->height, img->width);
 	if (y < 0 || y >= img->height || x < 0 || x >= img->width)
 		return ;
-	// printf("was print color %x", color);
 	dst = img->addr + (y * img->size_line + x * (img->bits_p_pix / 8));
 	*(unsigned int*)dst = color;
 }
@@ -68,44 +63,59 @@ void	set_column_to_img(int x_poz, int y_poz, int num_column, int heigth, t_img_i
 	while (y < heigth)
 	{
 		src_y = round((double) y * prop);
-		// printf("src_y = %d , get_color_in_pixel(num_column, src_y, texture) = %x\n\n", src_y, get_color_in_pixel(num_column, src_y, texture));
 		change_pixel_in_img(x_poz, y_poz + y, winimg, get_color_in_pixel(num_column, src_y, texture));
 		y++;
 	}
 }
 
+void	init_img(t_img_info *img, char	*texture_path, void *mlx_ptr)
+{
+	img->img = mlx_xpm_file_to_image(mlx_ptr, texture_path, &img->width, &img->height);
+	if (img->img == NULL)
+	{
+		ft_putstr_fd(texture_path, 2);
+		exit_error(" img creat ERROR\n");
+	}
+	img->addr = mlx_get_data_addr(img->img, &img->bits_p_pix, &img->size_line, &img->endian);
+	if (img->addr == NULL)
+	{
+		ft_putstr_fd(texture_path, 2);
+		exit_error("East img get addr ERROR\n");
+	}
+}
+
+void	init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr)
+{
+	init_img(&imgs->east, texture.east, mlx_ptr);
+	init_img(&imgs->west, texture.west, mlx_ptr);
+	init_img(&imgs->south, texture.south, mlx_ptr);
+	init_img(&imgs->north, texture.north, mlx_ptr);
+}
+
 # define SIZE 200
 
-void game()
+void game(char **map, t_textures textures)
 {
-	t_game_window	win_data;
-	t_img_info		img;
-	// t_img_info		column;
+	t_data			data;
 
-	win_data.mlx = mlx_init();
-	win_data.win = mlx_new_window(win_data.mlx, WIDTH, HEIGHT, "Cub3D");
-	creat_window_img(&win_data);
-	fill_floor_and_cell_window_img(&win_data.img);
+	data.window.mlx = mlx_init();
+	data.window.win = mlx_new_window(data.window.mlx, WIDTH, HEIGHT, "Cub3D");
+	creat_window_img(&data.window);
+	init_sides_img(&data.imgs, textures, data.window.mlx);
+	data.map = map;
 
-	img.img = mlx_xpm_file_to_image(win_data.mlx, "textures/purple_texture.xpm", &img.width, &img.height);
-	// img.img = mlx_xpm_file_to_image(win_data.mlx, "textures/image.xpm", &img.width, &img.height);
-
-	if (img.img == NULL)
-		printf("ERORr creat img\n");
-	img.addr = mlx_get_data_addr(img.img, &img.bits_p_pix, &img.size_line, &img.endian);
+	fill_floor_and_cell_window_img(&data.window.img);
 
 	int x = 0;
 	int	step = 0;
-	while (x < img.width)
+	while (x < data.imgs.north.width)
 	{
-		set_column_to_img(100 + step, 100, x, SIZE, &(win_data.img), img);
-		// set_column_to_img(100 + step + 1, 100, x, SIZE, &(win_data.img), img);
-		// set_column_to_img(100 + step + 2, 100, x, SIZE, &(win_data.img), img);
+		set_column_to_img(100 + step, 100 + step / 2, x, SIZE - step, &(data.window.img), data.imgs.north);
 		x++;
 		step += 1;
 	}
 
 
-	mlx_put_image_to_window(win_data.mlx, win_data.win, win_data.img.img, 0, 0);
-	mlx_loop(win_data.mlx);
+	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
+	mlx_loop(data.window.mlx);
 }
