@@ -34,7 +34,7 @@ SOURCES_S = main.c\
 			handling_errors.c\
 			ft_isspace.c\
 			draw_map.c\
-			game.c
+			game.c init_imgs.c paint_engine.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/
