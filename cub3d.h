@@ -5,9 +5,8 @@
 # include "minilibx_macos/mlx.h"
 # include "gnl/get_next_line.h"
 # include <stdio.h>
+# include <math.h>
 
-
-# include <stdio.h>
 
 
 typedef struct s_point
@@ -17,15 +16,22 @@ typedef struct s_point
 	float		z;
 }	t_point;
 
-typedef struct s_game_window
+typedef struct s_img_info
 {
-	void	*mlx;
-	void	*win;
 	void	*img;
+	int		width;
+	int		height;
 	char	*addr;
 	int		bits_p_pix;
 	int		size_line;
 	int		endian;
+}	t_img_info;
+
+typedef struct s_game_window
+{
+	void		*mlx;
+	void		*win;
+	t_img_info	img;
 }	t_game_window;
 
 # define HEIGHT			540
@@ -42,12 +48,6 @@ typedef struct s_textures
 	int		ceilling;
 }	t_textures;
 
-typedef struct s_img_info
-{
-	void	*img;
-	int		width;
-	int		height;
-}	t_img_info;
 
 typedef struct s_imgs
 {
@@ -75,7 +75,11 @@ int	ft_isspace(char c);
 int	ft_atoi_base(char *str, int base);
 
 
-int	init_game();
+/* marugula game)))) */
+void game();
+
+
+int	init_game(void);
 
 
 #endif

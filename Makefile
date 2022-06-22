@@ -2,8 +2,8 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra -g
-# FLAGS = -Wall -Werror -Wextra  -fsanitize=address -g
+# FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra  -fsanitize=address -g
 
 LIBRARIES =  -lft -L$(LIBFT_DIRECTORY) -lmlx -lm -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 
@@ -33,7 +33,8 @@ SOURCES_S = main.c\
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			handling_errors.c\
 			ft_isspace.c\
-			draw_map.c
+			draw_map.c\
+			game.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

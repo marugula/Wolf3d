@@ -1,32 +1,32 @@
 #include "cub3d.h"
 
-t_game_window	init_game_window(void)
-{
-	t_game_window	game_window;
+// t_game_window	init_game_window(void)
+// {
+// 	t_game_window	game_window;
 
-	game_window.mlx = mlx_init();
-	if (!game_window.mlx)
-		exit_error("init_game_window\n");
-	game_window.win = mlx_new_window(game_window.mlx, WIDTH, HEIGHT, "CUB3D");
-	game_window.img = mlx_new_image(game_window.mlx, WIDTH, HEIGHT);
-	if (!game_window.win || !game_window.img)
-		exit_error("init_game_window\n");
-	game_window.addr = mlx_get_data_addr(game_window.img, \
-		&game_window.bits_p_pix, &game_window.size_line, &game_window.endian);
-	if (!game_window.addr)
-		exit_error("init_game_window\n");
-	return (game_window);
-}
+// 	game_window.mlx = mlx_init();
+// 	if (!game_window.mlx)
+// 		exit_error("init_game_window\n");
+// 	game_window.win = mlx_new_window(game_window.mlx, WIDTH, HEIGHT, "CUB3D");
+// 	game_window.img = mlx_new_image(game_window.mlx, WIDTH, HEIGHT);
+// 	if (!game_window.win || !game_window.img)
+// 		exit_error("init_game_window\n");
+// 	game_window.addr = mlx_get_data_addr(game_window.img, \
+// 		&game_window.bits_p_pix, &game_window.size_line, &game_window.endian);
+// 	if (!game_window.addr)
+// 		exit_error("init_game_window\n");
+// 	return (game_window);
+// }
 
-t_point	init_point(int x, int y, char **map)
-{
-	t_point	point;
+// t_point	init_point(int x, int y, char **map)
+// {
+// 	t_point	point;
 
-	point.x = x;
-	point.y = y;
-	point.z = map[y][x];
-	return (point);
-}
+// 	point.x = x;
+// 	point.y = y;
+// 	point.z = map[y][x];
+// 	return (point);
+// }
 
 // void	my_pixel_put(int x, int y, t_game_window	*game_window)
 // {
@@ -93,48 +93,48 @@ t_point	init_point(int x, int y, char **map)
 // 	}
 // }
 
-typedef struct s_img_info
-{
-	void	*img;
-	int		width;
-	int		height;
-}	t_img_info;
+// typedef struct s_img_info
+// {
+// 	void	*img;
+// 	int		width;
+// 	int		height;
+// }	t_img_info;
 
-typedef struct s_imgs
-{
-	t_img_info	north;
-	t_img_info	south;
-	t_img_info	west;
-	t_img_info	east;
-}	t_imgs;
+// typedef struct s_imgs
+// {
+// 	t_img_info	north;
+// 	t_img_info	south;
+// 	t_img_info	west;
+// 	t_img_info	east;
+// }	t_imgs;
 
 // t_imgs	set_imgs_in_mlx(t_game_window game_window)
 // {
 // 	t_imgs	imgs;
 
-// 	imgs.north.img = 
+// 	imgs.north.img =
 // }
 
-int	init_game()
-{
-	// int map_width = 7;
-	// int map_height = 6;
-	char	*map[6];
-	t_game_window	game_window;
+// int	init_game()
+// {
+// 	// int map_width = 7;
+// 	// int map_height = 6;
+// 	char	*map[6];
+// 	t_game_window	game_window;
 
-	map[0] = "1111111";
-	map[1] = "1000001";
-	map[2] = "1000001";
-	map[3] = "1000001";
-	map[4] = "1000001";
-	map[5] = "1111111";
+// 	map[0] = "1111111";
+// 	map[1] = "1000001";
+// 	map[2] = "1000001";
+// 	map[3] = "1000001";
+// 	map[4] = "1000001";
+// 	map[5] = "1111111";
 
-	int img_height = 2;
-	int img_width = 2;
+// 	int img_height = 2;
+// 	int img_width = 2;
 
-	game_window = init_game_window();
-	game_window.img = mlx_xpm_file_to_image(game_window.mlx, "textures/pink_texture.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(game_window.mlx, game_window.win, game_window.img, 0, 0);
-	mlx_loop(game_window.mlx);
-	return (0);
-}
+// 	game_window = init_game_window();
+// 	game_window.img = mlx_xpm_file_to_image(game_window.mlx, "textures/pink_texture.xpm", &img_width, &img_height);
+// 	mlx_put_image_to_window(game_window.mlx, game_window.win, game_window.img, 0, 0);
+// 	mlx_loop(game_window.mlx);
+// 	return (0);
+// }

@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+
+
+
+
+
+
+
+
 int	main(int argc, char **argv)
 {
 	(void) argv;
@@ -9,8 +17,8 @@ int	main(int argc, char **argv)
 	}
 	// check_format_map(argv[1]);
 	// copy_map_to_array(argv[1]);
-	init_game();
-
+	// init_game();
+	game();
 
 	return (0);
 }
