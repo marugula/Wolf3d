@@ -63,25 +63,44 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 	return (axis_step);
 }
 
-
-float	disctance(t_vector point1, t_vector point2)
+float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 {
+	double	distance;
 
+	distance = fabs(point_from.x - point_to.x) / cos (angle_ray);
+	return ((float) distance);
+}
 
-	return (float);
+float	slice_height(float distance)
+{
+	float	height;
+
+	height = (float) GAMEBOXSIZE / distance * (float) PLANEDIST;
+	return (height);
+}
+
+int	nbr_of_slice_column(t_vector intersection_point)
+{
+	int	nbr;
+
+	nbr = (int) roundf(fmod(intersection_point.x, 64));
+	if (nbr != 0)
+		return (nbr);
+	nbr = (int) roundf(fmod(intersection_point.y, 64));
+	return (nbr);
 }
 
 void	ray_cast(t_data *data)
 {
 	float	angle_ray;
-	t_vector	intersection_poin;
+	t_vector	intersection_point;
 	// float	distance;
 	// вычесление крайнего левого луча
 	angle_ray = data->pl.direction - (FOV / 2);
 
 	while (angle_ray < data->pl.direction + (FOV / 2))
 	{
-		intersection_poin = find_intersection_points(data, angle_ray);
+		intersection_point = find_intersection_points(data, angle_ray);
 	// расстояние
 	// считаем высоту
 	// получаем номер колонки
