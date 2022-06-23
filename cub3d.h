@@ -15,6 +15,8 @@
 # define STEPANGLE		FOV / WIDTH
 # define GAMEBOXSIZE	64
 
+# define SPACEVISIBLE	1000
+
 typedef struct s_point
 {
 	float		x;
@@ -51,7 +53,7 @@ typedef struct s_textures
 	int		floor;
 	int		ceilling;
 }	t_textures;
-
+	
 
 typedef struct s_imgs
 {
@@ -107,6 +109,10 @@ void			change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color);
 void			set_column_in_img(int x_poz, int y_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
 void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
+
+/* analyse/utils.c */
+int	strarr_len(char **arr)
+
 
 
 int	init_game(void);
