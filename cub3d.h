@@ -13,6 +13,8 @@
 # define WIDTH			960
 # define FOV			M_PI / 3
 # define STEPANGLE		FOV / WIDTH
+# define TANPI_6			0.57735026
+# define PLANEDIST		( WIDTH / 2) / TANPI_6
 # define GAMEBOXSIZE	64
 
 typedef struct s_point
