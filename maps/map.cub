@@ -1,7 +1,7 @@
 NO textures/image.xpm
-SO textures/green_texture.xpm
-WE textures/pink_texture.xpm
-EA textures/yellow_texture.xpm
+SO textures/image.xpm
+WE textures/image.xpm
+EA textures/image.xpm
 
 F 255,0,255
 C 0,255,255

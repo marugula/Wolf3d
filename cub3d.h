@@ -13,6 +13,8 @@
 # define WIDTH			960
 # define FOV			M_PI / 3
 # define STEPANGLE		FOV / WIDTH
+# define TANPI_6			0.57735026
+# define PLANEDIST		( WIDTH / 2) / TANPI_6
 # define GAMEBOXSIZE	64
 
 # define SPACEVISIBLE	1000
@@ -53,7 +55,7 @@ typedef struct s_textures
 	int		floor;
 	int		ceilling;
 }	t_textures;
-	
+
 
 typedef struct s_imgs
 {
@@ -111,7 +113,7 @@ void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
 
 /* analyse/utils.c */
-int	strarr_len(char **arr)
+int	strarr_len(char **arr);
 
 
 

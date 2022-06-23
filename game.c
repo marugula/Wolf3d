@@ -38,19 +38,33 @@ t_vector	sum_vectors(t_vector a, t_vector b)
 	return (new);
 }
 
-float	distance(t_vector point1, t_vector point2, float angle)
+float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 {
+	double	distance;
 
+	distance = fabs(point_from.x - point_to.x) / cos (angle_ray);
+	return ((float) distance);
+}
 
-	return (float);
+float	slice_height(float distance)
+{
+	float	height;
+
+	height = (float) GAMEBOXSIZE / distance * (float) PLANEDIST;
+	return (height);
 }
 
 
+int	nbr_of_slice_column(t_vector intersection_point)
+{
+	int	nbr;
 
-
-
-
-
+	nbr = (int) roundf(fmod(intersection_point.x, 64));
+	if (nbr != 0)
+		return (nbr);
+	nbr = (int) roundf(fmod(intersection_point.y, 64));
+	return (nbr);
+}
 
 int	is_wall_in_point(char **map, t_vector point)
 {
@@ -102,7 +116,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 	}
 	else
 	{
-		ordinat_point.x = floor(data->pl.poz / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
+		ordinat_point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
 		ordinat_step.x = -GAMEBOXSIZE;
 	}
 	ordinat_step.y = ordinat_step.x * tan(angle_ray);
@@ -112,6 +126,8 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 			/* && !is_out_of_border_map(data->map, axis_point) && !is_out_of_border_map(data->map, ordinat_point) */
 			1)
 	{
+		printf("axis 	x = %d   y = %d\n", (int)fmod(axis_point.x, GAMEBOXSIZE), (int)fmod(axis_point.y, GAMEBOXSIZE));
+		printf("ordinat x = %d   y = %d\n\n", (int)fmod(ordinat_point.x, GAMEBOXSIZE), (int)fmod(ordinat_point.y, GAMEBOXSIZE));
 		if (distance(data->pl.poz, ordinat_point, angle_ray) < distance(data->pl.poz, axis_point, angle_ray))
 		{
 			ordinat_point = sum_vectors(ordinat_point, ordinat_step);
@@ -125,28 +141,35 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 				return (axis_point);
 		}
 	}
+	return (ordinat_point);
 
 }
 
 
-
-
 void	ray_cast(t_data *data)
 {
-	float	angle_ray;
-	t_vector	intersection_poin;
-	// float	distance;
-	// вычесление крайнего левого луча
+	float		angle_ray;
+	t_vector	intersection_point;
+	float		dist;
+	int			height;
+	int			num_column;
+	int			x;
+	// вычесление крайего левого луча
 	angle_ray = data->pl.direction - (FOV / 2);
 
+	x = 0;
 	while (angle_ray < data->pl.direction + (FOV / 2))
 	{
-		intersection_poin = find_intersection_points(data, angle_ray);
+		intersection_point = find_intersection_points(data, angle_ray);
 	// расстояние
+		dist = distance(data->pl.poz, intersection_point, data->pl.direction);
 	// считаем высоту
+		height = (int) slice_height(dist);
 	// получаем номер колонки
+		num_column = nbr_of_slice_column(intersection_point);
 	// ОТРИСОВКА
-
+		set_column_in_img(x, HEIGHT / 2, num_column, height, data->window.win, data->imgs.east);
+		x++;
 		angle_ray += STEPANGLE;
 	}
 
@@ -165,11 +188,16 @@ void game(char **map, t_textures textures)
 	init_sides_img(&data.imgs, textures, data.window.mlx);
 	data.map = map;
 	// init pl poz
-
-	// ray_cast();
+	data.pl.poz.x = 11 * 64 + 32;
+	data.pl.poz.y = 27 * 64 + 32;
+	data.pl.direction = M_PI_2;
 
 	fill_floor_and_cell_window_img(&data.window.img, textures);
+
 	paint_sample(&data);
+
+	ray_cast(&data);
+
 
 	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
 	mlx_loop(data.window.mlx);
