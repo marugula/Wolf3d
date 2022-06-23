@@ -50,7 +50,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 	if (cos(angle_ray) > 0)
 	{
 		ordinat_point.x = ceil(data->pl.poz.x / 64) * 64;
-		ordinat_step.x = 64
+		ordinat_step.x = 64;
 	}
 	else
 	{
@@ -60,23 +60,28 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 
 
 
-	return ((float) 0)
+	return (axis_step);
 }
 
 
+float	disctance(t_vector point1, t_vector point2)
+{
 
+
+	return (float);
+}
 
 void	ray_cast(t_data *data)
 {
 	float	angle_ray;
 	t_vector	intersection_poin;
-	float	distance;
+	// float	distance;
 	// вычесление крайнего левого луча
 	angle_ray = data->pl.direction - (FOV / 2);
 
 	while (angle_ray < data->pl.direction + (FOV / 2))
 	{
-		intersection_poin = find_intersection_points(data, angle_ray)
+		intersection_poin = find_intersection_points(data, angle_ray);
 	// расстояние
 	// считаем высоту
 	// получаем номер колонки
