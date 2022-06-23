@@ -93,20 +93,7 @@ t_point	init_point(int x, int y, char **map)
 // 	}
 // }
 
-typedef struct s_img_info
-{
-	void	*img;
-	int		width;
-	int		height;
-}	t_img_info;
 
-typedef struct s_imgs
-{
-	t_img_info	north;
-	t_img_info	south;
-	t_img_info	west;
-	t_img_info	east;
-}	t_imgs;
 
 // t_imgs	set_imgs_in_mlx(t_game_window game_window)
 // {
@@ -121,6 +108,7 @@ int	init_game()
 	// int map_height = 6;
 	char	*map[6];
 	t_game_window	game_window;
+	t_imgs imgs;
 
 	map[0] = "1111111";
 	map[1] = "1000001";
@@ -133,7 +121,8 @@ int	init_game()
 	int img_width = 2;
 
 	game_window = init_game_window();
-	game_window.img = mlx_xpm_file_to_image(game_window.mlx, "textures/pink_texture.xpm", &img_width, &img_height);
+	imgs.north.img = mlx_xpm_file_to_image(game_window.mlx, "textures/pink_texture.xpm", &img_width, &img_height);
+	imgs.north.addr = 
 	mlx_put_image_to_window(game_window.mlx, game_window.win, game_window.img, 0, 0);
 	mlx_loop(game_window.mlx);
 	return (0);

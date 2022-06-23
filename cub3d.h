@@ -6,9 +6,7 @@
 # include "gnl/get_next_line.h"
 # include <stdio.h>
 
-
 # include <stdio.h>
-
 
 typedef struct s_point
 {
@@ -47,6 +45,10 @@ typedef struct s_img_info
 	void	*img;
 	int		width;
 	int		height;
+	char	*addr;
+	int		bits_p_pix;
+	int		size_line;
+	int		endian;
 }	t_img_info;
 
 typedef struct s_imgs
