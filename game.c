@@ -76,7 +76,6 @@ int	is_wall_in_point(char **map, t_vector point)
 	if (map && map[y] && map[y][x] == '1')
 		return (1);
 	return (0);
-
 }
 
 
@@ -106,7 +105,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 		axis_point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE + GAMEBOXSIZE;
 		axis_step.y = GAMEBOXSIZE;
 	}
-	axis_step.x = axis_step.y / tan(angle_ray);
+	axis_step.x = GAMEBOXSIZE / tan(angle_ray);
 	axis_point.x = data->pl.poz.x + (data->pl.poz.y - axis_point.y) * tan(angle_ray);
 
 	if (cos(angle_ray) > 0)
@@ -119,7 +118,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 		ordinat_point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
 		ordinat_step.x = -GAMEBOXSIZE;
 	}
-	ordinat_step.y = ordinat_step.x * tan(angle_ray);
+	ordinat_step.y = GAMEBOXSIZE * tan(angle_ray);
 	ordinat_point.y = data->pl.poz.y + (data->pl.poz.x - ordinat_point.x) / tan(angle_ray);
 
 	while (/* distance(data->pl.poz, axis_point, angle_ray) < SPACEVISIBLE && distance(data->pl.poz, ordinat_point, angle_ray) < SPACEVISIBLE */ \
@@ -188,8 +187,8 @@ void game(char **map, t_textures textures)
 	init_sides_img(&data.imgs, textures, data.window.mlx);
 	data.map = map;
 	// init pl poz
-	data.pl.poz.x = 11 * 64 + 32;
-	data.pl.poz.y = 27 * 64 + 32;
+	data.pl.poz.x = 27 * 64 + 32;
+	data.pl.poz.y = 11 * 64 + 32;
 	data.pl.direction = M_PI_2;
 
 	fill_floor_and_cell_window_img(&data.window.img, textures);
