@@ -33,7 +33,8 @@ SOURCES_S = main.c\
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			handling_errors.c\
 			ft_isspace.c\
-			draw_map.c
+			init_player.c\
+			game.c init_imgs.c paint_engine.c 
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

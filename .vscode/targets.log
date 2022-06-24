@@ -5,21 +5,22 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
+ 
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Jun 21 11:50:03 2022
+# Make data base, printed on Thu Jun 23 19:36:14 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
+ 
 ?F = $(notdir $?)
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
- 
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from `Makefile', line 29)
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
@@ -63,19 +64,19 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.IAl8YDN2vc/Listeners
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
-# makefile (from `Makefile', line 38)
+# makefile (from `Makefile', line 39)
 OBJS = $(SOURCES_S:%.c=%.o)
 # environment
 PWD = /Users/anastasiadementeva/Desktop/projects/Wolf3d
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# makefile (from `Makefile', line 42)
+# makefile (from `Makefile', line 43)
 GREEN = \033[0;32m
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
 # environment
 HOME = /Users/anastasiadementeva
-# makefile (from `Makefile', line 45)
+# makefile (from `Makefile', line 46)
 MARK = \033[7m
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
@@ -111,7 +112,7 @@ MINILIBX_DIRECTORY = ./minilibx_macos/
 MAKE_VERSION := 3.81
 # environment
 USER = anastasiadementeva
-# makefile (from `Makefile', line 44)
+# makefile (from `Makefile', line 45)
 CROSS = \033[9m
 # makefile
 .DEFAULT_GOAL := all
@@ -131,7 +132,7 @@ TMPDIR = /var/folders/v6/_pmsvg_n0jnfrjfd4ygwk2p00000gn/T/
 *F = $(notdir $*)
 # environment
 VSCODE_IPC_HOOK = /Users/anastasiadementeva/Library/Application Support/Code/1.63.0-main.sock
-# makefile (from `Makefile', line 43)
+# makefile (from `Makefile', line 44)
 RED = \033[0;31m
 # makefile
 MAKEFLAGS = Rrqp
@@ -139,9 +140,10 @@ MAKEFLAGS = Rrqp
 MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
+ 
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.13070837.13070843
-# makefile (from `Makefile', line 39)
+# makefile (from `Makefile', line 40)
 OBJS_DIR = objs/
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
@@ -165,7 +167,7 @@ LIBFT_DIRECTORY = ./libft/
 GNL_S = get_next_line.c get_next_line_utils.c
 # environment
 LC_ALL = C
-# makefile (from `Makefile', line 46)
+# makefile (from `Makefile', line 47)
 RESET = \033[0m
 # makefile (from `Makefile', line 8)
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY) -lmlx -lm -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
@@ -174,14 +176,14 @@ HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h
 # automatic
 ^F = $(notdir $^)
 # makefile (from `Makefile', line 31)
-SOURCES_S = main.c $(addprefix gnl/, $(GNL_S)) $(addprefix analyse_map/, $(ANLS_MAP_S)) handling_errors.c ft_isspace.c draw_map.c
+SOURCES_S = main.c $(addprefix gnl/, $(GNL_S)) $(addprefix analyse_map/, $(ANLS_MAP_S)) handling_errors.c ft_isspace.c init_player.c game.c init_imgs.c paint_engine.c 
 # default
 SUFFIXES := 
 # makefile (from `Makefile', line 5)
 FLAGS = -Wall -Werror -Wextra -g
 # environment
 MAKELEVEL := 0
-# makefile (from `Makefile', line 40)
+# makefile (from `Makefile', line 41)
 OBJECTS = $(addprefix $(OBJS_DIR), $(OBJS))
 # environment
 LANG = C
@@ -196,17 +198,17 @@ VSCODE_PID = 654
 
 # Directories
 
-# . (device 16777234, inode 21187324): 26 files, no impossibilities.
+# . (device 16777234, inode 21187324): 24 files, no impossibilities.
 # gnl/ (device 16777234, inode 21187403): 6 files, no impossibilities so far.
 # analyse_map/ (device 16777234, inode 21582147): 4 files, no impossibilities so far.
 # libft/ (device 16777234, inode 21189136): 94 files, no impossibilities.
 
-# 130 files, no impossibilities in 4 directories.
+# 128 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
 objs/%.o: %.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
-#  commands to execute (from `Makefile', line 58):
+#  commands to execute (from `Makefile', line 59):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -261,10 +263,10 @@ objs/main.o: main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 # automatic
 # ^ := main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 # automatic
-# ? := cub3d.h analyse_map//analyse_map.h
+# ? := main.c cub3d.h analyse_map//analyse_map.h
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/21=5%
-#  commands to execute (from `Makefile', line 58):
+#  commands to execute (from `Makefile', line 59):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -300,7 +302,6 @@ clno:
 
 # Not a target:
 libft//ft_lstadd_front.c:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -323,12 +324,6 @@ libft//ft_memmove.c:
 #  File has not been updated.
 
 # Not a target:
-objs/draw_map.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
 libft//ft_strchr.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -339,24 +334,25 @@ libft//ft_lstdelone.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-20 11:58:35
+#  Last modified 2022-06-23 18:53:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-cub3D: objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/handling_errors.o objs/ft_isspace.o objs/draw_map.o libft/libft.a minilibx_macos/libmlx.a
+cub3D: objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/handling_errors.o objs/ft_isspace.o objs/init_player.o objs/game.o objs/init_imgs.o objs/paint_engine.o libft/libft.a minilibx_macos/libmlx.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-21 10:21:07
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/11=0%
-#  commands to execute (from `Makefile', line 53):
+#  commands to execute (from `Makefile', line 54):
 	@$(CC) $(FLAGS) $(INCLUDES)  $(LIBRARIES) $(OBJECTS) -o $(NAME)
 	@echo "\n$(MARK) $(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(MARK) $(NAME): $(GREEN)$(NAME) was created$(RESET)"
@@ -398,7 +394,7 @@ gnl//get_next_line.h:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 10:28:37
+#  Last modified 2022-06-23 19:36:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -459,7 +455,6 @@ libft//ft_putendl_fd.c:
 #  File has not been updated.
 
 # Not a target:
- 
 libft//ft_strmapi.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -477,11 +472,17 @@ libft//ft_strlcat.c:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+objs/init_imgs.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 libft/libft.a: libft//ft_atoi.c libft//ft_bzero.c libft//ft_calloc.c libft//ft_isalnum.c libft//ft_isalpha.c libft//ft_isascii.c libft//ft_isdigit.c libft//ft_isdigit_and_sign.c libft//ft_isprint.c libft//ft_itoa.c libft//ft_lstadd_back.c libft//ft_lstadd_front.c libft//ft_lstclear.c libft//ft_lstdelone.c libft//ft_lstiter.c libft//ft_lstlast.c libft//ft_lstmap.c libft//ft_lstnew.c libft//ft_lstsize.c libft//ft_memchr.c libft//ft_memcmp.c libft//ft_memcpy.c libft//ft_memmove.c libft//ft_memset.c libft//ft_putchar_fd.c libft//ft_putendl_fd.c libft//ft_putnbr_fd.c libft//ft_putstr_fd.c libft//ft_split.c libft//ft_strchr.c libft//ft_strdup.c libft//ft_striteri.c libft//ft_strjoin.c libft//ft_strlcat.c libft//ft_strlcpy.c libft//ft_strlen.c libft//ft_strmapi.c libft//ft_strncmp.c libft//ft_strnstr.c libft//ft_strrchr.c libft//ft_strtrim.c libft//ft_substr.c libft//ft_tolower.c libft//ft_toupper.c libft//libft.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 63):
+#  commands to execute (from `Makefile', line 64):
 	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY)
 	
@@ -515,7 +516,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 77):
+#  commands to execute (from `Makefile', line 78):
 	@rm -rf $(NAME)
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) fclean
 	@echo "$(CROSS) $(NAME) : $(RED)$(NAME) and $(BONUS_NAME) was deleted$(RESET)"
@@ -534,6 +535,12 @@ libft//ft_strlen.c:
 #  File has not been updated.
 
 # Not a target:
+objs/init_player.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 libft//ft_isdigit.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -541,6 +548,12 @@ libft//ft_isdigit.c:
 
 # Not a target:
 objs/analyse_map/trim_game_map.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+objs/paint_engine.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -578,6 +591,7 @@ objs/gnl/get_next_line_utils.o:
 # Not a target:
 objs/analyse_map/init_texture_struct.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -628,7 +642,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 71):
+#  commands to execute (from `Makefile', line 72):
 	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -C $(MINILIBX_DIRECTORY) clean
 	@rm -rf $(OBJECTS) $(OBJS_DIR)
@@ -656,7 +670,7 @@ libft//ft_isprint.c:
 # Not a target:
 cub3d.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 10:36:04
+#  Last modified 2022-06-23 19:35:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -683,7 +697,7 @@ libft//ft_putchar_fd.c:
 # Not a target:
 analyse_map//analyse_map.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-21 10:28:37
+#  Last modified 2022-06-23 18:53:26
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -699,10 +713,16 @@ minilibx_macos/libmlx.a:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 67):
+#  commands to execute (from `Makefile', line 68):
 	@echo "$(NAME): $(GREEN)Creating $(MINILIBX)...$(RESET)"
 	@$(MAKE) -C $(MINILIBX_DIRECTORY)
 	
+
+# Not a target:
+objs/game.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 libft//libft.h:
@@ -741,7 +761,6 @@ objs/analyse_map/checker_function.o:
 #  File has not been updated.
 
 # Not a target:
- 
 libft//ft_isalpha.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -754,7 +773,7 @@ libft//ft_lstsize.c:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=78/1024=8%, Rehash=0, Collisions=12/173=7%
+# Load=81/1024=8%, Rehash=0, Collisions=12/179=7%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -766,6 +785,6 @@ libft//ft_lstsize.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jun 21 11:50:03 2022
+# Finished Make data base on Thu Jun 23 19:36:14 2022
 
  

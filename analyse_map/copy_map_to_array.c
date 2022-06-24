@@ -79,31 +79,27 @@ void *clear_arr_str(char **str)
 }
 
 
-char **copy_map_to_array(char *map_name)
+char **copy_map_to_array(char *map_name, t_textures *textures)
 {
 	int			fd;
 	char		**map_array;
 	char		**game_map;
-	t_textures	txtures;
 
 	fd = open_file_map(map_name);
 	map_array = fill_map_array(fd);
 	if (!map_array[0])
 		exit_error("Error fill_map_array\n");
 	print_array_map(map_array);
-	txtures = init_texture_struct(map_array);
-	print_textures(&txtures);
+	*textures = init_texture_struct(map_array);
+	print_textures(textures);
 	game_map = trim_map(map_array);
 	clear_arr_str(map_array);
 	if (game_map == NULL)
-		printf("ERROR MAP\n");
+		exit_error("File have not map\n");
 	if (check_game_map(game_map) == VALID_ERR)
-		printf("ERROR MAP\n");
+		exit_error("Map incorect\n");
 	else
 		printf("MAP IS OK\n");
-	// нужна запись в структуру
-	/* Временно:*/
-	clear_arr_str(game_map);
-	return (0);
-
+	// clear_arr_str(game_map);
+	return (game_map);
 }
