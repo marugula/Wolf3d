@@ -24,14 +24,25 @@ unsigned int color_shift(int color, float intensive)
 {
 	unsigned int r = (color >> 16) * intensive;
 	unsigned int b = ((color >> 8) & 0x00FF) * intensive;
-	unsigned int g = (color & 0x0000FF) *intensive;
+	unsigned int g = (color & 0x0000FF) * intensive;
 	unsigned int newColor = g | (b << 8) | (r << 16);
+	// printf("newColor = %x\n", newColor);
 	return (newColor);
 }
 
-void	set_column_in_img(int x_poz, int y_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
+float	intensity(float prop)
+{
+	if (prop > 1)
+		return (0);
+	if (prop < 0)
+		return (1);
+	return (1 - prop);
+}
+
+void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
 {
 	int		y;
+	int		y_poz;
 	float	prop;
 	int		src_y;
 	int		color;
@@ -44,7 +55,7 @@ void	set_column_in_img(int x_poz, int y_poz, int num_column, int heigth, t_img_i
 		src_y = round((double) y * prop);
 		color = get_color_in_pixel(num_column, src_y, texture);
 		if (color != 0)
-			change_pixel_in_img(x_poz, y_poz + y, winimg, color);
+			change_pixel_in_img(x_poz, y_poz + y, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
 		y++;
 	}
 }

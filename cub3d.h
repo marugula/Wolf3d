@@ -9,7 +9,7 @@
 
 # define HEIGHT			540
 # define WIDTH			960
-# define FOV			M_PI / 3
+# define FOV			M_PI / 2.9
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6			0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
@@ -106,9 +106,12 @@ void			creat_window_img(t_game_window *mlx);
 /* paint_engine.c */
 unsigned int	get_color_in_pixel(int x, int y, t_img_info img);
 void			change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color);
-void			set_column_in_img(int x_poz, int y_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
+void			set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
 void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
+
+
+float	correct_distance(float distance, float angle);
 
 /* analyse/utils.c */
 int	strarr_len(char **arr);

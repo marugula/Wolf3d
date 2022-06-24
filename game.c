@@ -9,7 +9,7 @@ void	paint_sample(t_data *data)
 	int	step = 0;
 	while (x < data->imgs.north.width)
 	{
-		set_column_in_img(100 + step, 100 + step / 2, x, SIZE - step, &(data->window.img), data->imgs.north);
+		set_column_in_img(100 + step, x, SIZE - step, &(data->window.img), data->imgs.north);
 		x++;
 		step += 1;
 	}
@@ -159,6 +159,11 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 }
 
 
+float	correct_distance(float distance, float angle)
+{
+	return (distance * cos(angle));
+}
+
 void	ray_cast(t_data *data)
 {
 	float		angle_ray;
@@ -179,7 +184,7 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray, &num_column);
 		dist = distance(data->pl.poz, intersection_point, angle_ray);
 		height = (int) slice_height(dist);
-		set_column_in_img(x, HEIGHT / 4, num_column, height, &data->window.img, data->imgs.east);
+		set_column_in_img(x, num_column, height, &data->window.img, data->imgs.east);
 		x++;
 		angle_ray -= STEPANGLE;
 	}
