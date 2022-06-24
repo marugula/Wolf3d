@@ -1,11 +1,18 @@
-	F 			255,0,255
-NO 		./path_to_the_north_texture
-   C      0,255,255
+NO textures/stone.xpm
+SO textures/stone.xpm
+WE textures/stone.xpm
+EA textures/stone.xpm
 
-		SO ./path_to_the_south_texture
-WE 	./path_to_the_west_texture
-EA ./path_to_the_east_texture
+F 255,0,255
+C 0,255,255
 
-
-
-        1111111111111111111111111
+11111
+10001
+10001
+10001
+10001
+10001
+10001
+10001
+10W01
+11111

@@ -36,6 +36,7 @@ void	set_column_in_img(int x_poz, int y_poz, int num_column, int heigth, t_img_i
 	int		src_y;
 	int		color;
 
+	y_poz = HEIGHT / 2 - heigth / 2;
 	y = 0;
 	prop = (float) texture.height / (float) heigth;
 	while (y < heigth)

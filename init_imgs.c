@@ -3,9 +3,14 @@
 void	creat_window_img(t_game_window *mlx)
 {
 	mlx->img.img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
+	if (!mlx->img.img)
+		exit_error("error init_game_window\n");
 	mlx->img.height = HEIGHT;
 	mlx->img.width = WIDTH;
-	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_p_pix, &mlx->img.size_line, &mlx->img.endian);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_p_pix,
+			&mlx->img.size_line, &mlx->img.endian);
+	if (!mlx->img.addr)
+		exit_error("error init_game_window\n");
 }
 
 void	init_img(t_img_info *img, char	*texture_path, void *mlx_ptr)

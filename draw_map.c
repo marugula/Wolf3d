@@ -11,7 +11,7 @@
 // 	game_window.img = mlx_new_image(game_window.mlx, WIDTH, HEIGHT);
 // 	if (!game_window.win || !game_window.img)
 // 		exit_error("init_game_window\n");
-// 	game_window.addr = mlx_get_data_addr(game_window.img, \
+// 	game_window.addr = mlx_get_data_addr(game_window.img,
 // 		&game_window.bits_p_pix, &game_window.size_line, &game_window.endian);
 // 	if (!game_window.addr)
 // 		exit_error("init_game_window\n");

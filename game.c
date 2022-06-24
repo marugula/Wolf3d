@@ -42,7 +42,7 @@ float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 {
 	double	distance;
 
-	distance = fabs(point_from.x - point_to.x) / cos (angle_ray);
+	distance = fabs(fabs(point_from.x - point_to.x) / cos (angle_ray));
 	return ((float) distance);
 }
 
@@ -55,15 +55,19 @@ float	slice_height(float distance)
 }
 
 
-int	nbr_of_slice_column(t_vector intersection_point)
+int	nbr_of_slice_column(float point)
 {
 	int	nbr;
 
-	nbr = (int) roundf(fmod(intersection_point.x, 64));
-	if (nbr != 0)
-		return (nbr);
-	nbr = (int) roundf(fmod(intersection_point.y, 64));
+	nbr = (int) floor(fmod(point, GAMEBOXSIZE));
 	return (nbr);
+}
+
+int	is_out_of_border_map(char **map, int x, int y)
+{
+	if (x < 0 || y < 0 || y >= strarr_len(map) || x >= (int)ft_strlen(map[y]))
+		return (1);
+	return (0);
 }
 
 int	is_wall_in_point(char **map, t_vector point)
@@ -71,24 +75,20 @@ int	is_wall_in_point(char **map, t_vector point)
 	int	x;
 	int	y;
 
-	x = fmod(point.x, (float) GAMEBOXSIZE);
-	y = fmod(point.y, (float) GAMEBOXSIZE);
+	x = (int) floor(point.x / (float) GAMEBOXSIZE);
+	y = (int) floor(point.y / (float) GAMEBOXSIZE);
+	if (is_out_of_border_map(map, x, y))
+		return (1);
 	if (map && map[y] && map[y][x] == '1')
 		return (1);
 	return (0);
 }
 
 
-int	is_out_of_border_map(char **map, t_vector point)
-{
-	if (point.x < 0 || point.y < 0 || point.y > strarr_len(map) || point.x > ft_strlen(map[(int)point.y]))
-		return (1);
-	return (0);
-}
 
 
 
-t_vector	find_intersection_points(t_data *data, float angle_ray)
+t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column)
 {
 	t_vector	axis_point;
 	t_vector	ordinat_point;
@@ -105,8 +105,16 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 		axis_point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE + GAMEBOXSIZE;
 		axis_step.y = GAMEBOXSIZE;
 	}
-	axis_step.x = GAMEBOXSIZE / tan(angle_ray);
-	axis_point.x = data->pl.poz.x + (data->pl.poz.y - axis_point.y) * tan(angle_ray);
+	axis_step.x = GAMEBOXSIZE / fabs(tan(angle_ray));
+	if (cos(angle_ray) < 0)
+		axis_step.x *= -1;
+
+	if (cos(angle_ray) < 0)
+		axis_point.x = data->pl.poz.x - fabs((data->pl.poz.y - axis_point.y) / tan(angle_ray));
+	else
+		axis_point.x = data->pl.poz.x + fabs((data->pl.poz.y - axis_point.y) / tan(angle_ray));
+
+
 
 	if (cos(angle_ray) > 0)
 	{
@@ -118,29 +126,35 @@ t_vector	find_intersection_points(t_data *data, float angle_ray)
 		ordinat_point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
 		ordinat_step.x = -GAMEBOXSIZE;
 	}
-	ordinat_step.y = GAMEBOXSIZE * tan(angle_ray);
-	ordinat_point.y = data->pl.poz.y + (data->pl.poz.x - ordinat_point.x) / tan(angle_ray);
+	ordinat_step.y = GAMEBOXSIZE * fabs(tan(angle_ray));
+	if (sin(angle_ray) > 0)
+		ordinat_step.y *= -1;
+	if (sin(angle_ray) > 0)
+		ordinat_point.y = data->pl.poz.y - fabs((data->pl.poz.x - ordinat_point.x) * tan(angle_ray));
+	else
+		ordinat_point.y = data->pl.poz.y + fabs((data->pl.poz.x - ordinat_point.x) * tan(angle_ray));
 
-	while (/* distance(data->pl.poz, axis_point, angle_ray) < SPACEVISIBLE && distance(data->pl.poz, ordinat_point, angle_ray) < SPACEVISIBLE */ \
-			/* && !is_out_of_border_map(data->map, axis_point) && !is_out_of_border_map(data->map, ordinat_point) */
-			1)
+
+
+	while (!is_wall_in_point(data->map, ordinat_point) || !is_wall_in_point(data->map, axis_point))
 	{
-		printf("axis 	x = %d   y = %d\n", (int)fmod(axis_point.x, GAMEBOXSIZE), (int)fmod(axis_point.y, GAMEBOXSIZE));
-		printf("ordinat x = %d   y = %d\n\n", (int)fmod(ordinat_point.x, GAMEBOXSIZE), (int)fmod(ordinat_point.y, GAMEBOXSIZE));
-		if (distance(data->pl.poz, ordinat_point, angle_ray) < distance(data->pl.poz, axis_point, angle_ray))
-		{
-			ordinat_point = sum_vectors(ordinat_point, ordinat_step);
-			if (is_wall_in_point(data->map, ordinat_point))
-				return (ordinat_point);
-		}
-		else
-		{
+		if (!is_wall_in_point(data->map, ordinat_point))
+			ordinat_point =  sum_vectors(ordinat_point, ordinat_step);
+
+		if (!is_wall_in_point(data->map, axis_point))
 			axis_point = sum_vectors(axis_point, axis_step);
-			if (is_wall_in_point(data->map, axis_point))
-				return (axis_point);
-		}
 	}
-	return (ordinat_point);
+
+	if (distance(data->pl.poz, ordinat_point, angle_ray) < distance(data->pl.poz, axis_point, angle_ray))
+	{
+		*number_column = nbr_of_slice_column(ordinat_point.y);
+		return (ordinat_point);
+	}
+	else
+	{
+		*number_column = nbr_of_slice_column(axis_point.x);
+		return (axis_point);
+	}
 
 }
 
@@ -154,26 +168,38 @@ void	ray_cast(t_data *data)
 	int			num_column;
 	int			x;
 	// вычесление крайего левого луча
-	angle_ray = data->pl.direction - (FOV / 2);
+	angle_ray = data->pl.direction + (FOV / 2);
 
 	x = 0;
-	while (angle_ray < data->pl.direction + (FOV / 2))
+	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
 	{
-		intersection_point = find_intersection_points(data, angle_ray);
-	// расстояние
-		dist = distance(data->pl.poz, intersection_point, data->pl.direction);
-	// считаем высоту
+		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
+			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column);
+		else
+			intersection_point = find_intersection_points(data, angle_ray, &num_column);
+		dist = distance(data->pl.poz, intersection_point, angle_ray);
 		height = (int) slice_height(dist);
-	// получаем номер колонки
-		num_column = nbr_of_slice_column(intersection_point);
-	// ОТРИСОВКА
-		set_column_in_img(x, HEIGHT / 2, num_column, height, data->window.win, data->imgs.east);
+		set_column_in_img(x, HEIGHT / 4, num_column, height, &data->window.img, data->imgs.east);
 		x++;
-		angle_ray += STEPANGLE;
+		angle_ray -= STEPANGLE;
 	}
 
 
 
+}
+
+t_game_window	init_game_window(void)
+{
+	t_game_window	window;
+
+	window.mlx = mlx_init();
+	if (!window.mlx)
+		exit_error("init_game_window\n");
+	window.win = mlx_new_window(window.mlx, WIDTH, HEIGHT, "CUB3D");
+	if (!window.win)
+		exit_error("init_game_window\n");
+	creat_window_img(&window);
+	return (window);
 }
 
 
@@ -181,19 +207,16 @@ void game(char **map, t_textures textures)
 {
 	t_data	data;
 
-	data.window.mlx = mlx_init();
-	data.window.win = mlx_new_window(data.window.mlx, WIDTH, HEIGHT, "Cub3D");
-	creat_window_img(&data.window);
+	data.window = init_game_window();
 	init_sides_img(&data.imgs, textures, data.window.mlx);
 	data.map = map;
 	// init pl poz
-	data.pl.poz.x = 27 * 64 + 32;
-	data.pl.poz.y = 11 * 64 + 32;
-	data.pl.direction = M_PI_2;
+	data.pl =  init_player_direct_and_poz(map);
+
 
 	fill_floor_and_cell_window_img(&data.window.img, textures);
 
-	paint_sample(&data);
+	// paint_sample(&data);
 
 	ray_cast(&data);
 
