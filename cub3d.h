@@ -22,6 +22,7 @@
 # define BUTTONRELEASE		5
 # define BUTTONMOVE			6
 # define ON_DESTROY			17
+# define ON_KEYDOWN			2
 
 typedef struct s_point
 {
@@ -40,6 +41,13 @@ typedef struct s_img_info
 	int		size_line;
 	int		endian;
 }	t_img_info;
+
+typedef struct s_key
+{
+	float		press_x;
+	float		press_y;
+	float		button;
+}	t_key;
 
 typedef struct s_game_window
 {
@@ -86,6 +94,7 @@ typedef struct s_map_data
 	t_game_window	window;
 	t_imgs			imgs;
 	t_player		pl;
+	t_key			key;
 }	t_data;
 
 int	return_error(char *str);

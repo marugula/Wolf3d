@@ -217,11 +217,83 @@ int	key_control(int key, t_data *data)
 	(void ) data;
 	if (key == 53)
 	{
-		exit (0);
+		exit (EXIT_SUCCESS);
 	}
+	return (0);
+}
+
+int	key_control_down(int key, t_data *data)
+{
 	// ->124 <-123
+	if (key == 124)
+	{
+		if (data->pl.direction - (float)2 * (M_PI/2) / 90 <= 0.0f)
+			data->pl.direction = (float) 2 * M_PI;
+		data->pl.direction -= (float)(M_PI/2) / 90;
+	}
+	else if (key == 123)
+	{
+		if (data->pl.direction + (float)(M_PI/2) / 90 >= 2 * M_PI)
+			data->pl.direction = (float) 0.0f;
+		data->pl.direction += (float)(M_PI/2) / 90;
+	}
+	//w 13 a 0 s 1 d 2
+	if (key == 13)
+	{
+		data->pl.poz.x -= 32 * cos(data->pl.direction);
+		data->pl.poz.y -= 32 * sin(data->pl.direction);
+	}
+	else if (key == 1)
+	{
+		data->pl.poz.x += 32 * cos(data->pl.direction);
+		data->pl.poz.y += 32 * sin(data->pl.direction);
+	}
 
 	ft_putnbr_fd(key, 2);
+	write(1, "-", 1);
+	fill_floor_and_cell_window_img(&data->window.img, data->texture);
+	ray_cast(data);
+	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
+	return (0);
+}
+
+int	mouse_press(int button, int x, int y, t_data *data)
+{
+	if (button == 1)
+	{
+		data->key.press_x = x;
+		data->key.press_y = y;
+		data->key.button = 1;
+	}
+	return (0);
+}
+
+int	mouse_release(int button, int x, int y, t_data *data)
+{
+	if (button == 1)
+	{
+		data->key.button = 0;
+	}
+	x = 0;
+	y = 0;
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_data *data)
+{
+	if (data->key.button != 0)
+	{
+		if (data->pl.direction - (float)2 * (M_PI/2) / 90 <= 0.0f)
+			data->pl.direction = (float) 2 * M_PI;
+		if (data->pl.direction + (float)(M_PI/2) / 90 >= 2 * M_PI)
+			data->pl.direction = (float) 0.0f;
+		data->pl.direction -= (x - data->key.press_x) * (float)(M_PI/2) / 90;
+		data->key.press_x = x;
+		data->key.press_y = y;
+		fill_floor_and_cell_window_img(&data->window.img, data->texture);
+		ray_cast(data);
+		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
+	}
 	return (0);
 }
 
@@ -234,17 +306,25 @@ void game(char **map, t_textures textures)
 	data.map = map;
 	// init pl poz
 	data.pl =  init_player_direct_and_poz(map);
-
-
-	fill_floor_and_cell_window_img(&data.window.img, textures);
-
+	data.texture = textures;
+	data.key.button = 0;
+	fill_floor_and_cell_window_img(&data.window.img, data.texture);
+	
 	// paint_sample(&data);
 
 	ray_cast(&data);
 
 
 	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
+
 	mlx_key_hook(data.window.win, key_control, &data);
+	mlx_hook(data.window.win, ON_KEYDOWN, 0, key_control_down, &data);
 	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
+
+
+	mlx_hook(data.window.win, BUTTONPRESS, 0, mouse_press, &data);
+	mlx_hook(data.window.win, BUTTONRELEASE, 0, mouse_release, &data);
+	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
+
 	mlx_loop(data.window.mlx);
 }
