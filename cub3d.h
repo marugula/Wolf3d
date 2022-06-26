@@ -17,6 +17,12 @@
 
 # define SPACEVISIBLE	1000
 
+
+# define BUTTONPRESS		4
+# define BUTTONRELEASE		5
+# define BUTTONMOVE			6
+# define ON_DESTROY			17
+
 typedef struct s_point
 {
 	float		x;

@@ -207,6 +207,23 @@ t_game_window	init_game_window(void)
 	return (window);
 }
 
+int	deal_destroy(void)
+{
+	exit (EXIT_SUCCESS);
+}
+
+int	key_control(int key, t_data *data)
+{
+	(void ) data;
+	if (key == 53)
+	{
+		exit (0);
+	}
+	// ->124 <-123
+
+	ft_putnbr_fd(key, 2);
+	return (0);
+}
 
 void game(char **map, t_textures textures)
 {
@@ -227,5 +244,7 @@ void game(char **map, t_textures textures)
 
 
 	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
+	mlx_key_hook(data.window.win, key_control, &data);
+	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
 	mlx_loop(data.window.mlx);
 }
