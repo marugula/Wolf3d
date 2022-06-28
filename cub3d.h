@@ -25,15 +25,7 @@
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
-enum e_keys
-{
-	a = 0,
-	s,
-	d,
-	w = 13,
-	left = 123,
-	right
-};
+
 
 typedef struct s_point
 {
@@ -56,7 +48,7 @@ typedef struct s_img_info
 typedef struct s_key
 {
 	float		press_x;
-	// float		button;
+	float		mouse_move;
 	int			y;
 	int			x;
 	int			direct;
@@ -149,6 +141,7 @@ float		correct_distance(float distance, float angle);
 
 /* raycast.c */
 void		ray_cast(t_data *data);
+int			is_wall_in_point(char **map, t_vector point);
 
 
 
@@ -160,5 +153,23 @@ int	redrawing(t_data *data);
 
 int	init_game(void);
 
+enum e_keys
+{
+	a = 0,
+	s,
+	d,
+	w = 13,
+	left = 123,
+	right,
+	esc = 53
+};
+
+void	init_control_key(t_data *data);
+int	deal_destroy(void);
+int	control_pl_dir(t_data *data);
+int	control_pl_poz(t_data *data);
+int	control_key_down(int key, t_data *data);
+int	control_key_up(int key, t_data *data);
+int	mouse_move(int x, int y, t_data *data);
 
 #endif

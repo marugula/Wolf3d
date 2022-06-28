@@ -29,7 +29,7 @@ t_raycast	init_axis(t_data *data, float angle_ray)
 
 	if (sin(angle_ray) > 0)
 	{
-		axis.point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
+		axis.point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE - 0.0001;
 		axis.step.y = -GAMEBOXSIZE;
 	}
 	else
@@ -60,7 +60,7 @@ t_raycast	init_ordinat(t_data *data, float angle_ray)
 	}
 	else
 	{
-		ordinat.point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 1;
+		ordinat.point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 0.0001;
 		ordinat.step.x = -GAMEBOXSIZE;
 	}
 	ordinat.step.y = GAMEBOXSIZE * fabs(tan(angle_ray));
@@ -80,12 +80,10 @@ t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
 	{
 		if (sin(angle) > 0)
 		{
-			ft_putstr_fd("\nsouth", 2);
 			return (imgs.south);
 		}
 		else
 		{
-			ft_putstr_fd("\nnorth", 2);
 			return (imgs.north);
 		}
 	}
@@ -93,12 +91,10 @@ t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
 	{
 		if (cos(angle) > 0)
 		{
-			ft_putstr_fd("\nwest", 2);
 			return (imgs.west);
 		}
 		else
 		{
-			ft_putstr_fd("\neast", 2);
 			return (imgs.east);
 		}
 	}
@@ -119,7 +115,6 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 		if (!is_wall_in_point(data->map, axis.point))
 			axis.point = sum_vectors(axis.point, axis.step);
 	}
-	printf("       or = %f   |    ax = %f\n", distance(data->pl.poz, ordinat.point, angle_ray), distance(data->pl.poz, axis.point, angle_ray));
 	if (distance(data->pl.poz, ordinat.point, angle_ray) < distance(data->pl.poz, axis.point, angle_ray))
 	{
 		*number_column = nbr_of_slice_column(ordinat.point.y);
@@ -149,7 +144,7 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
-		set_column_in_img(x, num_column, (int) slice_height(distance(data->pl.poz, intersection_point, angle_ray)), &data->window.img, wall_txtr);
+		set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
 		x++;
 		angle_ray -= STEPANGLE;
 	}

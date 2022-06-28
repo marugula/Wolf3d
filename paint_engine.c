@@ -26,7 +26,6 @@ unsigned int color_shift(int color, float intensive)
 	unsigned int b = ((color >> 8) & 0x00FF) * intensive;
 	unsigned int g = (color & 0x0000FF) * intensive;
 	unsigned int newColor = g | (b << 8) | (r << 16);
-	// printf("newColor = %x\n", newColor);
 	return (newColor);
 }
 
@@ -48,8 +47,11 @@ void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg
 	int		color;
 
 	y_poz = HEIGHT / 2 - heigth / 2;
+	if (heigth > HEIGHT)
+		heigth = HEIGHT;
 	y = 0;
 	prop = (float) texture.height / (float) heigth;
+	printf("prop = %f\n", prop);
 	while (y < heigth)
 	{
 		src_y = round((double) y * prop);
