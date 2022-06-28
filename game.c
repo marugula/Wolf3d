@@ -15,20 +15,6 @@ void	paint_sample(t_data *data)
 	}
 }
 
-float	find_intersection_point_axis(t_data *data)
-{
-	// float	step_x;
-	float	step_y;
-
-	if (sin(data->pl.direction) > 1)
-		step_y = GAMEBOXSIZE;
-	else
-		step_y = -GAMEBOXSIZE;
-
-	return (0);
-}
-
-
 t_vector	sum_vectors(t_vector a, t_vector b)
 {
 	t_vector	new;
@@ -166,15 +152,12 @@ float	correct_distance(float distance, float angle)
 
 void	ray_cast(t_data *data)
 {
-	float		angle_ray;
 	t_vector	intersection_point;
-	float		dist;
-	int			height;
+	float		angle_ray;
 	int			num_column;
 	int			x;
-	// вычесление крайего левого луча
-	angle_ray = data->pl.direction + (FOV / 2);
 
+	angle_ray = data->pl.direction + (FOV / 2);
 	x = 0;
 	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
 	{
@@ -182,15 +165,10 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column);
-		dist = distance(data->pl.poz, intersection_point, angle_ray);
-		height = (int) slice_height(dist);
-		set_column_in_img(x, num_column, height, &data->window.img, data->imgs.east);
+		set_column_in_img(x, num_column, (int) slice_height(distance(data->pl.poz, intersection_point, angle_ray)), &data->window.img, data->imgs.east);
 		x++;
 		angle_ray -= STEPANGLE;
 	}
-
-
-
 }
 
 t_game_window	init_game_window(void)
@@ -253,10 +231,10 @@ int	key_control_down(int key, t_data *data)
 		// if (data->map[(int)(data->pl.poz.y + (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
 			data->pl.poz.y += speed * sin(data->pl.direction);
 	}
-	else 
-	{
-		return (0); // чтобы дважды не рисовать
-	}
+	// else
+	// {
+	// 	return (0); // чтобы дважды не рисовать
+	// }
 
 	ft_putnbr_fd(key, 2);
 	write(1, "-", 1);
@@ -266,43 +244,15 @@ int	key_control_down(int key, t_data *data)
 	return (0);
 }
 
-int	mouse_press(int button, int x, int y, t_data *data)
-{
-	if (button == 1)
-	{
-		data->key.press_x = x;
-		data->key.press_y = y;
-		data->key.button = 1;
-	}
-	return (0);
-}
-
-int	mouse_release(int button, int x, int y, t_data *data)
-{
-	if (button == 1)
-	{
-		data->key.button = 0;
-	}
-	x = 0;
-	y = 0;
-	return (0);
-}
-
 int	mouse_move(int x, int y, t_data *data)
 {
-	if (data->key.button != 0)
-	{
-		if (data->pl.direction - (float)2 * (M_PI/2) / 90 <= 0.0f)
-			data->pl.direction = (float) 2 * M_PI;
-		if (data->pl.direction + (float)(M_PI/2) / 90 >= 2 * M_PI)
-			data->pl.direction = (float) 0.0f;
-		data->pl.direction -= (x - data->key.press_x) * (float)(M_PI/2) / 90;
-		data->key.press_x = x;
-		data->key.press_y = y;
-		fill_floor_and_cell_window_img(&data->window.img, data->texture);
-		ray_cast(data);
-		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
-	}
+	data->pl.direction -= (x - data->key.press_x) * (float)(M_PI/2) / 90;
+	data->key.press_x = x;
+	data->key.press_y = y;
+	fill_floor_and_cell_window_img(&data->window.img, data->texture);
+	ray_cast(data);
+	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
+
 	return (0);
 }
 
@@ -318,8 +268,7 @@ void game(char **map, t_textures textures)
 	data.texture = textures;
 	data.key.button = 0;
 	fill_floor_and_cell_window_img(&data.window.img, data.texture);
-	
-	// paint_sample(&data);
+
 
 	ray_cast(&data);
 
@@ -330,9 +279,6 @@ void game(char **map, t_textures textures)
 	mlx_hook(data.window.win, ON_KEYDOWN, 0, key_control_down, &data);
 	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
 
-
-	mlx_hook(data.window.win, BUTTONPRESS, 0, mouse_press, &data);
-	mlx_hook(data.window.win, BUTTONRELEASE, 0, mouse_release, &data);
 	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
 
 	mlx_loop(data.window.mlx);
