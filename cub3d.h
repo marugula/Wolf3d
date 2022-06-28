@@ -140,6 +140,7 @@ void		ray_cast(t_data *data);
 
 /* analyse/utils.c */
 int	strarr_len(char **arr);
+int	redrawing(t_data *data);
 
 
 

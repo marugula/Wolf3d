@@ -36,59 +36,98 @@ int	key_control(int key, t_data *data)
 	return (0);
 }
 
-int	key_control_down(int key, t_data *data)
+int	control_pl_dir(int key, t_data *data)
 {
-	int speed = 12;
-	// ->124 <-123
+	float	direction_step = (float)(M_PI/2) / 90;
 	if (key == 124)
 	{
-		if (data->pl.direction - (float)2 * (M_PI/2) / 90 <= 0.0f)
-			data->pl.direction = (float) 2 * M_PI;
-		data->pl.direction -= (float)(M_PI/2) / 90;
+		data->pl.direction -= direction_step;
+		data->key.button = 1;
+		// redrawing(data);
 	}
 	else if (key == 123)
 	{
-		if (data->pl.direction + (float)(M_PI/2) / 90 >= 2 * M_PI)
-			data->pl.direction = (float) 0.0f;
-		data->pl.direction += (float)(M_PI/2) / 90;
+		data->pl.direction += direction_step;
+		data->key.button = 1;
+		// redrawing(data);
 	}
-	//w 13 a 0 s 1 d 2
-	if (key == 13)
-	{
-		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x + (speed * cos(data->pl.direction)))] == '0')
-			data->pl.poz.x += speed * cos(data->pl.direction);
-		// if (data->map[(int)(data->pl.poz.y - (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
-			data->pl.poz.y -= speed * sin(data->pl.direction);
-	}
-	else if (key == 1)
-	{
-		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x - (speed * cos(data->pl.direction)))] == '0')
-			data->pl.poz.x -= speed * cos(data->pl.direction);
-		// if (data->map[(int)(data->pl.poz.y + (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
-			data->pl.poz.y += speed * sin(data->pl.direction);
-	}
-	// else
-	// {
-	// 	return (0); // чтобы дважды не рисовать
-	// }
-
-	ft_putnbr_fd(key, 2);
-	write(1, "-", 1);
-	fill_floor_and_cell_window_img(&data->window.img, data->texture);
-	ray_cast(data);
-	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
 	return (0);
 }
 
+int	control_pl(int key, t_data *data)
+{
+	float	direction_step = (float)(M_PI/2) / 90;
+	int	speed = 4;
+	int	step = 20;
+
+	// ->124 <-123
+	data->key.button = 0;
+	if (key == 124)
+	{
+		data->pl.direction -= direction_step;
+		data->key.button = 1;
+		// redrawing(data);
+	}
+	else if (key == 123)
+	{
+		data->pl.direction += direction_step;
+		data->key.button = 1;
+		// redrawing(data);
+	}
+
+	if (key == 13)
+	{
+		while (step > 0)
+		{
+			data->pl.poz.x += speed * cos(data->pl.direction);
+			data->pl.poz.y -= speed * sin(data->pl.direction);
+			step--;
+			redrawing(data);
+			data->key.button = 1;
+		}
+	}
+	else if (key == 1)
+	{
+		while (step > 0)
+		{
+			data->pl.poz.x -= speed * cos(data->pl.direction);
+			data->pl.poz.y += speed * sin(data->pl.direction);
+			step--;
+			redrawing(data);
+			data->key.button = 1;
+		}
+	}
+
+
+	// ft_putnbr_fd(key, 2);
+	// write(1, "-", 1);
+
+	return (0);
+}
+
+int	redrawing(t_data *data)
+{
+	if (data->key.button == 1)
+	{
+		fill_floor_and_cell_window_img(&data->window.img, data->texture);
+		ray_cast(data);
+		mlx_do_sync(data->window.mlx);
+		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
+		data->key.button = 0;
+		write(1, "draw-", 5);
+	}
+	return (0);
+}
 int	mouse_move(int x, int y, t_data *data)
 {
 	data->pl.direction -= (x - data->key.press_x) * (float)(M_PI/2) / 90;
 	data->key.press_x = x;
 	data->key.press_y = y;
-	fill_floor_and_cell_window_img(&data->window.img, data->texture);
-	ray_cast(data);
-	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
-
+	data->key.button = 1;
+	// redrawing(data);
+	// fill_floor_and_cell_window_img(&data->window.img, data->texture);
+	// ray_cast(data);
+	// mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
 	return (0);
 }
 
@@ -112,10 +151,14 @@ void game(char **map, t_textures textures)
 	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
 
 	mlx_key_hook(data.window.win, key_control, &data);
-	mlx_hook(data.window.win, ON_KEYDOWN, 0, key_control_down, &data);
+
+	mlx_hook(data.window.win, ON_KEYDOWN, 0, control_pl, &data);
 	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
 
+	// mlx_loop_hook(data.window.mlx, control_pl, &data);
+
 	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
+	mlx_loop_hook(data.window.mlx, redrawing, &data);
 
 	mlx_loop(data.window.mlx);
 }
