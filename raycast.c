@@ -74,7 +74,26 @@ t_raycast	init_ordinat(t_data *data, float angle_ray)
 }
 
 
-t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column)
+t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
+{
+	if (is_axis)
+	{
+		if (sin(angle) > 0)
+			return (imgs.south);
+		else
+			return (imgs.north);
+	}
+	else
+	{
+		if (cos(angle) > 0)
+			return (imgs.west);
+		else
+			return (imgs.east);
+	}
+}
+
+
+t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column, t_img_info *wall_texture)
 {
 	t_raycast	axis;
 	t_raycast	ordinat;
@@ -91,9 +110,11 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	if (distance(data->pl.poz, ordinat.point, angle_ray) < distance(data->pl.poz, axis.point, angle_ray))
 	{
 		*number_column = nbr_of_slice_column(ordinat.point.y);
+		*wall_texture = texture_mapping(data->imgs, angle_ray, 0);
 		return (ordinat.point);
 	}
 	*number_column = nbr_of_slice_column(axis.point.x);
+	*wall_texture = texture_mapping(data->imgs, angle_ray, 1);
 	return (axis.point);
 }
 
@@ -105,16 +126,17 @@ void	ray_cast(t_data *data)
 	float		angle_ray;
 	int			num_column;
 	int			x;
+	t_img_info	wall_txtr;
 
 	angle_ray = data->pl.direction + (FOV / 2);
 	x = 0;
 	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
 	{
 		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
-			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column);
+			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
-			intersection_point = find_intersection_points(data, angle_ray, &num_column);
-		set_column_in_img(x, num_column, (int) slice_height(distance(data->pl.poz, intersection_point, angle_ray)), &data->window.img, data->imgs.east);
+			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
+		set_column_in_img(x, num_column, (int) slice_height(distance(data->pl.poz, intersection_point, angle_ray)), &data->window.img, wall_txtr);
 		x++;
 		angle_ray -= STEPANGLE;
 	}

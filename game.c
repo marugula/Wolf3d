@@ -1,12 +1,6 @@
 #include "cub3d.h"
 
 
-
-
-
-
-
-
 t_game_window	init_game_window(void)
 {
 	t_game_window	window;
@@ -57,8 +51,8 @@ int	control_pl_dir(int key, t_data *data)
 int	control_pl(int key, t_data *data)
 {
 	float	direction_step = (float)(M_PI/2) / 90;
-	int	speed = 4;
-	int	step = 20;
+	int	speed = 5;
+	int	step = 10;
 
 	// ->124 <-123
 	data->key.button = 0;
@@ -124,7 +118,7 @@ int	mouse_move(int x, int y, t_data *data)
 	data->key.press_x = x;
 	data->key.press_y = y;
 	data->key.button = 1;
-	// redrawing(data);
+	redrawing(data);
 	// fill_floor_and_cell_window_img(&data->window.img, data->texture);
 	// ray_cast(data);
 	// mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
@@ -158,7 +152,7 @@ void game(char **map, t_textures textures)
 	// mlx_loop_hook(data.window.mlx, control_pl, &data);
 
 	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
-	mlx_loop_hook(data.window.mlx, redrawing, &data);
+	// mlx_loop_hook(data.wwindow.mlx, redrawing, &data);
 
 	mlx_loop(data.window.mlx);
 }
