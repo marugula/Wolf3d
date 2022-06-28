@@ -38,28 +38,33 @@ float	intensity(float prop)
 	return (1 - prop);
 }
 
+
+
+
 void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
 {
-	int		y;
-	int		y_poz;
+	int		mid_window;
+	int		step;
 	float	prop;
-	int		src_y;
+	int		img_poz;
 	int		color;
 
-	y_poz = HEIGHT / 2 - heigth / 2;
-	if (heigth > HEIGHT)
-		heigth = HEIGHT;
-	y = 0;
 	prop = (float) texture.height / (float) heigth;
-	printf("prop = %f\n", prop);
-	while (y < heigth)
+	mid_window = HEIGHT / 2;
+	step = 0;
+	while (step < heigth / 2 && step < HEIGHT / 2)
 	{
-		src_y = round((double) y * prop);
-		color = get_color_in_pixel(num_column, src_y, texture);
+		img_poz = round((double) (heigth / 2 + step) * prop);
+		color = get_color_in_pixel(num_column, img_poz, texture);
 		if (color != 0)
-			change_pixel_in_img(x_poz, y_poz + y, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
-		y++;
+			change_pixel_in_img(x_poz, mid_window + step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
+		img_poz = round((double) (heigth / 2 - step) * prop);
+		color = get_color_in_pixel(num_column, img_poz, texture);
+		if (color != 0)
+			change_pixel_in_img(x_poz, mid_window - step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
+		step++;
 	}
+
 }
 
 void	fill_floor_and_cell_window_img(t_img_info *img, t_textures textures)
