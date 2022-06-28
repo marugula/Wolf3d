@@ -224,6 +224,7 @@ int	key_control(int key, t_data *data)
 
 int	key_control_down(int key, t_data *data)
 {
+	int speed = 12;
 	// ->124 <-123
 	if (key == 124)
 	{
@@ -240,13 +241,21 @@ int	key_control_down(int key, t_data *data)
 	//w 13 a 0 s 1 d 2
 	if (key == 13)
 	{
-		data->pl.poz.x -= 32 * cos(data->pl.direction);
-		data->pl.poz.y -= 32 * sin(data->pl.direction);
+		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x + (speed * cos(data->pl.direction)))] == '0')
+			data->pl.poz.x += speed * cos(data->pl.direction);
+		// if (data->map[(int)(data->pl.poz.y - (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
+			data->pl.poz.y -= speed * sin(data->pl.direction);
 	}
 	else if (key == 1)
 	{
-		data->pl.poz.x += 32 * cos(data->pl.direction);
-		data->pl.poz.y += 32 * sin(data->pl.direction);
+		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x - (speed * cos(data->pl.direction)))] == '0')
+			data->pl.poz.x -= speed * cos(data->pl.direction);
+		// if (data->map[(int)(data->pl.poz.y + (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
+			data->pl.poz.y += speed * sin(data->pl.direction);
+	}
+	else 
+	{
+		return (0); // чтобы дважды не рисовать
 	}
 
 	ft_putnbr_fd(key, 2);
