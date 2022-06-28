@@ -79,16 +79,28 @@ t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
 	if (is_axis)
 	{
 		if (sin(angle) > 0)
+		{
+			ft_putstr_fd("\nsouth", 2);
 			return (imgs.south);
+		}
 		else
+		{
+			ft_putstr_fd("\nnorth", 2);
 			return (imgs.north);
+		}
 	}
 	else
 	{
 		if (cos(angle) > 0)
+		{
+			ft_putstr_fd("\nwest", 2);
 			return (imgs.west);
+		}
 		else
+		{
+			ft_putstr_fd("\neast", 2);
 			return (imgs.east);
+		}
 	}
 }
 
@@ -107,6 +119,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 		if (!is_wall_in_point(data->map, axis.point))
 			axis.point = sum_vectors(axis.point, axis.step);
 	}
+	printf("       or = %f   |    ax = %f\n", distance(data->pl.poz, ordinat.point, angle_ray), distance(data->pl.poz, axis.point, angle_ray));
 	if (distance(data->pl.poz, ordinat.point, angle_ray) < distance(data->pl.poz, axis.point, angle_ray))
 	{
 		*number_column = nbr_of_slice_column(ordinat.point.y);
