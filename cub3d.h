@@ -11,7 +11,7 @@
 # define WIDTH			960
 # define FOV			M_PI / 2.9
 # define STEPANGLE		FOV / WIDTH
-# define TANPI_6			0.57735026
+# define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
 # define GAMEBOXSIZE	64
 
@@ -126,7 +126,15 @@ void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
 
 
-float	correct_distance(float distance, float angle);
+/* raycast_utils.c */
+t_vector	sum_vectors(t_vector a, t_vector b);
+float		distance(t_vector point_from, t_vector point_to, float angle_ray);
+float		slice_height(float distance);
+int			nbr_of_slice_column(float point);
+float		correct_distance(float distance, float angle);
+
+
+
 
 /* analyse/utils.c */
 int	strarr_len(char **arr);

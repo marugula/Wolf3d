@@ -1,53 +1,6 @@
 #include "cub3d.h"
 
 
-# define SIZE 300
-
-void	paint_sample(t_data *data)
-{
-	int x = 0;
-	int	step = 0;
-	while (x < data->imgs.north.width)
-	{
-		set_column_in_img(100 + step, x, SIZE - step, &(data->window.img), data->imgs.north);
-		x++;
-		step += 1;
-	}
-}
-
-t_vector	sum_vectors(t_vector a, t_vector b)
-{
-	t_vector	new;
-
-	new.x = a.x + b.x;
-	new.y = a.y + b.y;
-	return (new);
-}
-
-float	distance(t_vector point_from, t_vector point_to, float angle_ray)
-{
-	double	distance;
-
-	distance = fabs(fabs(point_from.x - point_to.x) / cos (angle_ray));
-	return ((float) distance);
-}
-
-float	slice_height(float distance)
-{
-	float	height;
-
-	height = (float) GAMEBOXSIZE / distance * (float) PLANEDIST;
-	return (height);
-}
-
-
-int	nbr_of_slice_column(float point)
-{
-	int	nbr;
-
-	nbr = (int) floor(fmod(point, GAMEBOXSIZE));
-	return (nbr);
-}
 
 int	is_out_of_border_map(char **map, int x, int y)
 {
@@ -69,9 +22,6 @@ int	is_wall_in_point(char **map, t_vector point)
 		return (1);
 	return (0);
 }
-
-
-
 
 
 t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column)
@@ -145,10 +95,6 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 }
 
 
-float	correct_distance(float distance, float angle)
-{
-	return (distance * cos(angle));
-}
 
 void	ray_cast(t_data *data)
 {
