@@ -34,7 +34,7 @@ SOURCES_S = main.c\
 			handling_errors.c\
 			ft_isspace.c\
 			init_player.c\
-			game.c init_imgs.c paint_engine.c raycast_utils.c
+			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

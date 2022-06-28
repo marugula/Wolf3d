@@ -133,6 +133,8 @@ float		slice_height(float distance);
 int			nbr_of_slice_column(float point);
 float		correct_distance(float distance, float angle);
 
+/* raycast.c */
+void		ray_cast(t_data *data);
 
 
 
