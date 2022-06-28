@@ -23,6 +23,17 @@
 # define BUTTONMOVE			6
 # define ON_DESTROY			17
 # define ON_KEYDOWN			2
+# define ON_KEYUP			3
+
+enum e_keys
+{
+	a = 0,
+	s,
+	d,
+	w = 13,
+	left = 123,
+	right
+};
 
 typedef struct s_point
 {
@@ -45,8 +56,11 @@ typedef struct s_img_info
 typedef struct s_key
 {
 	float		press_x;
-	float		press_y;
-	float		button;
+	// float		button;
+	int			y;
+	int			x;
+	int			direct;
+	// int			right;
 }	t_key;
 
 typedef struct s_game_window
