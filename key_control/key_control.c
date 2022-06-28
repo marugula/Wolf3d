@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:16 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/06/28 17:47:35 by marugula         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:02:50 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,7 @@ int	control_pl_dir(t_data *data)
 	return (0);
 }
 
-t_vector init_vector(float x, float y)
-{
-	t_vector	new;
 
-	new.x = x;
-	new.y = y;
-	return (new);
-}
 
 int	control_pl_poz(t_data *data)
 {

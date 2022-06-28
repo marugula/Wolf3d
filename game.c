@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+t_vector init_vector(float x, float y)
+{
+	t_vector	new;
+
+	new.x = x;
+	new.y = y;
+	return (new);
+}
 
 t_game_window	init_game_window(void)
 {
@@ -23,11 +31,14 @@ int	redrawing(t_data *data)
 		control_pl_poz(data);
 		fill_floor_and_cell_window_img(&data->window.img, data->texture);
 		ray_cast(data);
+		draw_minimap(data);
 		mlx_do_sync(data->window.mlx);
 		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
 	}
 	return (0);
 }
+
+
 
 
 void game(char **map, t_textures textures)
@@ -52,7 +63,7 @@ void game(char **map, t_textures textures)
 	mlx_hook(data.window.win, ON_KEYDOWN, 0, control_key_down, &data);
 	mlx_hook(data.window.win, ON_KEYUP, 0, control_key_up, &data);
 	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
-	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
+	// mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
 	mlx_loop_hook(data.window.mlx, redrawing, &data);
 
 	mlx_loop(data.window.mlx);

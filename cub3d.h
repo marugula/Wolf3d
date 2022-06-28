@@ -17,6 +17,9 @@
 
 # define SPACEVISIBLE	1000
 
+# define MINIMAP_H		200
+# define MINIMAP_W		250
+
 
 # define BUTTONPRESS		4
 # define BUTTONRELEASE		5
@@ -118,6 +121,8 @@ t_player	init_player_direct_and_poz(char **map);
 
 /* marugula chainges))) */
 void			game(char **map, t_textures textures);
+t_vector		init_vector(float x, float y);
+
 
 /* init_imgs.c */
 void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
@@ -143,6 +148,9 @@ float		correct_distance(float distance, float angle);
 void		ray_cast(t_data *data);
 int			is_wall_in_point(char **map, t_vector point);
 
+/* draw_minimap.c */
+void		draw_minimap(t_data *data);
+
 
 
 /* analyse/utils.c */
@@ -151,7 +159,7 @@ int	redrawing(t_data *data);
 
 
 
-int	init_game(void);
+// int	init_game(void);
 
 enum e_keys
 {
