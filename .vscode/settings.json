@@ -1,6 +1,9 @@
 {
 	"makefile.extensionOutputFolder": "./.vscode",
 	"files.associations": {
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"__node_handle": "c",
+		"key_control.h": "c",
+		"stdio.h": "c"
 	}
 }

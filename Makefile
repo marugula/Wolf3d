@@ -26,15 +26,19 @@ ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c init_textur
 
 ANLS_MAP_D = analyse_map/
 
-DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D)
+KEY_C_S = init_control_key.c key_control.c mouse_control.c
+KEY_C_D = key_control/
+
+DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D)
 
 SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
+			$(addprefix key_control/, $(KEY_C_S)) \
 			handling_errors.c\
 			ft_isspace.c\
 			init_player.c\
-			game.c init_imgs.c paint_engine.c 
+			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

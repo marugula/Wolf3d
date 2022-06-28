@@ -11,7 +11,7 @@
 # define WIDTH			960
 # define FOV			M_PI / 2.9
 # define STEPANGLE		FOV / WIDTH
-# define TANPI_6			0.57735026
+# define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
 # define GAMEBOXSIZE	64
 
@@ -25,15 +25,7 @@
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
-enum e_keys
-{
-	a = 0,
-	s,
-	d,
-	w = 13,
-	left = 123,
-	right
-};
+
 
 typedef struct s_point
 {
@@ -56,7 +48,7 @@ typedef struct s_img_info
 typedef struct s_key
 {
 	float		press_x;
-	// float		button;
+	float		mouse_move;
 	int			y;
 	int			x;
 	int			direct;
@@ -140,7 +132,17 @@ void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
 
 
-float	correct_distance(float distance, float angle);
+/* raycast_utils.c */
+t_vector	sum_vectors(t_vector a, t_vector b);
+float		distance(t_vector point_from, t_vector point_to, float angle_ray);
+float		slice_height(float distance);
+int			nbr_of_slice_column(float point);
+float		correct_distance(float distance, float angle);
+
+/* raycast.c */
+void		ray_cast(t_data *data);
+
+
 
 /* analyse/utils.c */
 int	strarr_len(char **arr);
@@ -150,5 +152,23 @@ int	redrawing(t_data *data);
 
 int	init_game(void);
 
+enum e_keys
+{
+	a = 0,
+	s,
+	d,
+	w = 13,
+	left = 123,
+	right,
+	esc = 53
+};
+
+void	init_control_key(t_data *data);
+int	deal_destroy(void);
+int	control_pl_dir(t_data *data);
+int	control_pl_poz(t_data *data);
+int	control_key_down(int key, t_data *data);
+int	control_key_up(int key, t_data *data);
+int	mouse_move(int x, int y, t_data *data);
 
 #endif
