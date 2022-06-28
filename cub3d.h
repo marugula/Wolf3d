@@ -130,6 +130,7 @@ float	correct_distance(float distance, float angle);
 
 /* analyse/utils.c */
 int	strarr_len(char **arr);
+int	redrawing(t_data *data);
 
 
 
