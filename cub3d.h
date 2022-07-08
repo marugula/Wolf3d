@@ -81,6 +81,7 @@ typedef struct s_imgs
 	t_img_info	south;
 	t_img_info	west;
 	t_img_info	east;
+	t_img_info	player_icn;
 }	t_imgs;
 
 typedef struct	s_two_dem_vector

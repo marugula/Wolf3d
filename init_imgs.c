@@ -35,4 +35,5 @@ void	init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr)
 	init_img(&imgs->west, texture.west, mlx_ptr);
 	init_img(&imgs->south, texture.south, mlx_ptr);
 	init_img(&imgs->north, texture.north, mlx_ptr);
+	init_img(&imgs->player_icn, "textures/cat.xpm", mlx_ptr);
 }

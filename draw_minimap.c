@@ -119,30 +119,22 @@ void	draw_ray(t_vector poz, float angle, float len, t_img_info *win)
 	}
 }
 
-void	draw_fov(t_player pl, float size_cell, t_img_info *win)
-{
-	float	dist;
-	float	angle;
-	float	prop;
-
-	(void)win;
-	prop = size_cell / GAMEBOXSIZE;
-	angle = pl.direction + FOV / 2;
-	dist = 3 * size_cell;
-	float	step = FOV / size_cell;
-	while (angle > pl.direction - FOV / 2)
-	{
-
-		draw_ray(init_vector(pl.poz.x * prop, pl.poz.y * prop), angle, dist, win);
-		// draw_ray(init_vector(pl.poz.x * prop, pl.poz.y * prop), angle + step, dist, win);
-		// draw_ray(init_vector(pl.poz.x * prop, pl.poz.y * prop), angle + 2 * step, dist, win);
-
-		// return ;
-		angle -= step;
-	}
-}
 
 
+
+
+// void draw_player_icn(t_vector poz, float angle, t_img_info pl_icn,  t_img_info *win)
+// {
+// 	float	radius_rotate;
+// 	float	angle_with_axis;
+// 	int		x;
+// 	int		y;
+
+// 	y = 0;
+// 	while (y < )
+
+
+// }
 
 void	draw_minimap(t_data *data)
 {
@@ -153,5 +145,4 @@ void	draw_minimap(t_data *data)
 	draw_borders(&(data->window.img), max_len(data->map) * size_cell, strarr_len(data->map) * size_cell);
 	draw_wall(data, size_cell);
 	draw_player(data->pl.poz, size_cell, &data->window.img);
-	draw_fov(data->pl, size_cell, &data->window.img);
 }
