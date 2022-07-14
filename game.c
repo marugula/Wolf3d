@@ -47,8 +47,8 @@ int	redrawing(t_data *data)
 		control_pl_poz(data);
 		fill_floor_and_cell_window_img(&data->window.img, data->texture);
 		ray_cast(data, depth_buffer);
-		print_int_buf(depth_buffer, WIDTH);
-		
+		// print_int_buf(depth_buffer, WIDTH);
+
 		draw_minimap(data);
 		// mlx_do_sync(data->window.mlx);
 		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
@@ -66,15 +66,15 @@ void game(char **map, t_textures textures)
 
 	data.window = init_game_window();
 	init_sides_img(&data.imgs, textures, data.window.mlx);
+	init_cat_imgs(&data);
 	data.map = map;
-	// init pl poz
 	data.pl =  init_player_direct_and_poz(map);
 	data.texture = textures;
 	fill_floor_and_cell_window_img(&data.window.img, data.texture);
-
+	find_pos_sprites(&data);
 
 	ray_cast(&data, depth_buffer);
-	print_int_buf(depth_buffer, WIDTH);
+	// print_int_buf(depth_buffer, WIDTH);
 
 
 	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);

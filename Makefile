@@ -37,7 +37,8 @@ SOURCES_S = main.c\
 			$(addprefix key_control/, $(KEY_C_S)) \
 			handling_errors.c\
 			init_player.c\
-			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c
+			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c\
+			find_pos_sprites.c
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/
