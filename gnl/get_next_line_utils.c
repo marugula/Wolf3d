@@ -49,7 +49,7 @@ char	*line_copy(char *dest, const char *src)
 	count = 0;
 	if (!(dest) || !src)
 		return (dest);
-	while (src)
+	while (src[count])
 	{
 		dest[count] = src[count];
 		count++;
@@ -66,6 +66,8 @@ char	*join_lines(char *str1, char *str2)
 
 	if (!str1)
 		len_str1 = 0;
+	else
+		len_str1 = ft_strlen1(str1);
 	if (!str2)
 		return (NULL);
 	str = malloc((len_str1 + ft_strlen1(str2) + 1) * sizeof(char));

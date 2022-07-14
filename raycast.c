@@ -92,6 +92,7 @@ t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
 	}
 }
 
+# define LEN_RAY 1500
 
 t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column, t_img_info *wall_texture)
 {
@@ -100,13 +101,20 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 
 	axis = init_axis(data, angle_ray);
 	ordinat = init_ordinat(data, angle_ray);
-	while (!is_wall_in_point(data->map, ordinat.point) || !is_wall_in_point(data->map, axis.point))
+	while (!(is_wall_in_point(data->map, ordinat.point) || (distance(data->pl.poz, ordinat.point, angle_ray) > LEN_RAY)) || \
+			 !(is_wall_in_point(data->map, axis.point) || distance(data->pl.poz, axis.point, angle_ray) > LEN_RAY))
 	{
-		if (!is_wall_in_point(data->map, ordinat.point))
+		if (!is_wall_in_point(data->map, ordinat.point) && distance(data->pl.poz, ordinat.point, angle_ray) < LEN_RAY)
 			ordinat.point = sum_vectors(ordinat.point, ordinat.step);
-		if (!is_wall_in_point(data->map, axis.point))
+		if (!is_wall_in_point(data->map, axis.point) && distance(data->pl.poz, axis.point, angle_ray) < LEN_RAY)
 			axis.point = sum_vectors(axis.point, axis.step);
+		if (distance(data->pl.poz, ordinat.point, angle_ray) > LEN_RAY && distance(data->pl.poz, axis.point, angle_ray) > LEN_RAY)
+			return (init_vector(-1,-1));
+	// 	printf("axis dest %f\n ordinat dest %f\n wall?1 %d\n wall?1 %d\n\n", distance(data->pl.poz, axis.point, angle_ray), distance(data->pl.poz, ordinat.point, angle_ray), \
+	// 																																is_wall_in_point(data->map, axis.point),\
+	// 																																is_wall_in_point(data->map, ordinat.point));
 	}
+
 	if (distance(data->pl.poz, ordinat.point, angle_ray) < distance(data->pl.poz, axis.point, angle_ray))
 	{
 		*number_column = nbr_of_slice_column(ordinat.point.y);
@@ -118,7 +126,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	return (axis.point);
 }
 
-void	ray_cast(t_data *data,  int *depth_buffer)
+void	ray_cast(t_data *data)
 {
 	t_vector	intersection_point;
 	float		angle_ray;
@@ -128,24 +136,20 @@ void	ray_cast(t_data *data,  int *depth_buffer)
 
 	angle_ray = data->pl.direction + (FOV / 2);
 	x = 0;
+	printf("pl.x = %f pl.y = %f\n", data->pl.poz.x, data->pl.poz.y);
 	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
 	{
 		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
-		depth_buffer[x] = distance(intersection_point, data->pl.poz, angle_ray);
+		if (!(intersection_point.x == -1 && intersection_point.y == -1))
+			set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
+		// if (ПРОХОДИТ РЯДОМ С КАКИМ ТО ИЗ СПРАЙТОВ)
+		// 		if (проверяем расстояние до спрайтов)
+		// 			запоминаем эти слайсы и их данные
 
-
-		set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
-
-
-	// if (ПРОХОДИТ РЯДОМ С КАКИМ ТО ИЗ СПРАЙТОВ)
-	// 		if (проверяем расстояние до спрайтов)
-	// 			запоминаем эти слайсы и их данные
-
-	// ОТРИСОВКА СРЕЗОВ СПРАЙТОВ
-
+		// ОТРИСОВКА СРЕЗОВ СПРАЙТОВ
 		x++;
 		angle_ray -= STEPANGLE;
 	}

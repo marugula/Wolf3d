@@ -69,8 +69,30 @@ int check_space_around_dot(t_dot dot, char **map)
 	return (VALID_OK);
 }
 
+int	check_zero_around_zero(t_dot dot, char **map)
+{
+	char	ch_at_dot;
+
+	ch_at_dot = get_ch_in_dot(dot.x - 1, dot.y, map);
+	if (ch_at_dot == ' ' || ch_at_dot == 0)
+		return (VALID_ERR);
+
+	ch_at_dot = get_ch_in_dot(dot.x + 1, dot.y, map);
+	if (ch_at_dot == ' ' || ch_at_dot == 0)
+		return (VALID_ERR);
+
+	ch_at_dot = get_ch_in_dot(dot.x, dot.y - 1, map);
+	if (ch_at_dot == ' ' || ch_at_dot == 0)
+		return (VALID_ERR);
+
+	ch_at_dot = get_ch_in_dot(dot.x, dot.y + 1, map);
+	if (ch_at_dot == ' ' || ch_at_dot == 0)
+		return (VALID_ERR);
+	return (VALID_OK);
+}
+
+
 int	check_all_dot(char **map)
-// Проверка коркетности всех символов
 {
 	t_dot	dot;
 	int		count_players;
@@ -83,6 +105,8 @@ int	check_all_dot(char **map)
 		while (map[dot.y][dot.x] != 0)
 		{
 			if (map[dot.y][dot.x] == ' ' && check_space_around_dot(dot, map) == VALID_ERR)
+				return (VALID_ERR);
+			if (map[dot.y][dot.x] == '0' && check_zero_around_zero(dot, map) == VALID_ERR)
 				return (VALID_ERR);
 			if (is_allowed_ch(map[dot.y][dot.x]) == VALID_ERR)
 				return (VALID_ERR);

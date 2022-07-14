@@ -37,3 +37,23 @@ void	init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr)
 	init_img(&imgs->north, texture.north, mlx_ptr);
 	init_img(&imgs->player_icn, "textures/cat.xpm", mlx_ptr);
 }
+
+void	init_cat_imgs(t_data *data)
+{
+	init_img(&data->imgs.cat[0], \
+			"textures/cat/cat1.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[1], \
+			"textures/cat/cat2.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[2], \
+			"textures/cat/cat3.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[3], \
+			"textures/cat/cat4.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[4], \
+			"textures/cat/cat5.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[5], \
+			"textures/cat/cat6.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[6], \
+			"textures/cat/cat7.xpm", data->window.mlx);
+	init_img(&data->imgs.cat[7], \
+			"textures/cat/cat8.xpm", data->window.mlx);
+}

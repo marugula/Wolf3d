@@ -30,6 +30,7 @@
 
 
 
+
 typedef struct s_point
 {
 	float		x;
@@ -81,26 +82,35 @@ typedef struct s_imgs
 	t_img_info	south;
 	t_img_info	west;
 	t_img_info	east;
+	t_img_info	cat[8];
 	t_img_info	player_icn;
 }	t_imgs;
 
-typedef struct	s_two_dem_vector
+typedef struct s_two_dem_vector
 {
 	float	x;
 	float	y;
-} t_vector;
+}	t_vector;
 
-typedef struct	s_player_data
+typedef struct s_player_data
 {
 	t_vector	poz;
 	float		direction;
-} t_player;
+}	t_player;
 
+typedef struct s_sprite
+{
+	t_vector	poz;
+	t_img_info	*tex;
+	int			frame;
+
+}	t_sprite;
 
 typedef struct s_map_data
 {
 	char			**map;
 	t_textures		texture;
+	t_sprite		*sprites;
 	t_game_window	window;
 	t_imgs			imgs;
 	t_player		pl;
@@ -129,6 +139,8 @@ t_vector		init_vector(float x, float y);
 void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
 void			init_img(t_img_info *img, char	*texture_path, void *mlx_ptr);
 void			creat_window_img(t_game_window *mlx);
+void			init_cat_imgs(t_data *data);
+
 
 /* paint_engine.c */
 unsigned int	get_color_in_pixel(int x, int y, t_img_info img);
@@ -149,7 +161,7 @@ float		distance_pyth(t_vector point_from, t_vector point_to);
 
 
 /* raycast.c */
-void		ray_cast(t_data *data, int *depth_buffer);
+void		ray_cast(t_data *data);
 int			is_wall_in_point(char **map, t_vector point);
 
 /* draw_minimap.c */
@@ -161,6 +173,8 @@ void		draw_minimap(t_data *data);
 int	strarr_len(char **arr);
 int	redrawing(t_data *data);
 
+/* find_pos_sprites.c */
+void	find_pos_sprites(t_data *data);
 
 
 // int	init_game(void);
