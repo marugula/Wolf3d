@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "analyse_map.h"
 
 int	ft_isspace(char c)
 {

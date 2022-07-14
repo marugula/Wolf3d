@@ -119,22 +119,74 @@ void	draw_ray(t_vector poz, float angle, float len, t_img_info *win)
 	}
 }
 
+float	count_radius_pixel(t_vector pixel, t_vector mid)
+{
+	float radius_pixel;
+
+	radius_pixel = sqrt(pow(pixel.y - mid.y / 2, 2) + pow(pixel.x - mid.x / 2, 2));
+	return (radius_pixel);
+}
+
+float	count_angle_pixel(t_vector pixel, t_vector mid)
+{
+	if (pixel.x == mid.x)
+		return (M_PI_2);
+	else
+		return (atan((pixel.y - mid.y) / (pixel.x - mid.x)));
+}
 
 
 
+float	shift_x(t_vector pixel, t_player pl, int size_img, float size_cell)
+{
+	float	prop_shift;
+	float	prop_size_icn;
 
-// void draw_player_icn(t_vector poz, float angle, t_img_info pl_icn,  t_img_info *win)
-// {
-// 	float	radius_rotate;
-// 	float	angle_with_axis;
-// 	int		x;
-// 	int		y;
+	prop_shift = size_cell / GAMEBOXSIZE;
+	prop_size_icn = size_img / (4 * size_cell);
+	return (pl.poz.x * prop_shift + (pixel.x - size_img / (2 * prop_size_icn)) * sin(pl.direction + M_PI) - (pixel.y - size_img /    (2 * prop_size_icn)) * cos(pl.direction + M_PI));
+	//      pl.poz.x * prop_shift + (x -    pl_icn.width / (2 * prop_size_icn)) * sin(pl.direction + M_PI) - (y     - pl_icn.height / (2 * prop_size_icn)) * cos(pl.direction + M_PI)
 
-// 	y = 0;
-// 	while (y < )
+}
 
 
-// }
+float	shift_y(t_vector pixel, t_player pl, int size_img, float size_cell)
+{
+	float	prop_shift;
+	float	prop_size_icn;
+
+	prop_shift = size_cell / GAMEBOXSIZE;
+	prop_size_icn = size_img / (4 * size_cell);
+	// prop_size_icn = pl_icn.height / (4 * size_cell);
+	return (pl.poz.y * prop_shift + (pixel.x - size_img / (2 * prop_size_icn)) * cos(pl.direction + M_PI) + (pixel.y - size_img / (2 * prop_size_icn)) * sin(pl.direction + M_PI));
+	//      pl.poz.y * prop_shift + (x      - pl_icn.width / (2 * prop_size_icn))   * cos(pl.direction + M_PI) + (y - pl_icn.height / (2 * prop_size_icn)) * sin(pl.direction + M_PI)
+}
+
+
+void draw_player_icn(t_player pl, t_img_info pl_icn, float size_cell, t_img_info *win)
+{
+	int		x;
+	int		y;
+	float	prop_shift;
+	float	prop_size_icn;
+
+	y = 0;
+	prop_shift = size_cell / GAMEBOXSIZE;
+	prop_size_icn = pl_icn.height / (4 * size_cell);
+	while (y < (4 * size_cell))
+	{
+		x = 0;
+		while (x  < (4 * size_cell))
+		{
+			change_pixel_in_img(shift_x(init_vector(x, y), pl, pl_icn.width, size_cell), \
+								shift_y(init_vector(x, y), pl, pl_icn.height, size_cell),
+								win, \
+								get_color_in_pixel(x * prop_size_icn, y * prop_size_icn, pl_icn));
+			x++;
+		}
+		y++;
+	}
+}
 
 void	draw_minimap(t_data *data)
 {
@@ -145,4 +197,5 @@ void	draw_minimap(t_data *data)
 	draw_borders(&(data->window.img), max_len(data->map) * size_cell, strarr_len(data->map) * size_cell);
 	draw_wall(data, size_cell);
 	draw_player(data->pl.poz, size_cell, &data->window.img);
+	draw_player_icn(data->pl, data->imgs.player_icn, size_cell, &data->window.img);
 }

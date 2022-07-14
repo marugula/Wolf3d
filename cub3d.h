@@ -140,13 +140,16 @@ unsigned int	color_shift(int color, float intensive);
 
 /* raycast_utils.c */
 t_vector	sum_vectors(t_vector a, t_vector b);
-float		distance(t_vector point_from, t_vector point_to, float angle_ray);
 float		slice_height(float distance);
 int			nbr_of_slice_column(float point);
 float		correct_distance(float distance, float angle);
+float		distance(t_vector point_from, t_vector point_to, float angle_ray);
+float		distance_pyth(t_vector point_from, t_vector point_to);
+
+
 
 /* raycast.c */
-void		ray_cast(t_data *data);
+void		ray_cast(t_data *data, int *depth_buffer);
 int			is_wall_in_point(char **map, t_vector point);
 
 /* draw_minimap.c */

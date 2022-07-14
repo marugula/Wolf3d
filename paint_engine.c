@@ -14,7 +14,7 @@ void	change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color)
 {
 	char	*dst;
 
-	if (y < 0 || y >= img->height || x < 0 || x >= img->width)
+	if (y < 0 || y >= img->height || x < 0 || x >= img->width || color == 4278190080)
 		return ;
 	dst = img->addr + (y * img->size_line + x * (img->bits_p_pix / 8));
 	*(unsigned int*)dst = color;
@@ -37,8 +37,6 @@ float	intensity(float prop)
 		return (1);
 	return (1 - prop);
 }
-
-
 
 
 void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
@@ -64,7 +62,6 @@ void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg
 			change_pixel_in_img(x_poz, mid_window - step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
 		step++;
 	}
-
 }
 
 void	fill_floor_and_cell_window_img(t_img_info *img, t_textures textures)

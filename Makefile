@@ -22,7 +22,7 @@ GNL_S = get_next_line.c get_next_line_utils.c
 GNL_D = gnl/
 
 ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c init_texture_struct.c get_color_image_texture.c write_textures_to_struct.c \
-				check_game_map.c trim_game_map.c checker_function.c check_utils.c
+				check_game_map.c trim_game_map.c checker_function.c check_utils.c ft_isspace.c
 
 ANLS_MAP_D = analyse_map/
 
@@ -36,7 +36,6 @@ SOURCES_S = main.c\
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			$(addprefix key_control/, $(KEY_C_S)) \
 			handling_errors.c\
-			ft_isspace.c\
 			init_player.c\
 			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c
 

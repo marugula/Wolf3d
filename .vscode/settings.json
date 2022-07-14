@@ -4,6 +4,14 @@
 		"typeinfo": "c",
 		"__node_handle": "c",
 		"key_control.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"__functional_base": "c",
+		"array": "c",
+		"istream": "c",
+		"locale": "c",
+		"memory": "c",
+		"tuple": "c",
+		"utility": "c",
+		"libft.h": "c"
 	}
 }

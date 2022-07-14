@@ -18,6 +18,11 @@ float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 	return ((float) distance);
 }
 
+float	distance_pyth(t_vector point_from, t_vector point_to)
+{
+	return (sqrt(pow(point_from.x - point_to.x, 2) + pow(point_from.y - point_to.y, 2)));
+}
+
 float	slice_height(float distance)
 {
 	float	height;

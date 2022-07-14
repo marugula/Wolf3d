@@ -79,24 +79,16 @@ t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
 	if (is_axis)
 	{
 		if (sin(angle) > 0)
-		{
 			return (imgs.south);
-		}
 		else
-		{
 			return (imgs.north);
-		}
 	}
 	else
 	{
 		if (cos(angle) > 0)
-		{
 			return (imgs.west);
-		}
 		else
-		{
 			return (imgs.east);
-		}
 	}
 }
 
@@ -126,9 +118,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	return (axis.point);
 }
 
-
-
-void	ray_cast(t_data *data)
+void	ray_cast(t_data *data /*  <- список спрайтов на карте */)
 {
 	t_vector	intersection_point;
 	float		angle_ray;
@@ -144,7 +134,18 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
+		// depth_buffer[x] = distance(intersection_point, data->pl.poz, angle_ray);
+
+
 		set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
+
+
+	// if (ПРОХОДИТ РЯДОМ С КАКИМ ТО ИЗ СПРАЙТОВ)
+	// 		if (проверяем расстояние до спрайтов)
+	// 			запоминаем эти слайсы и их данные
+
+	// ОТРИСОВКА СРЕЗОВ СПРАЙТОВ
+
 		x++;
 		angle_ray -= STEPANGLE;
 	}
