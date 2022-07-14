@@ -118,7 +118,7 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	return (axis.point);
 }
 
-void	ray_cast(t_data *data /*  <- список спрайтов на карте */)
+void	ray_cast(t_data *data,  int *depth_buffer)
 {
 	t_vector	intersection_point;
 	float		angle_ray;
@@ -134,7 +134,7 @@ void	ray_cast(t_data *data /*  <- список спрайтов на карте 
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
-		// depth_buffer[x] = distance(intersection_point, data->pl.poz, angle_ray);
+		depth_buffer[x] = distance(intersection_point, data->pl.poz, angle_ray);
 
 
 		set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
