@@ -37,28 +37,23 @@ t_sprite	init_new_sprite(t_vector poz, t_img_info *tex)
 void	find_pos_sprites(t_data *data)
 {
 	t_vector	poz;
-	int			count_sprites;
 	int			count;
 
-	count = 0;
-	count_sprites = count_sprites_in_map(data->map);
-	if (count_sprites == 0)
+	count = count_sprites_in_map(data->map);
+	if (count == 0)
 		return ;
-	data->sprites = (t_sprite *) ft_calloc (count_sprites + 1, sizeof(t_sprite));
+	data->sprites = (t_sprite *) ft_calloc (count + 1, sizeof(t_sprite));
 	if (!data->sprites)
 		exit_error("error ft_calloc sprites\n");
 	poz.y = 0;
+	count = 0;
 	while (data->map[(int)poz.y])
 	{
 		poz.x = 0;
 		while (data->map[(int)poz.y][(int)poz.x])
 		{
 			if (data->map[(int)poz.y][(int)poz.x] == 'C')
-			{
-				data->sprites[count] = init_new_sprite(poz, data->imgs.cat);
-				count++;
-				printf("count = %d\n", count);
-			}
+				data->sprites[count++] = init_new_sprite(poz, data->imgs.cat);
 			poz.x++;
 		}
 		poz.y++;
