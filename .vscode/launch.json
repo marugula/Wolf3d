@@ -9,7 +9,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"program": "./cub3D",
-			"args": ["maps/bigmap.cub"],
+			"args": ["maps/map.cub"],
 		}
 	]
 }

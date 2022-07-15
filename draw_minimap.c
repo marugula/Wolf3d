@@ -194,8 +194,10 @@ void	draw_minimap(t_data *data)
 
 
 	size_cell = count_size_cell(data->map);
+	if (size_cell == 0)
+		size_cell++;
 	draw_borders(&(data->window.img), max_len(data->map) * size_cell, strarr_len(data->map) * size_cell);
 	draw_wall(data, size_cell);
-	draw_player(data->pl.poz, size_cell, &data->window.img);
+	// draw_player(data->pl.poz, size_cell, &data->window.img);
 	draw_player_icn(data->pl, data->imgs.player_icn, size_cell, &data->window.img);
 }

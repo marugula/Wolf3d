@@ -98,8 +98,6 @@ char **copy_map_to_array(char *map_name, t_textures *textures)
 		exit_error("File have not map\n");
 	if (check_game_map(game_map) == VALID_ERR)
 		exit_error("Map incorect\n");
-	else
-		printf("MAP IS OK\n");
 	// clear_arr_str(game_map);
 	return (game_map);
 }

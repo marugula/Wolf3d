@@ -103,7 +103,9 @@ typedef struct s_sprite
 	t_vector	poz;
 	t_img_info	*tex;
 	int			frame;
-
+	float		dist_to_pl;
+	float		left_angle;
+	float		right_angle;
 }	t_sprite;
 
 typedef struct s_map_data
@@ -163,15 +165,21 @@ float		distance_pyth(t_vector point_from, t_vector point_to);
 /* raycast.c */
 void		ray_cast(t_data *data);
 int			is_wall_in_point(char **map, t_vector point);
+int			redrawing(t_data *data);
 
 /* draw_minimap.c */
 void		draw_minimap(t_data *data);
+int			max_len(char **map);
 
-
+/* draw_sprites.c */
+void		draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x_poz);
+float		count_perp_angle(float angle, int dir);
+double	angle_between_two_dots(t_vector start, t_vector end, float pl_dir);
+t_vector	shift_poz(t_vector poz, float angle, float shift);
 
 /* analyse/utils.c */
-int	strarr_len(char **arr);
-int	redrawing(t_data *data);
+int			strarr_len(char **arr);
+
 
 /* find_pos_sprites.c */
 void	find_pos_sprites(t_data *data);

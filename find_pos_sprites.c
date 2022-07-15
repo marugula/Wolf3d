@@ -39,6 +39,7 @@ void	find_pos_sprites(t_data *data)
 	t_vector	poz;
 	int			count;
 
+	data->sprites = NULL;
 	count = count_sprites_in_map(data->map);
 	if (count == 0)
 		return ;
@@ -53,7 +54,7 @@ void	find_pos_sprites(t_data *data)
 		while (data->map[(int)poz.y][(int)poz.x])
 		{
 			if (data->map[(int)poz.y][(int)poz.x] == 'C')
-				data->sprites[count++] = init_new_sprite(poz, data->imgs.cat);
+				data->sprites[count++] = init_new_sprite(init_vector(poz.x * GAMEBOXSIZE + GAMEBOXSIZE / 2, poz.y * GAMEBOXSIZE + GAMEBOXSIZE / 2), data->imgs.cat);
 			poz.x++;
 		}
 		poz.y++;

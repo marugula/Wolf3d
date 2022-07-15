@@ -29,7 +29,7 @@ t_raycast	init_axis(t_data *data, float angle_ray)
 
 	if (sin(angle_ray) > 0)
 	{
-		axis.point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE - 0.0001;
+		axis.point.y = floor(data->pl.poz.y / GAMEBOXSIZE) * GAMEBOXSIZE - 0.001;
 		axis.step.y = -GAMEBOXSIZE;
 	}
 	else
@@ -60,7 +60,7 @@ t_raycast	init_ordinat(t_data *data, float angle_ray)
 	}
 	else
 	{
-		ordinat.point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 0.0001;
+		ordinat.point.x = floor(data->pl.poz.x / GAMEBOXSIZE) * GAMEBOXSIZE - 0.001;
 		ordinat.step.x = -GAMEBOXSIZE;
 	}
 	ordinat.step.y = GAMEBOXSIZE * fabs(tan(angle_ray));
@@ -110,9 +110,6 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 			axis.point = sum_vectors(axis.point, axis.step);
 		if (distance(data->pl.poz, ordinat.point, angle_ray) > LEN_RAY && distance(data->pl.poz, axis.point, angle_ray) > LEN_RAY)
 			return (init_vector(-1,-1));
-	// 	printf("axis dest %f\n ordinat dest %f\n wall?1 %d\n wall?1 %d\n\n", distance(data->pl.poz, axis.point, angle_ray), distance(data->pl.poz, ordinat.point, angle_ray), \
-	// 																																is_wall_in_point(data->map, axis.point),\
-	// 																																is_wall_in_point(data->map, ordinat.point));
 	}
 
 	if (distance(data->pl.poz, ordinat.point, angle_ray) < distance(data->pl.poz, axis.point, angle_ray))
@@ -126,6 +123,36 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	return (axis.point);
 }
 
+int	convet_rad_to_grad(float rad)
+{
+	return (rad * 180 / M_PI);
+}
+
+void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
+{
+	int	i;
+	float	perp_dir;
+	float	temp;
+
+	i = 0;
+	while (sprite != NULL && sprite[i].tex != NULL)
+	{
+		perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
+		printf("\npl.poz.x = %f pl.poz.y = %f", pl.poz.x, pl.poz.y);
+		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI, sprite[i].tex->width), pl.direction);
+		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
+		if (sprite[i].left_angle < sprite[i].right_angle)
+		{
+			temp = sprite[i].left_angle;
+			sprite[i].left_angle = sprite[i].right_angle;
+			sprite[i].right_angle = temp;
+		}
+		sprite[i].dist_to_pl = distance_pyth(pl.poz, sprite[i].poz);
+		printf("dist = %f, dir = %d, perp_dir = %d sprite[i].right_angle = %d, sprite[i].left_angle = %d \n", sprite->dist_to_pl, convet_rad_to_grad(angle_between_two_dots(pl.poz, sprite->poz, pl.direction)), convet_rad_to_grad(perp_dir), convet_rad_to_grad(sprite[i].right_angle), convet_rad_to_grad(sprite[i].left_angle));
+		i++;
+	}
+}
+
 void	ray_cast(t_data *data)
 {
 	t_vector	intersection_point;
@@ -136,7 +163,9 @@ void	ray_cast(t_data *data)
 
 	angle_ray = data->pl.direction + (FOV / 2);
 	x = 0;
-	printf("pl.x = %f pl.y = %f\n", data->pl.poz.x, data->pl.poz.y);
+	// printf("pl.x = %f pl.y = %f\n", data->pl.poz.x, data->pl.poz.y);
+	// ertg
+	count_perp_dir_for_sprites(data->sprites, data->pl);
 	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
 	{
 		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
@@ -145,11 +174,10 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
 		if (!(intersection_point.x == -1 && intersection_point.y == -1))
 			set_column_in_img(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray))), &data->window.img, wall_txtr);
-		// if (ПРОХОДИТ РЯДОМ С КАКИМ ТО ИЗ СПРАЙТОВ)
-		// 		if (проверяем расстояние до спрайтов)
-		// 			запоминаем эти слайсы и их данные
-
-		// ОТРИСОВКА СРЕЗОВ СПРАЙТОВ
+		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
+			draw_sprite_column(data, angle_ray + STEPANGLE, distance(data->pl.poz, intersection_point, angle_ray), x);
+		else
+			draw_sprite_column(data, angle_ray, distance(data->pl.poz, intersection_point, angle_ray), x);
 		x++;
 		angle_ray -= STEPANGLE;
 	}

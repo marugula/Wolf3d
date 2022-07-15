@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:16 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/06/28 19:02:50 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/15 21:17:51 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	control_pl_dir(t_data *data)
 	{
 		data->pl.direction += direction_step;
 	}
+	if (data->pl.direction < 0)
+		data->pl.direction += 2 * M_PI;
+	if (data->pl.direction > 2 * M_PI)
+		data->pl.direction -= 2 * M_PI;
 	return (0);
 }
 
