@@ -20,16 +20,12 @@
 # define MINIMAP_H		200
 # define MINIMAP_W		250
 
-
 # define BUTTONPRESS		4
 # define BUTTONRELEASE		5
 # define BUTTONMOVE			6
 # define ON_DESTROY			17
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
-
-
-
 
 typedef struct s_point
 {
@@ -83,6 +79,7 @@ typedef struct s_imgs
 	t_img_info	west;
 	t_img_info	east;
 	t_img_info	cat[8];
+	t_img_info	minotaur[8];
 	t_img_info	player_icn;
 }	t_imgs;
 
@@ -140,6 +137,8 @@ void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
 void			init_img(t_img_info *img, char	*texture_path, void *mlx_ptr);
 void			creat_window_img(t_game_window *mlx);
 void			init_cat_imgs(t_data *data);
+void			init_minotaur_imgs(t_data *data);
+
 
 
 /* paint_engine.c */

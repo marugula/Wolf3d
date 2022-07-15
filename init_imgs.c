@@ -57,3 +57,23 @@ void	init_cat_imgs(t_data *data)
 	init_img(&data->imgs.cat[7], \
 			"textures/cat/cat8.xpm", data->window.mlx);
 }
+
+void	init_minotaur_imgs(t_data *data)
+{
+	init_img(&data->imgs.minotaur[0], \
+			"textures/minotaur/Minotaur1.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[1], \
+			"textures/minotaur/Minotaur2.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[2], \
+			"textures/minotaur/Minotaur3.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[3], \
+			"textures/minotaur/Minotaur4.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[4], \
+			"textures/minotaur/Minotaur5.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[5], \
+			"textures/minotaur/Minotaur6.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[6], \
+			"textures/minotaur/Minotaur7.xpm", data->window.mlx);
+	init_img(&data->imgs.minotaur[7], \
+			"textures/minotaur/Minotaur8.xpm", data->window.mlx);
+}

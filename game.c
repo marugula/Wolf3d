@@ -67,6 +67,8 @@ void game(char **map, t_textures textures)
 	data.window = init_game_window();
 	init_sides_img(&data.imgs, textures, data.window.mlx);
 	init_cat_imgs(&data);
+	init_minotaur_imgs(&data);
+
 	data.map = map;
 	data.pl =  init_player_direct_and_poz(map);
 	data.texture = textures;

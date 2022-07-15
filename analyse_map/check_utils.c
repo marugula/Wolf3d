@@ -28,6 +28,7 @@ int	is_allowed_ch(char ch)
 			ch == '1' || \
 			ch == '0' || \
 			ch == 'C' || \
+			ch == 'M' || \
 			ch == 'N' || \
 			ch == 'S' || \
 			ch == 'E' || \
