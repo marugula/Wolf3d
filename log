@@ -1,0 +1,31 @@
+1.
+before x = 1568.000000, y = 672.000000
+after x = 1544.746338, y = 693.983337
+
+before x = 1568.000000, y = 672.000000
+after x = 1591.253662, y = 650.016663
+dir = 46, perp_dir = -43 sprite[i].right_angle = 46, sprite[i].left_angle = 47
+
+before x = 1568.000000, y = 672.000000
+after x = 1544.777344, y = 694.016052
+
+before x = 1568.000000, y = 672.000000
+after x = 1591.222656, y = 649.983948
+dir = 46, perp_dir = -43 sprite[i].right_angle = 46, sprite[i].left_angle = 47
+
+
+
+2.
+before x = 1568.000000, y = 672.000000
+after x = 1536.094360, y = 669.544189
+
+before x = 1568.000000, y = 672.000000
+after x = 1599.905640, y = 674.455811
+dir = 94, perp_dir = 4 sprite[i].right_angle = 85, sprite[i].left_angle = 103
+
+before x = 1568.000000, y = 672.000000
+after x = 1536.094360, y = 669.544189
+
+before x = 1568.000000, y = 672.000000
+after x = 1599.905640, y = 674.455811
+dir = 94, perp_dir = 4 sprite[i].right_angle = 85, sprite[i].left_angle = 103

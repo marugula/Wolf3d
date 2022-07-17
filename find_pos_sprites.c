@@ -54,6 +54,7 @@ void	find_pos_sprites(t_data *data)
 	t_vector	poz;
 	int			i;
 
+	data->sprites = NULL;
 	i = count_sprites_in_map(data->map);
 	if (i == 0)
 		return ;

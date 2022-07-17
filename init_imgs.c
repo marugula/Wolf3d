@@ -75,5 +75,5 @@ void	init_minotaur_imgs(t_data *data)
 	init_img(&data->imgs.minotaur[6], \
 			"textures/minotaur/Minotaur7.xpm", data->window.mlx);
 	init_img(&data->imgs.minotaur[7], \
-			"textures/minotaur/Minotaur8.xpm", data->window.mlx);
+			"textures/minotaur/Minotaur0.xpm", data->window.mlx);
 }

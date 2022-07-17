@@ -38,6 +38,7 @@ SOURCES_S = main.c\
 			handling_errors.c\
 			init_player.c\
 			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c\
+			draw_sprites.c\
 			find_pos_sprites.c
 
 OBJS = $(SOURCES_S:%.c=%.o)

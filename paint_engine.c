@@ -41,11 +41,11 @@ float	intensity(float prop)
 
 void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
 {
-	int		mid_window;
-	int		step;
-	float	prop;
-	int		img_poz;
-	int		color;
+	int					mid_window;
+	int					step;
+	float				prop;
+	int					img_poz;
+	unsigned int		color;
 
 	prop = (float) texture.height / (float) heigth;
 	mid_window = HEIGHT / 2;
@@ -54,11 +54,11 @@ void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg
 	{
 		img_poz = round((double) (heigth / 2 + step) * prop);
 		color = get_color_in_pixel(num_column, img_poz, texture);
-		if (color != 0)
+		if (color != 0 && color != 4278190080)
 			change_pixel_in_img(x_poz, mid_window + step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
 		img_poz = round((double) (heigth / 2 - step) * prop);
 		color = get_color_in_pixel(num_column, img_poz, texture);
-		if (color != 0)
+		if (color != 0 && color != 4278190080)
 			change_pixel_in_img(x_poz, mid_window - step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
 		step++;
 	}

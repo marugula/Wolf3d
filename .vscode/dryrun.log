@@ -1,5 +1,5 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/anastasiadementeva/Desktop/projects/cub'
+make: Entering directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d'
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
 cc -Wall -Werror -Wextra -g  -c main.c -o objs/main.o
@@ -17,7 +17,6 @@ mkdir -p  objs/gnl/ objs/analyse_map/
 cc -Wall -Werror -Wextra -g  -c analyse_map/check_format_map.c -o objs/analyse_map/check_format_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
- 
 cc -Wall -Werror -Wextra -g  -c analyse_map/init_array_map.c -o objs/analyse_map/init_array_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
@@ -34,6 +33,7 @@ cc -Wall -Werror -Wextra -g  -c analyse_map/check_game_map.c -o objs/analyse_map
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
 cc -Wall -Werror -Wextra -g  -c analyse_map/trim_game_map.c -o objs/analyse_map/trim_game_map.o
+ 
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
 cc -Wall -Werror -Wextra -g  -c analyse_map/checker_function.c -o objs/analyse_map/checker_function.o
@@ -58,11 +58,17 @@ cc -Wall -Werror -Wextra -g  -c init_imgs.c -o objs/init_imgs.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/
 cc -Wall -Werror -Wextra -g  -c paint_engine.c -o objs/paint_engine.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/
+cc -Wall -Werror -Wextra -g  -c raycast_utils.c -o objs/raycast_utils.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/
+cc -Wall -Werror -Wextra -g  -c raycast.c -o objs/raycast.o
  
 echo "cub3D: \033[0;32mCreating ./libft/libft.a...\033[0m"
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./libft/
  
-make[1]: Entering directory `/Users/anastasiadementeva/Desktop/projects/cub/libft'
+make[1]: Entering directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d/libft'
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_isalpha.c -o ft_isalpha.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_isdigit.c -o ft_isdigit.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_isalnum.c -o ft_isalnum.o
@@ -87,6 +93,7 @@ cc -Wall -Wextra -Werror -I libft.h -g -c ft_atoi.c -o ft_atoi.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_calloc.c -o ft_calloc.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_strdup.c -o ft_strdup.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_substr.c -o ft_substr.o
+ 
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_strjoin.c -o ft_strjoin.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_strtrim.c -o ft_strtrim.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_split.c -o ft_split.o
@@ -107,12 +114,13 @@ cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstdelone.c -o ft_lstdelone.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstclear.c -o ft_lstclear.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstiter.c -o ft_lstiter.o
 cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstmap.c -o ft_lstmap.o
-ar rcs libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_isdigit_and_sign.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
-make[1]: Leaving directory `/Users/anastasiadementeva/Desktop/projects/cub/libft'
+ar rcs libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_isdigit_and_sign.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o libft.h
+make[1]: Leaving directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d/libft'
+ 
 echo "cub3D: \033[0;32mCreating ./minilibx_macos/libmlx.a...\033[0m"
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./minilibx_macos/
  
-make[1]: Entering directory `/Users/anastasiadementeva/Desktop/projects/cub/minilibx_macos'
+make[1]: Entering directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d/minilibx_macos'
 cc -O2 -Wno-deprecated-declarations   -c -o mlx_shaders.o mlx_shaders.c
 cc -O2 -Wno-deprecated-declarations   -c -o mlx_new_window.o mlx_new_window.m
 cc -O2 -Wno-deprecated-declarations   -c -o mlx_init_loop.o mlx_init_loop.m
@@ -121,9 +129,9 @@ cc -O2 -Wno-deprecated-declarations   -c -o mlx_xpm.o mlx_xpm.c
 cc -O2 -Wno-deprecated-declarations   -c -o mlx_int_str_to_wordtab.o mlx_int_str_to_wordtab.c
 ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o
 ranlib libmlx.a
-make[1]: Leaving directory `/Users/anastasiadementeva/Desktop/projects/cub/minilibx_macos'
-cc -Wall -Werror -Wextra -g   -lft -L./libft/ -lmlx -lm -L./minilibx_macos/ -framework OpenGL -framework AppKit objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/handling_errors.o objs/ft_isspace.o objs/init_player.o objs/game.o objs/init_imgs.o objs/paint_engine.o -o cub3D
+make[1]: Leaving directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d/minilibx_macos'
+cc -Wall -Werror -Wextra -g   -lft -L./libft/ -lmlx -lm -L./minilibx_macos/ -framework OpenGL -framework AppKit objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/handling_errors.o objs/ft_isspace.o objs/init_player.o objs/game.o objs/init_imgs.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o -o cub3D
 echo "\n\033[7m cub3D: \033[0;32mobject files were created\033[0m"
 echo "\033[7m cub3D: \033[0;32mcub3D was created\033[0m"
-make: Leaving directory `/Users/anastasiadementeva/Desktop/projects/cub'
+make: Leaving directory `/Users/anastasiadementeva/Desktop/projects/Wolf3d'
  

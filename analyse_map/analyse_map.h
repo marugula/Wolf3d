@@ -7,6 +7,8 @@
 
 # define VALID_OK	0
 # define VALID_ERR	1
+# define MAX_W_MAP	300
+# define MAX_H_MAP	300
 
 typedef struct t_move_on_map
 {
