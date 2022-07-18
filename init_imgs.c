@@ -77,3 +77,23 @@ void	init_minotaur_imgs(t_data *data)
 	init_img(&data->imgs.minotaur[7], \
 			"textures/minotaur/Minotaur0.xpm", data->window.mlx);
 }
+
+void	init_door_imgs(t_data *data)
+{
+	init_img(&data->imgs.door[0], \
+			"textures/door/door.xpm", data->window.mlx);
+	init_img(&data->imgs.door[1], \
+			"textures/door/opendoor1.xpm", data->window.mlx);
+	init_img(&data->imgs.door[2], \
+			"textures/door/opendoor2.xpm", data->window.mlx);
+	init_img(&data->imgs.door[3], \
+			"textures/door/opendoor3.xpm", data->window.mlx);
+	init_img(&data->imgs.door[4], \
+			"textures/door/opendoor4.xpm", data->window.mlx);
+	init_img(&data->imgs.door[5], \
+			"textures/door/opendoor5.xpm", data->window.mlx);
+	init_img(&data->imgs.door[6], \
+			"textures/door/opendoor6.xpm", data->window.mlx);
+	init_img(&data->imgs.door[7], \
+			"textures/door/opendoor7.xpm", data->window.mlx);
+}

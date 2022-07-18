@@ -91,6 +91,28 @@ int	check_zero_around_zero(t_dot dot, char **map)
 	return (VALID_OK);
 }
 
+int	check_wall_around_door(t_dot dot, char **map)
+{
+	char	ch_at_dot2;
+	char	ch_at_dot1;
+	char	ch_at_dot3;
+	char	ch_at_dot4;
+
+	ch_at_dot1 = get_ch_in_dot(dot.x - 1, dot.y, map);
+	ch_at_dot2 = get_ch_in_dot(dot.x + 1, dot.y, map);
+	ch_at_dot3 = get_ch_in_dot(dot.x, dot.y - 1, map);
+	ch_at_dot4 = get_ch_in_dot(dot.x, dot.y + 1, map);
+	if (ch_at_dot1 == '1' && ch_at_dot2 == '1'\
+		&& (ch_at_dot3 == '0' || is_player_ch(ch_at_dot3)) \
+		&& (ch_at_dot4 == '0' || is_player_ch(ch_at_dot4)))
+		return (VALID_OK);
+	if (ch_at_dot3 == '1' && ch_at_dot4 == '1'\
+		&& (ch_at_dot1 == '0' || is_player_ch(ch_at_dot1)) \
+		&& (ch_at_dot2 == '0' || is_player_ch(ch_at_dot2)))
+		return (VALID_OK);
+	return (VALID_ERR);
+}
+
 
 int	check_all_dot(char **map)
 {
@@ -107,6 +129,8 @@ int	check_all_dot(char **map)
 			if (map[dot.y][dot.x] == ' ' && check_space_around_dot(dot, map) == VALID_ERR)
 				return (VALID_ERR);
 			if (map[dot.y][dot.x] == '0' && check_zero_around_zero(dot, map) == VALID_ERR)
+				return (VALID_ERR);
+			if (map[dot.y][dot.x] == 'D' && check_wall_around_door(dot, map) == VALID_ERR)
 				return (VALID_ERR);
 			if (is_allowed_ch(map[dot.y][dot.x]) == VALID_ERR)
 				return (VALID_ERR);

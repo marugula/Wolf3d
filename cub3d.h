@@ -82,6 +82,7 @@ typedef struct s_imgs
 	t_img_info	east;
 	t_img_info	cat[8];
 	t_img_info	minotaur[8];
+	t_img_info	door[8];
 	t_img_info	player_icn;
 }	t_imgs;
 
