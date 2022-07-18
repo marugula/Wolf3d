@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/18 11:38:53 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:55:16 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	check_intersection_sprite(t_sprite sprite, double angle)
 		i = 0;
 		while(  )
 		{
+			if (i > 100)
 				printf("angle_step = %f left_wall = %f , right_wall = %f\n", angle_step, left_angle - i * angle_step, left_angle - (i + 1) * angle_step);
 			i++;
 		}
