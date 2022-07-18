@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/15 23:12:55 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:38:53 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,19 @@ double	angle_between_two_dots(t_vector start, t_vector end, float pl_dir)
 
 int	check_intersection_sprite(t_sprite sprite, double angle)
 {
-	double		left_angle;
-	double		right_angle;
+	double		left_border;
+	double		right_border;
 	double		angle_step;
 	int			i;
 
-	left_angle = sprite.left_angle;
-	right_angle = sprite.right_angle;
-	if (angle < left_angle && angle > right_angle)
+	angle_step = (sprite.left_angle - sprite.right_angle) / sprite.tex->width;
+	left_border = sprite.left_angle;
+	right_border = left_border - angle_step;
+	if (angle < sprite.left_angle && angle > sprite.right_angle)
 	{
-		angle_step = (left_angle - right_angle) / sprite.tex->width;
-		// printf("angle_step = %f\n", angle_step);
 		i = 0;
-		while(!(angle < left_angle - i * angle_step && angle > left_angle - (i + 1) * angle_step) || left_angle - (i + 1) * angle_step < right_angle)
+		while(  )
 		{
-			if (i > 100)
 				printf("angle_step = %f left_wall = %f , right_wall = %f\n", angle_step, left_angle - i * angle_step, left_angle - (i + 1) * angle_step);
 			i++;
 		}
@@ -131,12 +129,93 @@ t_slice_sp	*find_intersections_sprites(t_data *data, float angle, float dist_to_
 	return (slices);
 }
 
+void	*clear_slice_list(t_slice_sp *list)
+{
+	t_slice_sp *temp;
+
+	while (list != NULL)
+	{
+		temp = list;
+		list = list->next;
+		free(temp);
+	}
+	return (NULL);
+}
+
+# define NOTSORTED	0
+# define SORTED		1
+
+int	slice_lst_is_sorted(t_slice_sp *slice_lst)
+{
+	while (slice_lst && slice_lst->next)
+	{
+		if (slice_lst->dist < slice_lst->next->dist)
+			return (NOTSORTED);
+		slice_lst = slice_lst->next;
+	}
+	return (SORTED);
+}
+
+int	size_slice_lst(t_slice_sp *slice_lst)
+{
+	int	i;
+
+	i = 0;
+	while (slice_lst != NULL)
+	{
+		slice_lst = slice_lst->next;
+		i++;
+	}
+	return (i);
+}
+
+void	swap_value_slice_list(t_slice_sp *slice1, t_slice_sp *slice2)
+{
+	t_slice_sp	temp;
+
+	temp.dist = slice1->dist;
+	temp.img = slice1->img;
+	temp.num_slice = slice1->num_slice;
+	slice1->dist = slice2->dist;
+	slice1->img = slice2->img;
+	slice1->num_slice = slice2->num_slice;
+	slice2->dist =temp.dist;
+	slice2->img =temp.img;
+	slice2->num_slice =temp.num_slice;
+}
+
+void	sort_slice_lst(t_slice_sp *slice_lst)
+{
+	t_slice_sp	*temp;
+
+	temp = slice_lst;
+	while (temp->next != NULL)
+	{
+		slice_lst = temp;
+		while (slice_lst->next != NULL)
+		{
+			if (slice_lst->dist < slice_lst->next->dist)
+			{
+				swap_value_slice_list(slice_lst, slice_lst->next);
+				if (slice_lst_is_sorted(slice_lst) == SORTED)
+					return ;
+			}
+			slice_lst = slice_lst->next;
+		}
+		temp = temp->next;
+	}
+}
+
+
 void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x_poz)
 {
 	t_slice_sp	*slice_lst;
 	t_slice_sp	*temp;
 
 	slice_lst = find_intersections_sprites(data, angle, dist_to_wall);
+	if (slice_lst == NULL)
+		return ;
+	sort_slice_lst(slice_lst);
 	temp = slice_lst;
 	while (temp != NULL)
 	{
@@ -147,5 +226,5 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x
 			set_column_in_img(win_x_poz, temp->num_slice, slice_height(temp->dist), &data->window.img, *temp->img);
 		temp = temp->next;
 	}
-
+	clear_slice_list(slice_lst);
 }
