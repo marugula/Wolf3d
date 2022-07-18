@@ -39,7 +39,8 @@ float	intensity(float prop)
 }
 
 
-void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
+
+void	draw_wall_column(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
 {
 	int					mid_window;
 	int					step;
@@ -52,6 +53,7 @@ void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg
 	step = 0;
 	while (step < heigth / 2 && step < HEIGHT / 2)
 	{
+		// printf("draw_wall_circle\n");
 		img_poz = round((double) (heigth / 2 + step) * prop);
 		color = get_color_in_pixel(num_column, img_poz, texture);
 		if (color != 0 && color != 4278190080)
@@ -63,6 +65,7 @@ void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg
 		step++;
 	}
 }
+
 
 void	fill_floor_and_cell_window_img(t_img_info *img, t_textures textures)
 {

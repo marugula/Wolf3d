@@ -37,18 +37,40 @@ void	print_int_buf(int *buf, int size)
 	printf("-------END------\n\n");
 }
 
+
+
+void	sprite_animation(t_sprite *sprites)
+{
+	static int	time = 3;
+	int			i;
+
+	time++;
+	i = 0;
+	if (time % ANIM_PERIOD == 0)
+	{
+		while (sprites[i].tex != NULL)
+		{
+			sprites[i].frame = (sprites[i].frame + sprites[i].animation_dir) % 8;
+			if (sprites[i].frame == 7 || sprites[i].frame == 0)
+				sprites[i].animation_dir *= -1;
+			i++;
+		}
+	}
+}
+
 int	redrawing(t_data *data)
 {
-	if (data->key.x != 0 || data->key.y != 0 || data->key.direct != 0 || data->key.mouse_move != 0)
-	{
+
+	// if (data->key.x != 0 || data->key.y != 0 || data->key.direct != 0 || data->key.mouse_move != 0)
+	// {
+		sprite_animation(data->sprites);
 		control_pl_dir(data);
 		control_pl_poz(data);
 		fill_floor_and_cell_window_img(&data->window.img, data->texture);
 		ray_cast(data);
-
 		draw_minimap(data);
 		mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
-	}
+	// }
 	return (0);
 }
 

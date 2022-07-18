@@ -30,7 +30,8 @@ t_sprite	init_new_sprite(t_vector poz, t_img_info *tex)
 
 	new_sprite.poz = poz;
 	new_sprite.tex = tex;
-	new_sprite.frame = 0;
+	new_sprite.frame = random() % 7 + 1;
+	new_sprite.animation_dir = 1;
 	return (new_sprite);
 }
 

@@ -33,8 +33,16 @@ static char *result[] = {
 "0 c #FFE1E1",
 "q c None",
 /* pixels */
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
 "qqqqqqqqqqOqqqqqqq.qqqqqqqqqqqqq",
 "qqqqqqqqqO+Oqqqqq.@.qqqqqqqqqqqq",
+"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
 "qqqqqqqqqO++Oqqq.@6.qqqqqqqqqqqq",
 "qqqqqqqqqO+:::::@66.qqqqqqqqqqqq",
 "qqqqqqqq:8888888886:qqqqqqqqqqqq",
@@ -56,13 +64,5 @@ static char *result[] = {
 "qqqqqqqqqqqqq##-788877->,,,,,qqq",
 "qqqqqqqqqqqq#%%=$$777-<<<9999,qq",
 "qqqqqqqqqqqq###$&&555->>>>>>>qqq",
-"qqqqqqqqqqqqqqq$$$---qqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
-"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+"qqqqqqqqqqqqqqq$$$---qqqqqqqqqqq"
 };

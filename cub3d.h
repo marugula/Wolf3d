@@ -28,6 +28,7 @@
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
+# define ANIM_PERIOD		5
 
 
 
@@ -103,6 +104,7 @@ typedef struct s_sprite
 	t_vector	poz;
 	t_img_info	*tex;
 	int			frame;
+	int			animation_dir;
 	float		dist_to_pl;
 	float		left_angle;
 	float		right_angle;
@@ -148,17 +150,19 @@ void			init_cat_imgs(t_data *data);
 unsigned int	get_color_in_pixel(int x, int y, t_img_info img);
 void			change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color);
 void			set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
+void			draw_wall_column(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
 void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
 
-
 /* raycast_utils.c */
-t_vector	sum_vectors(t_vector a, t_vector b);
-float		slice_height(float distance);
-int			nbr_of_slice_column(float point);
-float		correct_distance(float distance, float angle);
-float		distance(t_vector point_from, t_vector point_to, float angle_ray);
-float		distance_pyth(t_vector point_from, t_vector point_to);
+t_vector		sum_vectors(t_vector a, t_vector b);
+float			slice_height(float distance, int height_img);
+int				nbr_of_slice_column(float point);
+float			correct_distance(float distance, float angle);
+float			distance(t_vector point_from, t_vector point_to, float angle_ray);
+float			distance_pyth(t_vector point_from, t_vector point_to);
+float			intensity(float prop);
+unsigned int	color_shift(int color, float intensive);
 
 
 

@@ -25,11 +25,11 @@ float	distance_pyth(t_vector point_from, t_vector point_to)
 	return (sqrt(pow(point_from.x - point_to.x, 2) + pow(point_from.y - point_to.y, 2)));
 }
 
-float	slice_height(float distance)
+float	slice_height(float distance, int height_img)
 {
 	float	height;
 
-	height = (float) GAMEBOXSIZE / distance * (float) PLANEDIST;
+	height = (float) height_img / distance * (float) PLANEDIST;
 	return (height);
 }
 

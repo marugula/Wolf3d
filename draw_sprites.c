@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/18 13:13:06 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:41:54 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ float	count_perp_angle(float angle, int dir)
 
 t_vector	shift_poz(t_vector poz, float angle, float shift)
 {
-	printf("\nbefore x = %f, y = %f\n", poz.x, poz.y);
 	poz.x = poz.x + shift * cos(angle);
 	poz.y = poz.y - shift * sin(angle);
-	printf("after x = %f, y = %f\n", poz.x, poz.y);
 	return (poz);
 }
 
@@ -178,29 +176,53 @@ void	swap_value_slice_list(t_slice_sp *slice1, t_slice_sp *slice2)
 
 void	sort_slice_lst(t_slice_sp *slice_lst)
 {
-	t_slice_sp	*iterator1;
-	t_slice_sp	*iterator2;
+	t_slice_sp	*iterator;
 
-	iterator1 = slice_lst;
-	while (iterator1->next != NULL)
+	while (slice_lst_is_sorted(slice_lst) != SORTED)
 	{
-		iterator2 = iterator1;
-		while (iterator2->next != NULL)
+		iterator = slice_lst;
+		while (iterator->next != NULL)
 		{
-			if (iterator2->dist < iterator2->next->dist)
+			if (iterator->dist < iterator->next->dist)
 			{
-				swap_value_slice_list(iterator2, iterator2->next);
+				swap_value_slice_list(iterator, iterator->next);
 			}
-			iterator2 = iterator2->next;
+			iterator = iterator->next;
 		}
-		if (slice_lst_is_sorted(slice_lst) == SORTED)
-					return ;
-		// iterator1 = iterator1->next;
 	}
 }
 
+void	draw_slice_in_win(int x_win_poz, int y_win_poz, t_slice_sp slice, t_img_info *winimg)
+{
 
-void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x_poz)
+	int					step;
+	float				prop;
+	unsigned int		color;
+	int					height;
+
+	height =  slice_height(slice.dist,GAMEBOXSIZE);
+	prop = (float) slice.img->height / (float) height;
+	y_win_poz = (float)(HEIGHT + slice_height(slice.dist, GAMEBOXSIZE)) / 2 - height;
+	step = 0;
+	while (step < height && y_win_poz + step < HEIGHT)
+	{
+		color = get_color_in_pixel(slice.num_slice, round(step * prop), *slice.img);
+		if (color != 0 && color != 4278190080)
+			change_pixel_in_img(x_win_poz, y_win_poz + step, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) slice_height(slice.dist, GAMEBOXSIZE))));
+		step++;
+	}
+}
+
+int		y_shift_poz_for_cats(t_slice_sp cat, float angle)
+{
+	float	correct_dist;
+
+	correct_dist = correct_distance(cat.dist, angle);
+	return ((float)(HEIGHT + slice_height(correct_dist, GAMEBOXSIZE)) / 2 \
+												- slice_height(correct_dist, cat.img->height));
+}
+
+void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int x_win_poz)
 {
 	t_slice_sp	*slice_lst;
 	t_slice_sp	*temp;
@@ -208,17 +230,13 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x
 	slice_lst = find_intersections_sprites(data, angle, dist_to_wall);
 	if (slice_lst == NULL)
 		return ;
-	if (size_slice_lst(slice_lst) > 2)
-		printf("1");
 	sort_slice_lst(slice_lst);
 	temp = slice_lst;
 	while (temp != NULL)
 	{
-		// printf("dist = %f, height = %f, num_slice = %d, left_angle = %f , right_angle = %f\n",\
-		// 					temp->dist, slice_height(slice_lst->dist),\
-		// 					temp->num_slice, data->sprites->left_angle, data->sprites->right_angle);
+		// printf("draw_sprite_circle\n");
 		if (temp != NULL && temp->dist < dist_to_wall)
-			set_column_in_img(win_x_poz, temp->num_slice, slice_height(temp->dist), &data->window.img, *temp->img);
+			draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
 		temp = temp->next;
 	}
 	clear_slice_list(slice_lst);
