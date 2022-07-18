@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/18 11:55:16 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/18 13:13:06 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,14 @@ double	angle_between_two_dots(t_vector start, t_vector end, float pl_dir)
 
 int	check_intersection_sprite(t_sprite sprite, double angle)
 {
-	double		left_border;
-	double		right_border;
+
 	double		angle_step;
 	int			i;
 
 	angle_step = (sprite.left_angle - sprite.right_angle) / sprite.tex->width;
-	left_border = sprite.left_angle;
-	right_border = left_border - angle_step;
 	if (angle < sprite.left_angle && angle > sprite.right_angle)
 	{
-		i = 0;
-		while(  )
-		{
-			if (i > 100)
-				printf("angle_step = %f left_wall = %f , right_wall = %f\n", angle_step, left_angle - i * angle_step, left_angle - (i + 1) * angle_step);
-			i++;
-		}
+		i = (int)floor((angle - sprite.right_angle) / angle_step);
 		return (i);
 	}
 	return(-1);
@@ -187,23 +178,24 @@ void	swap_value_slice_list(t_slice_sp *slice1, t_slice_sp *slice2)
 
 void	sort_slice_lst(t_slice_sp *slice_lst)
 {
-	t_slice_sp	*temp;
+	t_slice_sp	*iterator1;
+	t_slice_sp	*iterator2;
 
-	temp = slice_lst;
-	while (temp->next != NULL)
+	iterator1 = slice_lst;
+	while (iterator1->next != NULL)
 	{
-		slice_lst = temp;
-		while (slice_lst->next != NULL)
+		iterator2 = iterator1;
+		while (iterator2->next != NULL)
 		{
-			if (slice_lst->dist < slice_lst->next->dist)
+			if (iterator2->dist < iterator2->next->dist)
 			{
-				swap_value_slice_list(slice_lst, slice_lst->next);
-				if (slice_lst_is_sorted(slice_lst) == SORTED)
-					return ;
+				swap_value_slice_list(iterator2, iterator2->next);
 			}
-			slice_lst = slice_lst->next;
+			iterator2 = iterator2->next;
 		}
-		temp = temp->next;
+		if (slice_lst_is_sorted(slice_lst) == SORTED)
+					return ;
+		// iterator1 = iterator1->next;
 	}
 }
 
@@ -216,6 +208,8 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x
 	slice_lst = find_intersections_sprites(data, angle, dist_to_wall);
 	if (slice_lst == NULL)
 		return ;
+	if (size_slice_lst(slice_lst) > 2)
+		printf("1");
 	sort_slice_lst(slice_lst);
 	temp = slice_lst;
 	while (temp != NULL)

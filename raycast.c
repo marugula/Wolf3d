@@ -132,7 +132,7 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 {
 	int	i;
 	float	perp_dir;
-	float	temp;
+	// float	temp;
 
 	i = 0;
 	while (sprite != NULL && sprite[i].tex != NULL)
@@ -141,12 +141,12 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 		printf("\npl.poz.x = %f pl.poz.y = %f", pl.poz.x, pl.poz.y);
 		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI, sprite[i].tex->width), pl.direction);
 		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
-		if (sprite[i].left_angle < sprite[i].right_angle)
-		{
-			temp = sprite[i].left_angle;
-			sprite[i].left_angle = sprite[i].right_angle;
-			sprite[i].right_angle = temp;
-		}
+		// if (sprite[i].left_angle < sprite[i].right_angle)
+		// {
+		// 	temp = sprite[i].left_angle;
+		// 	sprite[i].left_angle = sprite[i].right_angle;
+		// 	sprite[i].right_angle = temp;
+		// }
 		sprite[i].dist_to_pl = distance_pyth(pl.poz, sprite[i].poz);
 		printf("dist = %f, dir = %d, perp_dir = %d sprite[i].right_angle = %d, sprite[i].left_angle = %d \n", sprite->dist_to_pl, convet_rad_to_grad(angle_between_two_dots(pl.poz, sprite->poz, pl.direction)), convet_rad_to_grad(perp_dir), convet_rad_to_grad(sprite[i].right_angle), convet_rad_to_grad(sprite[i].left_angle));
 		i++;
