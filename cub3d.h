@@ -7,9 +7,9 @@
 # include <stdio.h>
 # include <math.h>
 
-# define HEIGHT			540
-# define WIDTH			960
-# define FOV			M_PI / 2.9
+# define HEIGHT			1050
+# define WIDTH			1440
+# define FOV			M_PI / 3
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
