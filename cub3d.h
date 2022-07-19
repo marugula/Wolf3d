@@ -30,6 +30,9 @@
 
 # define ANIM_PERIOD		5
 
+# define IS_DOOR		1
+# define IS_SPRITE		1
+
 
 
 typedef struct s_point
@@ -105,6 +108,7 @@ typedef struct s_sprite
 {
 	t_vector	poz;
 	t_img_info	*tex;
+	int			is_door;
 	int			frame;
 	int			animation_dir;
 	float		dist_to_pl;
