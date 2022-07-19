@@ -146,6 +146,9 @@ void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
 void			init_img(t_img_info *img, char	*texture_path, void *mlx_ptr);
 void			creat_window_img(t_game_window *mlx);
 void			init_cat_imgs(t_data *data);
+void			init_minotaur_imgs(t_data *data);
+void			init_door_imgs(t_data *data);
+
 
 
 /* paint_engine.c */

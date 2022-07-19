@@ -56,6 +56,8 @@ void	find_pos_sprites(t_data *data)
 		{
 			if (data->map[(int)poz.y][(int)poz.x] == 'C')
 				data->sprites[count++] = init_new_sprite(init_vector(poz.x * GAMEBOXSIZE + GAMEBOXSIZE / 2, poz.y * GAMEBOXSIZE + GAMEBOXSIZE / 2), data->imgs.cat);
+			if (data->map[(int)poz.y][(int)poz.x] == 'M')
+				data->sprites[count++] = init_new_sprite(init_vector(poz.x * GAMEBOXSIZE + GAMEBOXSIZE / 2, poz.y * GAMEBOXSIZE + GAMEBOXSIZE / 2), data->imgs.minotaur);
 			poz.x++;
 		}
 		poz.y++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/18 21:41:54 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:04:07 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void	draw_slice_in_win(int x_win_poz, int y_win_poz, t_slice_sp slice, t_img_inf
 	unsigned int		color;
 	int					height;
 
-	height =  slice_height(slice.dist,GAMEBOXSIZE);
+	height =  slice_height(slice.dist, slice.img->height);
 	prop = (float) slice.img->height / (float) height;
 	y_win_poz = (float)(HEIGHT + slice_height(slice.dist, GAMEBOXSIZE)) / 2 - height;
 	step = 0;
