@@ -118,6 +118,7 @@ typedef struct s_sprite
 {
 	t_vector	poz;
 	t_img_info	*tex;
+	int			is_door;
 	int			frame;
 	int			is_door;
 	int			animation_dir;
