@@ -134,13 +134,35 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 {
 	int	i;
 	float	perp_dir;
+	// float	temp;
 
 	i = 0;
 	while (sprite != NULL && sprite[i].tex != NULL)
 	{
-		perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
+		if (sprite[i].is_door == IS_DOORAXIS)
+		{
+			if (sin(pl.direction) > 0)
+				perp_dir = 0;
+			else
+				perp_dir = M_PI;
+		}
+		else if (sprite[i].is_door == IS_DOORORDINAT)
+		{
+			if (cos(pl.direction) < 0)
+				perp_dir = M_PI / 2;
+			else
+				perp_dir = 3 * M_PI / 2 ;
+		}
+		else
+			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
 		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI, sprite[i].tex->width), pl.direction);
 		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
+		// if (sprite[i].is_door && sprite[i].left_angle < sprite[i].right_angle)
+		// {
+		// 	temp = sprite[i].left_angle;
+		// 	sprite[i].left_angle = sprite[i].right_angle;
+		// 	sprite[i].right_angle = temp;
+		// }
 		sprite[i].dist_to_pl = distance_pyth(pl.poz, sprite[i].poz);
 		i++;
 	}
@@ -163,7 +185,7 @@ void	ray_cast(t_data *data)
 			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
 		else
 			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
-			
+
 		if (!(intersection_point.x == -1 && intersection_point.y == -1))
 			draw_wall_column(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray)), wall_txtr.height), &data->window.img, wall_txtr);
 		else

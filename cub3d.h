@@ -7,9 +7,9 @@
 # include <stdio.h>
 # include <math.h>
 
-# define HEIGHT			540
-# define WIDTH			960
-# define FOV			M_PI / 2.9
+# define HEIGHT			720
+# define WIDTH			1080
+# define FOV			M_PI / 3
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
@@ -29,6 +29,10 @@
 # define ON_KEYUP			3
 
 # define ANIM_PERIOD		5
+
+# define ISDOORAXIS			1
+# define ISDOORORDINAT		2
+# define ISSPRITE			0
 
 # define IS_DOORAXIS	1
 # define IS_DOORORDINAT	2
@@ -104,6 +108,16 @@ typedef struct s_player_data
 	t_vector	poz;
 	float		direction;
 }	t_player;
+
+typedef struct s_slice_sprite_info
+{
+	float						dist;
+	int							num_slice;
+	int							is_door;
+	t_img_info					*img;
+	struct s_slice_sprite_info	*next;
+
+}	t_slice_sp;
 
 typedef struct s_sprite
 {

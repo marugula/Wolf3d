@@ -48,7 +48,7 @@ void	sprite_animation(t_sprite *sprites)
 	i = 0;
 	if (time % ANIM_PERIOD == 0)
 	{
-		while (sprites[i].tex != NULL)
+		while (sprites && sprites[i].tex != NULL)
 		{
 			sprites[i].frame = (sprites[i].frame + sprites[i].animation_dir) % 8;
 			if (sprites[i].frame >= 7 || sprites[i].frame <= 0)

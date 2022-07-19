@@ -14,9 +14,9 @@ float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 {
 	double	distance;
 
-	distance = fabs(fabs(point_from.x - point_to.x) / cos (angle_ray));
+	distance = fabs((point_from.x - point_to.x) / cos (angle_ray));
 	if (distance == 0)
-		distance = fabs(fabs(point_from.y - point_to.y) / sin (angle_ray));
+		distance = fabs((point_from.y - point_to.y) / sin (angle_ray));
 	return ((float) distance);
 }
 
