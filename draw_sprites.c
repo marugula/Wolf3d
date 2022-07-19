@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/18 21:41:54 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:30:59 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@ void	draw_black_column(int poz, int size, t_game_window *win)
 	}
 }
 
-typedef struct s_slice_sprite_info
-{
-	float						dist;
-	int							num_slice;
-	t_img_info					*img;
-	struct s_slice_sprite_info	*next;
 
-}	t_slice_sp;
 
 
 float	count_perp_angle(float angle, int dir)
@@ -113,6 +106,8 @@ t_slice_sp	*find_intersections_sprites(t_data *data, float angle, float dist_to_
 		if (slice_num != -1)
 		{
 			slices = add_new_sprite_slice(slices, data->sprites[i].dist_to_pl, &(data->sprites[i].tex[data->sprites[i].frame]), slice_num);
+			if (data->sprites[i].is_door == ISDOOR)
+
 		}
 		i++;
 	}
@@ -200,7 +195,7 @@ void	draw_slice_in_win(int x_win_poz, int y_win_poz, t_slice_sp slice, t_img_inf
 	unsigned int		color;
 	int					height;
 
-	height =  slice_height(slice.dist,GAMEBOXSIZE);
+	height =  slice_height(slice.dist, slice.img->height);
 	prop = (float) slice.img->height / (float) height;
 	y_win_poz = (float)(HEIGHT + slice_height(slice.dist, GAMEBOXSIZE)) / 2 - height;
 	step = 0;
@@ -236,7 +231,12 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int x_win
 	{
 		// printf("draw_sprite_circle\n");
 		if (temp != NULL && temp->dist < dist_to_wall)
-			draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
+		{
+			if (temp->is_door == ISSPRITE)
+				draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
+			else
+
+		}
 		temp = temp->next;
 	}
 	clear_slice_list(slice_lst);

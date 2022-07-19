@@ -30,6 +30,8 @@
 
 # define ANIM_PERIOD		5
 
+# define ISDOOR				1
+# define ISSPRITE			0
 
 
 typedef struct s_point
@@ -84,6 +86,8 @@ typedef struct s_imgs
 	t_img_info	west;
 	t_img_info	east;
 	t_img_info	cat[8];
+	t_img_info	door[8];
+	t_img_info	minotaur[8];
 	t_img_info	player_icn;
 }	t_imgs;
 
@@ -99,11 +103,22 @@ typedef struct s_player_data
 	float		direction;
 }	t_player;
 
+typedef struct s_slice_sprite_info
+{
+	float						dist;
+	int							num_slice;
+	int							is_door;
+	t_img_info					*img;
+	struct s_slice_sprite_info	*next;
+
+}	t_slice_sp;
+
 typedef struct s_sprite
 {
 	t_vector	poz;
 	t_img_info	*tex;
 	int			frame;
+	int			is_door;
 	int			animation_dir;
 	float		dist_to_pl;
 	float		left_angle;
@@ -144,6 +159,9 @@ void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
 void			init_img(t_img_info *img, char	*texture_path, void *mlx_ptr);
 void			creat_window_img(t_game_window *mlx);
 void			init_cat_imgs(t_data *data);
+void			init_minotaur_imgs(t_data *data);
+void			init_door_imgs(t_data *data);
+
 
 
 /* paint_engine.c */
