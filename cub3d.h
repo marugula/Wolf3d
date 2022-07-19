@@ -30,7 +30,8 @@
 
 # define ANIM_PERIOD		5
 
-# define ISDOOR				1
+# define ISDOORAXIS			1
+# define ISDOORORDINAT		2
 # define ISSPRITE			0
 
 

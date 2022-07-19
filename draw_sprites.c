@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/19 12:30:59 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:30:44 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,21 @@ int	check_intersection_sprite(t_sprite sprite, double angle)
 	return(-1);
 }
 
-t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, float dist, t_img_info *img, int slice_num)
+void	add_dist_to_door_slice(t_slice_sp *slice, t_sprite sprite, t_player ray_info)
+{
+	float		door_dir;
+	t_vector	ippoz;
+
+	slice->is_door = sprite.is_door;
+	if (slice->is_door == ISDOORAXIS)
+		door_dir = 0;
+	else
+		door_dir = M_PI / 2;
+	ippoz = shift_poz(sprite.poz, door_dir, (sprite.tex->width / 2) - slice->num_slice);
+	slice->dist = distance(ray_info.poz, ippoz, ray_info.direction);
+}
+
+t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, t_sprite sprite, int slice_num, t_player ray_info)
 {
 	t_slice_sp	*temp;
 
@@ -76,20 +90,34 @@ t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, float dist, t_img_info *img
 	if (slices == NULL)
 	{
 		slices =  ft_calloc(1, sizeof(t_slice_sp));
-		slices->dist = dist;
-		slices->img = img;
+		slices->dist = sprite.dist_to_pl;
+		slices->img = sprite.tex;
 		slices->num_slice = slice_num;
+		slices->is_door = sprite.is_door;
+		if (sprite.is_door)
+			add_dist_to_door_slice(slices, sprite, ray_info);
 		return (slices);
 	}
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next =  ft_calloc(1, sizeof(t_slice_sp));
-	temp->next->dist = dist;
-	temp->next->img = img;
+	temp->next->dist = sprite.dist_to_pl;
+	temp->next->img = sprite.tex;
 	temp->next->num_slice = slice_num;
+	temp->next->is_door = sprite.is_door;
+	if (sprite.is_door)
+		add_dist_to_door_slice(temp->next, sprite, ray_info);
 	return (slices);
 }
 
+t_player	init_player(t_vector poz, float angle)
+{
+	t_player	ret;
+
+	ret.direction = angle;
+	ret.poz = poz;
+	return (ret);
+}
 
 t_slice_sp	*find_intersections_sprites(t_data *data, float angle, float dist_to_wall)
 {
@@ -104,11 +132,7 @@ t_slice_sp	*find_intersections_sprites(t_data *data, float angle, float dist_to_
 	{
 		slice_num = check_intersection_sprite(data->sprites[i], angle);
 		if (slice_num != -1)
-		{
-			slices = add_new_sprite_slice(slices, data->sprites[i].dist_to_pl, &(data->sprites[i].tex[data->sprites[i].frame]), slice_num);
-			if (data->sprites[i].is_door == ISDOOR)
-
-		}
+			slices = add_new_sprite_slice(slices, data->sprites[i], slice_num, init_player(data->pl.poz, angle));
 		i++;
 	}
 	return (slices);
@@ -231,12 +255,7 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int x_win
 	{
 		// printf("draw_sprite_circle\n");
 		if (temp != NULL && temp->dist < dist_to_wall)
-		{
-			if (temp->is_door == ISSPRITE)
-				draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
-			else
-
-		}
+			draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
 		temp = temp->next;
 	}
 	clear_slice_list(slice_lst);
