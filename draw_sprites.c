@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:23:12 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/19 13:30:44 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:07:43 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,25 @@ void	add_dist_to_door_slice(t_slice_sp *slice, t_sprite sprite, t_player ray_inf
 
 	slice->is_door = sprite.is_door;
 	if (slice->is_door == ISDOORAXIS)
-		door_dir = 0;
+	{
+		if (sin(ray_info.direction) > 0)
+			door_dir = 0;
+		else
+			door_dir = M_PI;
+	}
 	else
-		door_dir = M_PI / 2;
+	{
+		if (cos(ray_info.direction) < 0)
+			door_dir = M_PI / 2;
+		else
+			door_dir = 3 * M_PI / 2 ;
+	}
+	// printf("(sprite.tex->widt %d  slice->num_slice %d\n", sprite.tex->width / 2, slice->num_slice);
 	ippoz = shift_poz(sprite.poz, door_dir, (sprite.tex->width / 2) - slice->num_slice);
-	slice->dist = distance(ray_info.poz, ippoz, ray_info.direction);
+	slice->dist = distance_pyth(ray_info.poz, ippoz);
+	// slice->dist = distance(ray_info.poz, ippoz, ray_info.direction);
+
+	// printf("dist = %f\n", slice->dist);
 }
 
 t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, t_sprite sprite, int slice_num, t_player ray_info)
@@ -90,8 +104,10 @@ t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, t_sprite sprite, int slice_
 	if (slices == NULL)
 	{
 		slices =  ft_calloc(1, sizeof(t_slice_sp));
+		if (slices == NULL)
+			exit_error("Malloc error");
 		slices->dist = sprite.dist_to_pl;
-		slices->img = sprite.tex;
+		slices->img = &sprite.tex[sprite.frame];
 		slices->num_slice = slice_num;
 		slices->is_door = sprite.is_door;
 		if (sprite.is_door)
@@ -101,12 +117,15 @@ t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, t_sprite sprite, int slice_
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next =  ft_calloc(1, sizeof(t_slice_sp));
+	if (temp->next == NULL)
+			exit_error("Malloc error");
 	temp->next->dist = sprite.dist_to_pl;
-	temp->next->img = sprite.tex;
+	temp->next->img = &sprite.tex[sprite.frame];
 	temp->next->num_slice = slice_num;
 	temp->next->is_door = sprite.is_door;
 	if (sprite.is_door)
 		add_dist_to_door_slice(temp->next, sprite, ray_info);
+	ray_info.direction = 0;
 	return (slices);
 }
 
@@ -127,11 +146,10 @@ t_slice_sp	*find_intersections_sprites(t_data *data, float angle, float dist_to_
 
 	i = 0;
 	slices = NULL;
-	dist_to_wall = 0;
 	while (data->sprites && data->sprites[i].tex != NULL)
 	{
 		slice_num = check_intersection_sprite(data->sprites[i], angle);
-		if (slice_num != -1)
+		if (slice_num != -1 && data->sprites[i].dist_to_pl < dist_to_wall)
 			slices = add_new_sprite_slice(slices, data->sprites[i], slice_num, init_player(data->pl.poz, angle));
 		i++;
 	}
@@ -221,7 +239,6 @@ void	draw_slice_in_win(int x_win_poz, int y_win_poz, t_slice_sp slice, t_img_inf
 
 	height =  slice_height(slice.dist, slice.img->height);
 	prop = (float) slice.img->height / (float) height;
-	y_win_poz = (float)(HEIGHT + slice_height(slice.dist, GAMEBOXSIZE)) / 2 - height;
 	step = 0;
 	while (step < height && y_win_poz + step < HEIGHT)
 	{
@@ -232,13 +249,10 @@ void	draw_slice_in_win(int x_win_poz, int y_win_poz, t_slice_sp slice, t_img_inf
 	}
 }
 
-int		y_shift_poz_for_cats(t_slice_sp cat, float angle)
+int		y_shift_poz_for_cats(t_slice_sp cat)
 {
-	float	correct_dist;
-
-	correct_dist = correct_distance(cat.dist, angle);
-	return ((float)(HEIGHT + slice_height(correct_dist, GAMEBOXSIZE)) / 2 \
-												- slice_height(correct_dist, cat.img->height));
+	return ((float)(HEIGHT + slice_height(cat.dist, GAMEBOXSIZE)) / 2 \
+												- slice_height(cat.dist, cat.img->height));
 }
 
 void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int x_win_poz)
@@ -255,7 +269,15 @@ void	draw_sprite_column(t_data *data, float angle, float dist_to_wall, int x_win
 	{
 		// printf("draw_sprite_circle\n");
 		if (temp != NULL && temp->dist < dist_to_wall)
-			draw_slice_in_win(x_win_poz,y_shift_poz_for_cats(*temp, fabs(angle - data->pl.direction)), *temp, &data->window.img);
+		{
+			temp->dist = correct_distance(temp->dist, fabs(data->pl.direction - angle));
+			// if (temp->is_door == ISSPRITE)
+			draw_slice_in_win(x_win_poz, y_shift_poz_for_cats(*temp), *temp, &data->window.img);
+			// else
+			// 	draw_slice_in_win(x_win_poz, HEIGHT / 2 - slice_height(temp->dist, temp->img->height) / 2, *temp, &data->window.img);
+
+			// 	draw_wall_column(x_win_poz, temp->num_slice, (int) slice_height(correct_distance(temp->dist, fabs(data->pl.direction - angle)), GAMEBOXSIZE), &data->window.img, data->imgs.door[0]);
+		}
 		temp = temp->next;
 	}
 	clear_slice_list(slice_lst);

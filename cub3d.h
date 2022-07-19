@@ -7,8 +7,8 @@
 # include <stdio.h>
 # include <math.h>
 
-# define HEIGHT			1050
-# define WIDTH			1440
+# define HEIGHT			720
+# define WIDTH			1080
 # define FOV			M_PI / 3
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6		0.57735026
@@ -33,6 +33,11 @@
 # define ISDOORAXIS			1
 # define ISDOORORDINAT		2
 # define ISSPRITE			0
+
+# define IS_DOORAXIS	1
+# define IS_DOORORDINAT	2
+# define IS_SPRITE		0
+
 
 
 typedef struct s_point
@@ -120,7 +125,6 @@ typedef struct s_sprite
 	t_img_info	*tex;
 	int			is_door;
 	int			frame;
-	int			is_door;
 	int			animation_dir;
 	float		dist_to_pl;
 	float		left_angle;
@@ -206,7 +210,11 @@ int			strarr_len(char **arr);
 
 
 /* find_pos_sprites.c */
-void	find_pos_sprites(t_data *data);
+void	init_sprites_struct(t_data *data);
+
+/* check_utils.c */
+char		get_ch_in_dot(int x, int y, char **map);
+
 
 
 // int	init_game(void);

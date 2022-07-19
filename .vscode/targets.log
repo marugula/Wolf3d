@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Tue Jul 19 10:28:22 2022
+# Make data base, printed on Tue Jul 19 16:41:30 2022
 
 # Variables
 
@@ -17,11 +17,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # automatic
 ?F = $(notdir $?)
 # environment
+ 
 VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from `Makefile', line 32)
- 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D)
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -44,7 +44,7 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 44)
 OBJS = $(SOURCES_S:%.c=%.o)
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0001ysm000gpd/T/vscode-ipc-50420e9d-ab81-4c9b-8ef3-d756188f5800.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0001ysm000gpd/T/vscode-ipc-85ffd893-ff2e-4f35-a998-51156e4b4582.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -202,6 +202,7 @@ LANG = C
 # environment
 VSCODE_PID = 14213
 # variable set hash-table stats:
+ 
 # Load=94/1024=9%, Rehash=0, Collisions=4/141=3%
 
 # Pattern-specific Variable Values
@@ -245,7 +246,7 @@ draw_minimap.c:
 objs/key_control/mouse_control.o: key_control/mouse_control.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/mouse_control'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -259,7 +260,7 @@ objs/key_control/mouse_control.o: key_control/mouse_control.c cub3d.h gnl//get_n
 objs/key_control/init_control_key.o: key_control/init_control_key.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/init_control_key'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -277,7 +278,6 @@ libft//ft_strlcpy.c:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
@@ -292,7 +292,7 @@ libft//ft_substr.c:
 # Not a target:
 game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 22:29:32
+#  Last modified 2022-07-19 16:31:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -337,7 +337,7 @@ analyse_map/check_format_map.c:
 objs/main.o: main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -351,7 +351,7 @@ objs/main.o: main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 objs/analyse_map/check_format_map.o: analyse_map/check_format_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_format_map'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -473,9 +473,10 @@ main.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 cub3D: objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/analyse_map/ft_isspace.o objs/key_control/init_control_key.o objs/key_control/key_control.o objs/key_control/mouse_control.o objs/handling_errors.o objs/init_player.o objs/game.o objs/init_imgs.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o objs/draw_minimap.o objs/draw_sprites.o objs/find_pos_sprites.o libft/libft.a minilibx_macos/libmlx.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-18 22:37:12
+#  Last modified 2022-07-19 16:36:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -498,7 +499,7 @@ libft//ft_toupper.c:
 objs/draw_sprites.o: draw_sprites.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `draw_sprites'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:36:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -536,7 +537,6 @@ handling_errors.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
 # Not a target:
 .SUFFIXES:
 #  Implicit rule search has not been done.
@@ -555,7 +555,7 @@ gnl//get_next_line.h:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 22:37:02
+#  Last modified 2022-07-19 16:33:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -573,7 +573,7 @@ analyse_map/write_textures_to_struct.c:
 objs/analyse_map/write_textures_to_struct.o: analyse_map/write_textures_to_struct.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/write_textures_to_struct'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -596,7 +596,7 @@ analyse_map/get_color_image_texture.c:
 objs/analyse_map/get_color_image_texture.o: analyse_map/get_color_image_texture.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/get_color_image_texture'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -610,7 +610,7 @@ objs/analyse_map/get_color_image_texture.o: analyse_map/get_color_image_texture.
 # Not a target:
 analyse_map/check_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 11:46:51
+#  Last modified 2022-07-19 12:10:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -628,7 +628,7 @@ libft//ft_atoi.c:
 objs/analyse_map/check_utils.o: analyse_map/check_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_utils'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -642,7 +642,7 @@ objs/analyse_map/check_utils.o: analyse_map/check_utils.c cub3d.h gnl//get_next_
 objs/find_pos_sprites.o: find_pos_sprites.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `find_pos_sprites'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -717,6 +717,7 @@ libft//ft_lstiter.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
+ 
 analyse_map/check_game_map.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-07-18 11:46:51
@@ -737,7 +738,7 @@ libft//ft_strlcat.c:
 objs/init_imgs.o: init_imgs.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init_imgs'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -750,7 +751,7 @@ objs/init_imgs.o: init_imgs.c cub3d.h gnl//get_next_line.h analyse_map//analyse_
 
 libft/libft.a: libft//ft_atoi.c libft//ft_bzero.c libft//ft_calloc.c libft//ft_isalnum.c libft//ft_isalpha.c libft//ft_isascii.c libft//ft_isdigit.c libft//ft_isdigit_and_sign.c libft//ft_isprint.c libft//ft_itoa.c libft//ft_lstadd_back.c libft//ft_lstadd_front.c libft//ft_lstclear.c libft//ft_lstdelone.c libft//ft_lstiter.c libft//ft_lstlast.c libft//ft_lstmap.c libft//ft_lstnew.c libft//ft_lstsize.c libft//ft_memchr.c libft//ft_memcmp.c libft//ft_memcpy.c libft//ft_memmove.c libft//ft_memset.c libft//ft_putchar_fd.c libft//ft_putendl_fd.c libft//ft_putnbr_fd.c libft//ft_putstr_fd.c libft//ft_split.c libft//ft_strchr.c libft//ft_strdup.c libft//ft_striteri.c libft//ft_strjoin.c libft//ft_strlcat.c libft//ft_strlcpy.c libft//ft_strlen.c libft//ft_strmapi.c libft//ft_strncmp.c libft//ft_strnstr.c libft//ft_strrchr.c libft//ft_strtrim.c libft//ft_substr.c libft//ft_tolower.c libft//ft_toupper.c libft//libft.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-18 22:37:10
+#  Last modified 2022-07-19 16:35:23
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -772,8 +773,7 @@ analyse_map/ft_isspace.c:
 objs/analyse_map/ft_isspace.o: analyse_map/ft_isspace.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/ft_isspace'
-#  Last modified 2022-07-18 22:37:08
- 
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -793,7 +793,7 @@ bonus:
 objs/analyse_map/check_game_map.o: analyse_map/check_game_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_game_map'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -845,7 +845,7 @@ libft//ft_memcmp.c:
 # Not a target:
 find_pos_sprites.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 22:30:55
+#  Last modified 2022-07-19 13:35:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -863,7 +863,7 @@ libft//ft_strlen.c:
 # Not a target:
 init_imgs.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 11:46:51
+#  Last modified 2022-07-19 12:10:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -872,7 +872,7 @@ init_imgs.c:
 objs/init_player.o: init_player.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `init_player'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -904,7 +904,7 @@ libft//ft_isdigit.c:
 objs/analyse_map/trim_game_map.o: analyse_map/trim_game_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/trim_game_map'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -918,7 +918,7 @@ objs/analyse_map/trim_game_map.o: analyse_map/trim_game_map.c cub3d.h gnl//get_n
 objs/paint_engine.o: paint_engine.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `paint_engine'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -932,7 +932,7 @@ objs/paint_engine.o: paint_engine.c cub3d.h gnl//get_next_line.h analyse_map//an
 # Not a target:
 raycast_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 15:19:39
+#  Last modified 2022-07-19 16:12:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -956,10 +956,11 @@ libft//ft_lstlast.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 objs/analyse_map/copy_map_to_array.o: analyse_map/copy_map_to_array.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/copy_map_to_array'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -982,7 +983,7 @@ libft//ft_memchr.c:
 # Not a target:
 draw_sprites.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 21:41:54
+#  Last modified 2022-07-19 16:35:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1018,7 +1019,7 @@ analyse_map/init_texture_struct.c:
 objs/gnl/get_next_line_utils.o: gnl/get_next_line_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `gnl/get_next_line_utils'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1032,14 +1033,13 @@ objs/gnl/get_next_line_utils.o: gnl/get_next_line_utils.c cub3d.h gnl//get_next_
 objs/analyse_map/init_texture_struct.o: analyse_map/init_texture_struct.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/init_texture_struct'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 64):
 	@mkdir -p $(OBJS_DIR)
- 
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 	
@@ -1080,7 +1080,7 @@ libft//ft_strjoin.c:
 objs/raycast_utils.o: raycast_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `raycast_utils'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1112,7 +1112,7 @@ libft//ft_lstclear.c:
 objs/draw_minimap.o: draw_minimap.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `draw_minimap'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1162,7 +1162,7 @@ analyse_map/init_array_map.c:
 objs/analyse_map/init_array_map.o: analyse_map/init_array_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/init_array_map'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1185,7 +1185,7 @@ libft//ft_isprint.c:
 # Not a target:
 cub3d.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 22:22:46
+#  Last modified 2022-07-19 14:05:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1229,6 +1229,7 @@ analyse_map//analyse_map.h:
 
 # Not a target:
 libft//ft_lstnew.c:
+ 
 #  Implicit rule search has been done.
 #  Last modified 2022-06-18 11:11:36
 #  File has been updated.
@@ -1238,7 +1239,7 @@ libft//ft_lstnew.c:
 
 minilibx_macos/libmlx.a:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-18 22:37:12
+#  Last modified 2022-07-19 16:35:25
 #  File has been updated.
 #  Successfully updated.
 #  commands to execute (from `Makefile', line 73):
@@ -1249,7 +1250,7 @@ minilibx_macos/libmlx.a:
 objs/game.o: game.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `game'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1272,7 +1273,7 @@ libft//libft.h:
 # Not a target:
 raycast.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 21:29:46
+#  Last modified 2022-07-19 14:43:37
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1290,7 +1291,7 @@ libft//ft_putnbr_fd.c:
 objs/key_control/key_control.o: key_control/key_control.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/key_control'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1304,7 +1305,7 @@ objs/key_control/key_control.o: key_control/key_control.c cub3d.h gnl//get_next_
 objs/gnl/get_next_line.o: gnl/get_next_line.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `gnl/get_next_line'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1317,7 +1318,6 @@ objs/gnl/get_next_line.o: gnl/get_next_line.c cub3d.h gnl//get_next_line.h analy
 
 # Not a target:
 gnl/get_next_line_utils.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2022-07-18 11:46:51
 #  File has been updated.
@@ -1337,7 +1337,7 @@ libft//ft_calloc.c:
 objs/handling_errors.o: handling_errors.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `handling_errors'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1351,7 +1351,7 @@ objs/handling_errors.o: handling_errors.c cub3d.h gnl//get_next_line.h analyse_m
 # Not a target:
 analyse_map/checker_function.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 11:46:51
+#  Last modified 2022-07-19 12:10:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1360,7 +1360,7 @@ analyse_map/checker_function.c:
 objs/analyse_map/checker_function.o: analyse_map/checker_function.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/checker_function'
-#  Last modified 2022-07-18 22:37:07
+#  Last modified 2022-07-19 16:35:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1374,7 +1374,7 @@ objs/analyse_map/checker_function.o: analyse_map/checker_function.c cub3d.h gnl/
 objs/raycast.o: raycast.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `raycast'
-#  Last modified 2022-07-18 22:37:08
+#  Last modified 2022-07-19 16:35:21
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1416,6 +1416,6 @@ libft//ft_lstsize.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jul 19 10:28:22 2022
+# Finished Make data base on Tue Jul 19 16:41:30 2022
 
  
