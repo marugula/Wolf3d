@@ -90,7 +90,7 @@ void game(char **map, t_textures textures)
 	data.pl =  init_player_direct_and_poz(map);
 	data.texture = textures;
 	fill_floor_and_cell_window_img(&data.window.img, data.texture);
-	find_pos_sprites(&data);
+	init_sprites_struct(&data);
 
 	ray_cast(&data);
 	draw_minimap(&data);

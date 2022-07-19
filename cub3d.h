@@ -30,8 +30,9 @@
 
 # define ANIM_PERIOD		5
 
-# define IS_DOOR		1
-# define IS_SPRITE		1
+# define IS_DOORAXIS	1
+# define IS_DOORORDINAT	2
+# define IS_SPRITE		0
 
 
 
@@ -195,7 +196,11 @@ int			strarr_len(char **arr);
 
 
 /* find_pos_sprites.c */
-void	find_pos_sprites(t_data *data);
+void	init_sprites_struct(t_data *data);
+
+/* check_utils.c */
+char		get_ch_in_dot(int x, int y, char **map);
+
 
 
 // int	init_game(void);
