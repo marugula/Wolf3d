@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/19 13:45:22 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/19 13:45:28 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "analyse_map.h"
 
 int	strarr_len(char **arr)
-// Длинна массива строк
 {
 	int	i;
 
 	i = 0;
-	while(arr && arr[i])
+	while (arr && arr[i])
 		i++;
 	return (i);
 }
@@ -40,10 +51,10 @@ int	is_allowed_ch(char ch)
 }
 
 char	get_ch_in_dot(int x, int y, char **map)
-// Возвращает символ позиции или 0 если вышли за пределы карты
 {
 
-	if (map && y < strarr_len(map) && y >= 0  && x < (int)ft_strlen(map[y]) && x >= 0)
+	if (map && y < strarr_len(map) && y >= 0 && \
+				x < (int)ft_strlen(map[y]) && x >= 0)
 		return (map[y][x]);
 	else
 		return (0);

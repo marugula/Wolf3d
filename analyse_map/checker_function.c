@@ -1,5 +1,16 @@
-#include "analyse_map.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_function.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/19 13:46:47 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/19 13:59:00 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "analyse_map.h"
 
 int	check_first_or_last_line(char *line)
 {
@@ -8,8 +19,7 @@ int	check_first_or_last_line(char *line)
 
 	checked_line = ft_strtrim(line, " ");
 	if (checked_line == NULL)
-		// Собщение об ошибке
-		exit(1);
+		exit_error("Error check first or last line\n");
 	temp = checked_line;
 	while (*temp)
 	{
@@ -23,13 +33,14 @@ int	check_first_or_last_line(char *line)
 
 int	check_first_and_last_char(char	*str)
 /* Проверка на первый и последний ряд карты (только 1 и _) */
+//
 {
 	char	*checked_line;
 	int		ret_val;
+
 	checked_line = ft_strtrim(str, " ");
 	if (checked_line == NULL)
-		// Сообщение об ошибке
-		exit(1);
+		exit_error("Error check first or last char\n");
 	if (checked_line[0] != '1' || checked_line[0] != '1')
 		ret_val = VALID_ERR;
 	else
@@ -40,8 +51,9 @@ int	check_first_and_last_char(char	*str)
 
 int	check_side_wals(char **map)
 /* Проверка первых символов строк (после пробелов только 1) */
+//
 {
-	while(*map != NULL)
+	while (*map != NULL)
 	{
 		if (check_first_and_last_char(*map) == VALID_ERR)
 			return (VALID_ERR);
@@ -50,7 +62,7 @@ int	check_side_wals(char **map)
 	return (VALID_OK);
 }
 
-int check_space_around_dot(t_dot dot, char **map)
+int	check_space_around_dot(t_dot dot, char **map)
 {
 	char	ch_at_dot;
 

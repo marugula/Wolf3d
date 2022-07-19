@@ -29,17 +29,24 @@ ANLS_MAP_D = analyse_map/
 KEY_C_S = init_control_key.c key_control.c mouse_control.c
 KEY_C_D = key_control/
 
-DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D)
+INIT_S = find_pos_sprites.c init_imgs.c init_img_sprites.c init_player.c
+INIT_D = object_and_img_init/
+
+DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D)
 
 SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			$(addprefix key_control/, $(KEY_C_S)) \
+			$(addprefix object_and_img_init/, $(INIT_S)) \
 			handling_errors.c\
-			init_player.c\
-			game.c init_imgs.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c\
-			draw_sprites.c\
-			find_pos_sprites.c
+			game.c \
+			paint_engine.c \
+			raycast_utils.c \
+			raycast.c \
+			draw_minimap.c\
+			draw_sprites.c
+
 
 OBJS = $(SOURCES_S:%.c=%.o)
 OBJS_DIR = objs/

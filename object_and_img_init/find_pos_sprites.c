@@ -6,11 +6,11 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:27:27 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/19 13:28:10 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:42:40 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	count_sprites_in_map(char **map)
 {
