@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   find_intesecpoint.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 15:32:24 by marugula         ###   ########.fr       */
+/*   Created: 2022/07/20 16:32:53 by marugula          #+#    #+#             */
+/*   Updated: 2022/07/20 16:33:18 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
-
-typedef struct s_raycast
-{
-	t_vector	point;
-	t_vector	step;
-}	t_raycast;
-
-int	is_wall_in_point(char **map, t_vector point)
-{
-	int	x;
-	int	y;
-
-	x = (int) floor(point.x / (float) GAMEBOXSIZE);
-	y = (int) floor(point.y / (float) GAMEBOXSIZE);
-	if (x < 0 || y < 0 || y >= strarr_len(map) || x >= (int)ft_strlen(map[y]))
-		return (1);
-	if (map && map[y] && map[y][x] == '1')
-		return (1);
-	return (0);
-}
+# include "raycast.h"
 
 t_raycast	init_axis(t_data *data, float angle_ray)
 {
@@ -89,26 +69,6 @@ t_raycast	init_ordinat(t_data *data, float angle_ray)
 	return (ordinat);
 }
 
-t_img_info	texture_mapping(t_imgs imgs, float angle, int is_axis)
-{
-	if (is_axis)
-	{
-		if (sin(angle) > 0)
-			return (imgs.south);
-		else
-			return (imgs.north);
-	}
-	else
-	{
-		if (cos(angle) > 0)
-			return (imgs.west);
-		else
-			return (imgs.east);
-	}
-}
-
-# define LEN_RAY 1500
-
 t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column, t_img_info *wall_texture)
 {
 	t_raycast	axis;
@@ -143,74 +103,4 @@ t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_col
 	*number_column = nbr_of_slice_column(axis.point.x);
 	*wall_texture = texture_mapping(data->imgs, angle_ray, 1);
 	return (axis.point);
-}
-
-int	convet_rad_to_grad(float rad)
-{
-	return (rad * 180 / M_PI);
-}
-
-void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
-{
-	int	i;
-	float		perp_dir;
-	t_vector	shift;
-	i = 0;
-	while (sprite != NULL && sprite[i].tex != NULL)
-	{
-		if (sprite[i].is_door == IS_DOORAXIS)
-		{
-			if (sin(pl.direction) > 0)
-				perp_dir = 0;
-			else
-				perp_dir = M_PI;
-		}
-		else if (sprite[i].is_door == IS_DOORORDINAT)
-		{
-			if (cos(pl.direction) < 0)
-				perp_dir = M_PI / 2;
-			else
-				perp_dir = 3 * M_PI / 2 ;
-		}
-		else
-			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
-		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI,	sprite[i].tex[0].width), pl.direction);
-		shift = shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width);
-		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
-		if (sprite[i].is_door && fabs(sprite[i].left_angle - sprite[i].right_angle) > M_PI)
-			sprite[i].left_angle = sprite[i].right_angle;
-		sprite[i].dist_to_pl = distance_pyth(pl.poz, sprite[i].poz);
-		i++;
-	}
-}
-
-
-void	ray_cast(t_data *data)
-{
-	t_vector	intersection_point;
-	float		angle_ray;
-	int			num_column;
-	int			x;
-	t_img_info	wall_txtr;
-
-	count_perp_dir_for_sprites(data->sprites, data->pl);
-	x = 0;
-	angle_ray = data->pl.direction + (FOV / 2);
-	while (angle_ray > data->pl.direction - (FOV / 2) && x < data->window.img.width)
-	{
-		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
-			intersection_point = find_intersection_points(data, angle_ray + STEPANGLE, &num_column, &wall_txtr);
-		else
-			intersection_point = find_intersection_points(data, angle_ray, &num_column, &wall_txtr);
-		if (!(intersection_point.x == -1 && intersection_point.y == -1))
-			draw_wall_column(x, num_column, (int) slice_height(correct_distance(distance(data->pl.poz, intersection_point, angle_ray), fabs(data->pl.direction - angle_ray)), wall_txtr.height), &data->window.img, wall_txtr);
-		else
-			intersection_point = init_vector(INFINITY, INFINITY);
-		if (cos(angle_ray) == 0 || sin(angle_ray) == 0)
-			draw_sprite_column(data, angle_ray + STEPANGLE, distance(data->pl.poz, intersection_point, angle_ray), x);
-		else
-			draw_sprite_column(data, angle_ray, distance(data->pl.poz, intersection_point, angle_ray), x);
-		x++;
-		angle_ray -= STEPANGLE;
-	}
 }

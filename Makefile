@@ -15,7 +15,7 @@ MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
 MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h
+HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h $(RAYCAST_D)/raycast.h
 HEADERS_DIRECTORY = .
 
 GNL_S = get_next_line.c get_next_line_utils.c
@@ -31,6 +31,11 @@ KEY_C_D = key_control/
 
 INIT_S = find_pos_sprites.c init_imgs.c init_img_sprites.c init_player.c init_vector.c
 INIT_D = object_and_img_init/
+
+RAYCAST_S = draw_sprites.c raycast.c raycast_utils.c raycast_utils2.c raycast_utils3.c find_intesecpoint.c slice_init.c slicelst_utils.c
+RAYCAST_D = raycast/
+
+INCLUDES = -I. -I$(RAYCAST_D)
 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D)
 
