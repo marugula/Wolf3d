@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 10:47:41 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 11:11:13 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:15:06 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	sprite_animation(t_sprite *sprites)
+# define OPEN_DIST	250
+
+void	open_door_animation(t_sprite *door, t_vector pl)
+{
+	if (distance_pyth(pl, door->poz) < OPEN_DIST)
+	{
+		door->animation_dir = 1;
+	}
+	else
+	{
+		door->animation_dir = -1;
+	}
+	if (door->frame + door->animation_dir <= 7 && door->frame + door->animation_dir >= 0)
+		door->frame += door->animation_dir;
+}
+
+
+void	sprite_animation(t_sprite *sprites, t_vector pl)
 {
 	static int	time = 3;
 	int			i;
@@ -23,10 +40,15 @@ void	sprite_animation(t_sprite *sprites)
 	{
 		while (sprites && sprites[i].tex != NULL)
 		{
-			sprites[i].frame = \
-						(sprites[i].frame + sprites[i].animation_dir) % 8;
-			if (sprites[i].frame >= 7 || sprites[i].frame <= 0)
-				sprites[i].animation_dir *= -1;
+			if (sprites[i].is_door == ISSPRITE)
+			{
+				sprites[i].frame = \
+					(sprites[i].frame + sprites[i].animation_dir) % 8;
+				if (sprites[i].frame >= 7 || sprites[i].frame <= 0)
+					sprites[i].animation_dir *= -1;
+			}
+			else
+				open_door_animation(sprites + i, pl);
 			i++;
 		}
 	}
@@ -34,7 +56,7 @@ void	sprite_animation(t_sprite *sprites)
 
 int	redrawing(t_data *data)
 {
-	sprite_animation(data->sprites);
+	sprite_animation(data->sprites, data->pl.poz);
 	control_pl_dir(data);
 	control_pl_poz(data);
 	fill_floor_and_cell_window_img(&data->window.img, data->texture);
