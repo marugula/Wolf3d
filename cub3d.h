@@ -134,6 +134,12 @@ typedef struct s_sprite
 	float		right_angle;
 }	t_sprite;
 
+typedef	struct s_delta_time
+{
+	unsigned long	prev;
+	unsigned long	pres;
+}	t_dt;
+
 typedef struct s_map_data
 {
 	char			**map;
@@ -143,7 +149,7 @@ typedef struct s_map_data
 	t_imgs			imgs;
 	t_player		pl;
 	t_key			key;
-	
+	t_dt			time;
 }	t_data;
 
 int	return_error(char *str);
@@ -224,6 +230,10 @@ void		init_loop_hook(t_data *data);
 /* init_vector.c */
 t_vector	init_vector(float x, float y);
 
+/* time_works.c */
+unsigned long	get_time(void);
+float			deltatime_sec(t_dt time);
+void			rewrite_time(t_dt *time);
 
 
 

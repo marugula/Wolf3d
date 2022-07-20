@@ -45,7 +45,8 @@ SOURCES_S = main.c\
 			raycast_utils.c \
 			raycast.c \
 			draw_minimap.c\
-			draw_sprites.c
+			draw_sprites.c\
+			time_works.c
 
 
 OBJS = $(SOURCES_S:%.c=%.o)

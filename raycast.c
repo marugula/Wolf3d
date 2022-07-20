@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 13:48:21 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:18:52 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 		else
 			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
 
-		printf("  width %d\n", sprite[i].tex[1].width);
 		shift = shift_poz(sprite[i].poz, \
 						perp_dir + M_PI, \
 						sprite[i].tex[0].width);
