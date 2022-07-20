@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:27:27 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 13:55:45 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:31:26 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	count_sprites_in_map(char **map)
 
 void	init_new_sprite(t_vector poz, t_img_info *tex, int is_door, t_sprite *new_sprite)
 {
-
 	new_sprite->poz = init_vector (poz.x * GAMEBOXSIZE + GAMEBOXSIZE / 2, \
 									poz.y * GAMEBOXSIZE + GAMEBOXSIZE / 2);
 	new_sprite->tex = tex;
@@ -84,7 +83,6 @@ void	find_poz_for_sprites(t_data *data)
 		}
 		poz.y++;
 	}
-	data->sprites[count].tex = NULL;
 }
 
 void	init_sprites_struct(t_data *data)

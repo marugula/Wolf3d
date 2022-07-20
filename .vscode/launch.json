@@ -9,7 +9,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"program": "./cub3D",
-			"args": ["maps/onlydoor.cub"],
+			"args": ["maps/err_map_empty_clr.cub"],
 		}
 	]
 }

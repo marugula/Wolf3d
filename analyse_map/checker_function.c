@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:46:47 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 11:37:11 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:19:42 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	check_first_or_last_line(char *line)
 	while (*temp)
 	{
 		if (!(*temp == '1' || *temp == ' '))
+		{
+			free(checked_line);
 			return (VALID_ERR);
+		}
 		temp++;
 	}
 	free(checked_line);
