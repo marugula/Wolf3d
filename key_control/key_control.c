@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_control.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:51:16 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 10:39:02 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:09:19 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	control_pl_dir(t_data *data)
 {
 	float	direction_step;
 
-	direction_step = M_PI / 30;
+	direction_step = M_PI;
 	if (data->key.direct == 1)
 	{
-		data->pl.direction -= direction_step;
+		data->pl.direction -= direction_step * deltatime_sec(data->time);
 	}
 	else if (data->key.direct == -1)
 	{
-		data->pl.direction += direction_step;
+		data->pl.direction += direction_step * deltatime_sec(data->time);
 	}
 	return (0);
 }

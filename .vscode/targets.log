@@ -8,10 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Wed Jul 20 14:50:41 2022
+# Make data base, printed on Wed Jul 20 15:26:00 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -23,7 +24,6 @@ VSCODE_LOG_NATIVE = false
 # makefile (from `Makefile', line 35)
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D)
 # automatic
- 
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
@@ -41,7 +41,7 @@ MAKEFILE_LIST :=  Makefile
 KEY_C_D = key_control/
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 52)
+# makefile (from `Makefile', line 53)
 OBJS = $(SOURCES_S:%.c=%.o)
 # environment
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n0001ysm000gpd/T/vscode-ipc-8ed539cb-c414-4f94-ad6e-79da6c47821c.sock
@@ -77,13 +77,13 @@ VSCODE_PIPE_LOGGING = true
 PWD = /Users/marugula/cub3D/Cube3D
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# makefile (from `Makefile', line 56)
+# makefile (from `Makefile', line 57)
 GREEN = \033[0;32m
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /Users/marugula
-# makefile (from `Makefile', line 59)
+# makefile (from `Makefile', line 60)
 MARK = \033[7m
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
@@ -121,7 +121,7 @@ MINILIBX_DIRECTORY = ./minilibx_macos/
 MAKE_VERSION := 3.81
 # environment
 USER = marugula
-# makefile (from `Makefile', line 58)
+# makefile (from `Makefile', line 59)
 CROSS = \033[9m
 # makefile
 .DEFAULT_GOAL := all
@@ -143,7 +143,7 @@ INIT_D = object_and_img_init/
 *F = $(notdir $*)
 # environment
 VSCODE_IPC_HOOK = /Users/marugula/Library/Application Support/Code/1.68.1-main.sock
-# makefile (from `Makefile', line 57)
+# makefile (from `Makefile', line 58)
 RED = \033[0;31m
 # makefile
 MAKEFLAGS = Rrqp
@@ -153,7 +153,7 @@ MFLAGS = -Rrqp
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 XPC_SERVICE_NAME = com.microsoft.VSCode.1288
-# makefile (from `Makefile', line 53)
+# makefile (from `Makefile', line 54)
 OBJS_DIR = objs/
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
@@ -175,17 +175,16 @@ LIBFT_DIRECTORY = ./libft/
 GNL_S = get_next_line.c get_next_line_utils.c
 # environment
 LC_ALL = C
-# makefile (from `Makefile', line 60)
+# makefile (from `Makefile', line 61)
 RESET = \033[0m
 # makefile (from `Makefile', line 8)
- 
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY) -lmlx -lm -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 # makefile (from `Makefile', line 18)
 HEADER = cub3d.h $(GNL_D)/get_next_line.h $(ANLS_MAP_D)/analyse_map.h
 # automatic
 ^F = $(notdir $^)
 # makefile (from `Makefile', line 37)
-SOURCES_S = main.c $(addprefix gnl/, $(GNL_S)) $(addprefix analyse_map/, $(ANLS_MAP_S)) $(addprefix key_control/, $(KEY_C_S)) $(addprefix object_and_img_init/, $(INIT_S)) handling_errors.c game.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c draw_sprites.c time_works.c
+SOURCES_S = main.c $(addprefix gnl/, $(GNL_S)) $(addprefix analyse_map/, $(ANLS_MAP_S)) $(addprefix key_control/, $(KEY_C_S)) $(addprefix object_and_img_init/, $(INIT_S)) handling_errors.c game.c paint_engine.c raycast_utils.c raycast.c draw_minimap.c draw_sprites.c time_works.c animation.c
 # default
 SUFFIXES := 
 # makefile (from `Makefile', line 6)
@@ -194,7 +193,7 @@ FLAGS = -Wall -Werror -Wextra  -fsanitize=address -g
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
-# makefile (from `Makefile', line 54)
+# makefile (from `Makefile', line 55)
 OBJECTS = $(addprefix $(OBJS_DIR), $(OBJS))
 # makefile (from `Makefile', line 32)
 INIT_S = find_pos_sprites.c init_imgs.c init_img_sprites.c init_player.c init_vector.c
@@ -211,7 +210,7 @@ VSCODE_PID = 32537
 
 # Directories
 
-# . (device 16777227, inode 1358403): 29 files, no impossibilities.
+# . (device 16777227, inode 1358403): 30 files, no impossibilities.
 # gnl/ (device 16777227, inode 1358466): 5 files, no impossibilities so far.
 # gnl (device 16777227, inode 1358466): 5 files, no impossibilities so far.
 # analyse_map/ (device 16777227, inode 1358652): 15 files, no impossibilities so far.
@@ -220,12 +219,12 @@ VSCODE_PID = 32537
 # analyse_map (device 16777227, inode 1358652): 15 files, no impossibilities so far.
 # libft/ (device 16777227, inode 1358657): 94 files, no impossibilities.
 
-# 177 files, no impossibilities in 8 directories.
+# 178 files, no impossibilities in 8 directories.
 
 # Implicit Rules
 
 objs/%.o: %.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -247,7 +246,7 @@ draw_minimap.c:
 # Not a target:
 time_works.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:49:29
+#  Last modified 2022-07-20 15:03:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -265,12 +264,13 @@ object_and_img_init/init_img_sprites.c:
 objs/key_control/mouse_control.o: key_control/mouse_control.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/mouse_control'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -279,12 +279,12 @@ objs/key_control/mouse_control.o: key_control/mouse_control.c cub3d.h gnl//get_n
 objs/key_control/init_control_key.o: key_control/init_control_key.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/init_control_key'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -311,7 +311,7 @@ libft//ft_substr.c:
 # Not a target:
 game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:48:48
+#  Last modified 2022-07-20 15:20:49
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -356,12 +356,12 @@ analyse_map/check_format_map.c:
 objs/main.o: main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `main'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -370,12 +370,12 @@ objs/main.o: main.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 objs/analyse_map/check_func_around_symb.o: analyse_map/check_func_around_symb.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_func_around_symb'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -384,12 +384,12 @@ objs/analyse_map/check_func_around_symb.o: analyse_map/check_func_around_symb.c 
 objs/analyse_map/check_format_map.o: analyse_map/check_format_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_format_map'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -431,7 +431,6 @@ clno:
 
 # Not a target:
 key_control/init_control_key.c:
- 
 #  Implicit rule search has been done.
 #  Last modified 2022-07-20 14:15:25
 #  File has been updated.
@@ -451,12 +450,12 @@ libft//ft_lstadd_front.c:
 objs/key_control/init_loop_hook.o: key_control/init_loop_hook.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/init_loop_hook'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -506,12 +505,12 @@ libft//ft_strchr.c:
 objs/object_and_img_init/init_vector.o: object_and_img_init/init_vector.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `object_and_img_init/init_vector'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -535,18 +534,28 @@ main.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-cub3D: objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/analyse_map/ft_isspace.o objs/analyse_map/check_func_around_symb.o objs/key_control/init_control_key.o objs/key_control/key_control.o objs/key_control/mouse_control.o objs/key_control/control_pl_poz.o objs/key_control/init_loop_hook.o objs/object_and_img_init/find_pos_sprites.o objs/object_and_img_init/init_imgs.o objs/object_and_img_init/init_img_sprites.o objs/object_and_img_init/init_player.o objs/object_and_img_init/init_vector.o objs/handling_errors.o objs/game.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o objs/draw_minimap.o objs/draw_sprites.o objs/time_works.o libft/libft.a minilibx_macos/libmlx.a
+ 
+cub3D: objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/analyse_map/ft_isspace.o objs/analyse_map/check_func_around_symb.o objs/key_control/init_control_key.o objs/key_control/key_control.o objs/key_control/mouse_control.o objs/key_control/control_pl_poz.o objs/key_control/init_loop_hook.o objs/object_and_img_init/find_pos_sprites.o objs/object_and_img_init/init_imgs.o objs/object_and_img_init/init_img_sprites.o objs/object_and_img_init/init_player.o objs/object_and_img_init/init_vector.o objs/handling_errors.o objs/game.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o objs/draw_minimap.o objs/draw_sprites.o objs/time_works.o objs/animation.o libft/libft.a minilibx_macos/libmlx.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:21:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 67):
+#  commands to execute (from `Makefile', line 68):
 	@$(CC) $(FLAGS) $(INCLUDES)  $(LIBRARIES) $(OBJECTS) -o $(NAME)
 	@echo "\n$(MARK) $(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(MARK) $(NAME): $(GREEN)$(NAME) was created$(RESET)"
 	
+
+# Not a target:
+animation.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-20 15:15:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 libft//ft_toupper.c:
@@ -560,12 +569,26 @@ libft//ft_toupper.c:
 objs/draw_sprites.o: draw_sprites.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `draw_sprites'
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
+	@mkdir -p $(OBJS_DIR)
+	@mkdir -p  $(DIR_SRC)
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	
+
+objs/animation.o: animation.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `animation'
+#  Last modified 2022-07-20 15:21:10
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -610,12 +633,12 @@ handling_errors.c:
 objs/object_and_img_init/init_img_sprites.o: object_and_img_init/init_img_sprites.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `object_and_img_init/init_img_sprites'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -648,7 +671,7 @@ gnl//get_next_line.h:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:50:25
+#  Last modified 2022-07-20 15:21:09
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -664,15 +687,14 @@ analyse_map/write_textures_to_struct.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 objs/analyse_map/write_textures_to_struct.o: analyse_map/write_textures_to_struct.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
- 
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/write_textures_to_struct'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -690,12 +712,12 @@ analyse_map/get_color_image_texture.c:
 objs/analyse_map/get_color_image_texture.o: analyse_map/get_color_image_texture.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/get_color_image_texture'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -722,12 +744,12 @@ libft//ft_atoi.c:
 objs/analyse_map/check_utils.o: analyse_map/check_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_utils'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -739,6 +761,7 @@ libft//ft_strtrim.c:
 #  Last modified 2022-06-18 11:11:36
 #  File has been updated.
 #  Successfully updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -821,7 +844,7 @@ libft/libft.a: libft//ft_atoi.c libft//ft_bzero.c libft//ft_calloc.c libft//ft_i
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 77):
+#  commands to execute (from `Makefile', line 78):
 	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY)
 	
@@ -838,12 +861,12 @@ analyse_map/ft_isspace.c:
 objs/analyse_map/ft_isspace.o: analyse_map/ft_isspace.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/ft_isspace'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -858,12 +881,12 @@ bonus:
 objs/analyse_map/check_game_map.o: analyse_map/check_game_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/check_game_map'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -892,7 +915,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 91):
+#  commands to execute (from `Makefile', line 92):
 	@rm -rf $(NAME)
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) fclean
 	@echo "$(CROSS) $(NAME) : $(RED)$(NAME) and $(BONUS_NAME) was deleted$(RESET)"
@@ -905,7 +928,6 @@ libft//ft_memcmp.c:
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
@@ -938,12 +960,12 @@ libft//ft_isdigit.c:
 objs/analyse_map/trim_game_map.o: analyse_map/trim_game_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/trim_game_map'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -952,12 +974,12 @@ objs/analyse_map/trim_game_map.o: analyse_map/trim_game_map.c cub3d.h gnl//get_n
 objs/paint_engine.o: paint_engine.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `paint_engine'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -986,6 +1008,7 @@ libft//ft_lstlast.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-06-18 11:11:36
 #  File has been updated.
+ 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -993,12 +1016,12 @@ libft//ft_lstlast.c:
 objs/analyse_map/copy_map_to_array.o: analyse_map/copy_map_to_array.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/copy_map_to_array'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1052,12 +1075,12 @@ analyse_map/init_texture_struct.c:
 objs/game.o: game.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `game'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1066,12 +1089,12 @@ objs/game.o: game.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 objs/gnl/get_next_line_utils.o: gnl/get_next_line_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `gnl/get_next_line_utils'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1080,12 +1103,12 @@ objs/gnl/get_next_line_utils.o: gnl/get_next_line_utils.c cub3d.h gnl//get_next_
 objs/analyse_map/init_texture_struct.o: analyse_map/init_texture_struct.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/init_texture_struct'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1094,12 +1117,12 @@ objs/analyse_map/init_texture_struct.o: analyse_map/init_texture_struct.c cub3d.
 objs/object_and_img_init/find_pos_sprites.o: object_and_img_init/find_pos_sprites.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `object_and_img_init/find_pos_sprites'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1141,12 +1164,12 @@ libft//ft_strjoin.c:
 objs/raycast_utils.o: raycast_utils.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `raycast_utils'
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1170,16 +1193,15 @@ libft//ft_lstclear.c:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
- 
 objs/draw_minimap.o: draw_minimap.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `draw_minimap'
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1188,12 +1210,12 @@ objs/draw_minimap.o: draw_minimap.c cub3d.h gnl//get_next_line.h analyse_map//an
 objs/time_works.o: time_works.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `time_works'
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1219,7 +1241,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 85):
+#  commands to execute (from `Makefile', line 86):
 	@$(MAKE) -C $(LIBFT_DIRECTORY) clean
 	@$(MAKE) -C $(MINILIBX_DIRECTORY) clean
 	@rm -rf $(OBJECTS) $(OBJS_DIR)
@@ -1229,12 +1251,12 @@ clean:
 objs/object_and_img_init/init_imgs.o: object_and_img_init/init_imgs.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `object_and_img_init/init_imgs'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1245,6 +1267,7 @@ libft//ft_bzero.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-06-18 11:11:36
 #  File has been updated.
+ 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -1261,12 +1284,12 @@ analyse_map/init_array_map.c:
 objs/analyse_map/init_array_map.o: analyse_map/init_array_map.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/init_array_map'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1284,7 +1307,7 @@ libft//ft_isprint.c:
 # Not a target:
 cub3d.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:50:10
+#  Last modified 2022-07-20 15:20:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1293,12 +1316,12 @@ cub3d.h:
 objs/object_and_img_init/init_player.o: object_and_img_init/init_player.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `object_and_img_init/init_player'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1372,7 +1395,7 @@ minilibx_macos/libmlx.a:
 #  Last modified 2022-07-20 13:56:41
 #  File has been updated.
 #  Successfully updated.
-#  commands to execute (from `Makefile', line 81):
+#  commands to execute (from `Makefile', line 82):
 	@echo "$(NAME): $(GREEN)Creating $(MINILIBX)...$(RESET)"
 	@$(MAKE) -C $(MINILIBX_DIRECTORY)
 	
@@ -1380,12 +1403,12 @@ minilibx_macos/libmlx.a:
 objs/key_control/control_pl_poz.o: key_control/control_pl_poz.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/control_pl_poz'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1403,7 +1426,7 @@ libft//libft.h:
 # Not a target:
 raycast.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:18:52
+#  Last modified 2022-07-20 14:52:03
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1421,27 +1444,26 @@ libft//ft_putnbr_fd.c:
 objs/key_control/key_control.o: key_control/key_control.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `key_control/key_control'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 	
 
- 
 objs/gnl/get_next_line.o: gnl/get_next_line.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `gnl/get_next_line'
-#  Last modified 2022-07-20 14:50:27
+#  Last modified 2022-07-20 15:20:51
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1468,12 +1490,12 @@ libft//ft_calloc.c:
 objs/handling_errors.o: handling_errors.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `handling_errors'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1482,7 +1504,7 @@ objs/handling_errors.o: handling_errors.c cub3d.h gnl//get_next_line.h analyse_m
 # Not a target:
 key_control/control_pl_poz.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:15:25
+#  Last modified 2022-07-20 15:07:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1500,26 +1522,27 @@ analyse_map/checker_function.c:
 objs/analyse_map/checker_function.o: analyse_map/checker_function.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `analyse_map/checker_function'
-#  Last modified 2022-07-20 14:50:28
+#  Last modified 2022-07-20 15:20:52
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
+ 
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 	
 
 objs/raycast.o: raycast.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `raycast'
-#  Last modified 2022-07-20 14:50:29
+#  Last modified 2022-07-20 15:20:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 72):
+#  commands to execute (from `Makefile', line 73):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p  $(DIR_SRC)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -1528,7 +1551,7 @@ objs/raycast.o: raycast.c cub3d.h gnl//get_next_line.h analyse_map//analyse_map.
 # Not a target:
 key_control/key_control.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-20 14:15:25
+#  Last modified 2022-07-20 15:09:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1544,7 +1567,7 @@ libft//ft_lstsize.c:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=127/1024=12%, Rehash=0, Collisions=28/527=5%
+# Load=129/1024=13%, Rehash=0, Collisions=28/539=5%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -1556,6 +1579,6 @@ libft//ft_lstsize.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jul 20 14:50:41 2022
+# Finished Make data base on Wed Jul 20 15:26:00 2022
 
  

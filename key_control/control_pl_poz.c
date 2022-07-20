@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control_pl_poz.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 10:38:36 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 12:22:46 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:07:34 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	moving_axis(t_data *data, int speed)
 
 int	control_pl_poz(t_data *data)
 {
-	moving_ordinat(data, SPEED_PL_MOVE);
-	moving_axis(data, SPEED_PL_MOVE);
+	moving_ordinat(data, SPEED_PL_MOVE * deltatime_sec(data->time));
+	moving_axis(data, SPEED_PL_MOVE * deltatime_sec(data->time));
 	return (0);
 }

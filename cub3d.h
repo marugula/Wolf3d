@@ -17,7 +17,7 @@
 # define GAMEBOXSIZE	64
 
 # define SPEED_MOUSE_MOVE	0.3
-# define SPEED_PL_MOVE		10
+# define SPEED_PL_MOVE		200
 
 # define SPACEVISIBLE	1000
 
@@ -32,7 +32,7 @@
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
-# define ANIM_PERIOD		5
+# define ANIM_PERIOD		3
 
 # define ISDOORAXIS			1
 # define ISDOORORDINAT		2
@@ -234,6 +234,11 @@ t_vector	init_vector(float x, float y);
 unsigned long	get_time(void);
 float			deltatime_sec(t_dt time);
 void			rewrite_time(t_dt *time);
+float			deltatime_msec(t_dt time);
+
+/* animation.c */
+void			open_door_animation(t_sprite *door, t_vector pl);
+void			sprite_animation(t_sprite *sprites, t_vector pl);
 
 
 
