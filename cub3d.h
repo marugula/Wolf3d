@@ -4,7 +4,6 @@
 # include "libft/libft.h"
 # include "minilibx_macos/mlx.h"
 # include "gnl/get_next_line.h"
-// # include "raycast/raycast.h"
 # include <sys/time.h>
 # include <stdio.h>
 # include <math.h>
@@ -162,10 +161,11 @@ char **copy_map_to_array(char *map_name, t_textures *textures);
 int	ft_isspace(char c);
 int	ft_atoi_base(char *str, int base);
 
-t_player	init_player_direct_and_poz(char **map);
+t_player		init_player_direct_and_poz(char **map);
 
 /* marugula chainges))) */
 void			game(char **map, t_textures textures);
+int				redrawing(t_data *data);
 
 
 /* init_imgs.c */
@@ -188,48 +188,35 @@ void			draw_wall_column(int x_poz, int num_column, int heigth, t_img_info *winim
 void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
 
-/* raycast_utils.c */
-t_vector		sum_vectors(t_vector a, t_vector b);
-float			slice_height(float distance, int height_img);
-int				nbr_of_slice_column(float point);
-float			correct_distance(float distance, float angle);
-float			distance(t_vector point_from, t_vector point_to, float angle_ray);
-float			distance_pyth(t_vector point_from, t_vector point_to);
-float			intensity(float prop);
-unsigned int	color_shift(int color, float intensive);
-
-
 
 /* raycast.c */
-void		ray_cast(t_data *data);
-int			is_wall_in_point(char **map, t_vector point);
-int			redrawing(t_data *data);
+void			ray_cast(t_data *data);
+int				is_wall_in_point(char **map, t_vector point);
+float			distance(t_vector point_from, t_vector point_to, float angle_ray);
+float			distance_pyth(t_vector point_from, t_vector point_to);
+
 
 /* draw_minimap.c */
-void		draw_minimap(t_data *data);
-int			max_len(char **map);
+void			draw_minimap(t_data *data);
+int				max_len(char **map);
 
-/* draw_sprites.c */
-void		draw_sprite_column(t_data *data, float angle, float dist_to_wall, int win_x_poz);
-float		count_perp_angle(float angle, int dir);
-double	angle_between_two_dots(t_vector start, t_vector end, float pl_dir);
-t_vector	shift_poz(t_vector poz, float angle, float shift);
 
 /* analyse/utils.c */
-int			strarr_len(char **arr);
+int				strarr_len(char **arr);
+
+/* check_utils.c */
+char			get_ch_in_dot(int x, int y, char **map);
 
 
 /* find_pos_sprites.c */
-void	init_sprites_struct(t_data *data);
+void			init_sprites_struct(t_data *data);
 
-/* check_utils.c */
-char		get_ch_in_dot(int x, int y, char **map);
 
 /*init_loop_hook.c*/
-void		init_loop_hook(t_data *data);
+void			init_loop_hook(t_data *data);
 
 /* init_vector.c */
-t_vector	init_vector(float x, float y);
+t_vector		init_vector(float x, float y);
 
 /* time_works.c */
 unsigned long	get_time(void);

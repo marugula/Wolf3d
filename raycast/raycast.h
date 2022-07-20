@@ -6,14 +6,14 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:58:37 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:46:36 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:57:02 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
 
-# include "cub3d.h"
+# include "../cub3d.h"
 
 # define LEN_RAY 1500
 
