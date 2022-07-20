@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 10:47:41 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 13:15:06 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:14:02 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sprite_animation(t_sprite *sprites, t_vector pl)
 					(sprites[i].frame + sprites[i].animation_dir) % 8;
 				if (sprites[i].frame >= 7 || sprites[i].frame <= 0)
 					sprites[i].animation_dir *= -1;
-			}
+			 }
 			else
 				open_door_animation(sprites + i, pl);
 			i++;
@@ -67,28 +67,27 @@ int	redrawing(t_data *data)
 	return (0);
 }
 
-t_data	init_structs_for_data(char **map, t_textures textures)
+void	init_structs_for_data(char **map, t_textures textures, t_data *data)
 {
-	t_data	data;
 
-	data.window = init_game_window();
-	init_sides_img(&data.imgs, textures, data.window.mlx);
-	init_cat_imgs(&data);
-	init_minotaur_imgs(&data);
-	init_door_imgs(&data);
-	data.map = map;
-	data.pl = init_player_direct_and_poz(map);
-	data.texture = textures;
-	fill_floor_and_cell_window_img(&data.window.img, data.texture);
-	init_sprites_struct(&data);
-	return (data);
+	data->window = init_game_window();
+	init_sides_img(&data->imgs, textures, data->window.mlx);
+	init_cat_imgs(data);
+	init_minotaur_imgs(data);
+	init_door_imgs(data);
+	data->map = map;
+	data->pl = init_player_direct_and_poz(map);
+	data->texture = textures;
+	fill_floor_and_cell_window_img(&data->window.img, data->texture);
+	init_sprites_struct(data);
+
 }
 
 void	game(char **map, t_textures textures)
 {
 	t_data	data;
 
-	data = init_structs_for_data(map, textures);
+	init_structs_for_data(map, textures, &data);
 	ray_cast(&data);
 	draw_minimap(&data);
 	mlx_put_image_to_window(data.window.mlx, \

@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:27:27 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/19 13:42:40 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:07:20 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	count_sprites_in_map(char **map)
 	}
 	return (count);
 }
-
 
 t_sprite	init_new_sprite(t_vector poz, t_img_info *tex, int is_door)
 {
@@ -88,7 +87,6 @@ void	find_poz_for_sprites(t_data *data)
 		}
 		poz.y++;
 	}
-	data->sprites[count].tex = NULL;
 }
 
 void	init_sprites_struct(t_data *data)
@@ -103,4 +101,5 @@ void	init_sprites_struct(t_data *data)
 	if (!data->sprites)
 		exit_error("error ft_calloc sprites\n");
 	find_poz_for_sprites(data);
+	return;
 }
