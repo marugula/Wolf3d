@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 14:18:52 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:52:03 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,7 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 		else
 			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
 
-		shift = shift_poz(sprite[i].poz, \
-						perp_dir + M_PI, \
-						sprite[i].tex[0].width);
-		sprite[i].left_angle = angle_between_two_dots(pl.poz, \
-														shift, \
-														pl.direction);
+		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI,	sprite[i].tex[0].width), pl.direction);
 		shift = shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width);
 		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
 		if (sprite[i].is_door && fabs(sprite[i].left_angle - sprite[i].right_angle) > M_PI)
