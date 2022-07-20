@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 12:06:04 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 12:58:56 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 {
 	int	i;
 	float	perp_dir;
-	// float	temp;
 
 	i = 0;
 	while (sprite != NULL && sprite[i].tex != NULL)
@@ -177,12 +176,8 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
 		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI, sprite[i].tex->width), pl.direction);
 		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
-		// if (sprite[i].is_door && sprite[i].left_angle < sprite[i].right_angle)
-		// {
-		// 	temp = sprite[i].left_angle;
-		// 	sprite[i].left_angle = sprite[i].right_angle;
-		// 	sprite[i].right_angle = temp;
-		// }
+		if (sprite[i].is_door && fabs(sprite[i].left_angle - sprite[i].right_angle) > M_PI)
+			sprite[i].left_angle = sprite[i].right_angle;
 		sprite[i].dist_to_pl = distance_pyth(pl.poz, sprite[i].poz);
 		i++;
 	}
@@ -215,7 +210,6 @@ void	ray_cast(t_data *data)
 			draw_sprite_column(data, angle_ray + STEPANGLE, distance(data->pl.poz, intersection_point, angle_ray), x);
 		else
 			draw_sprite_column(data, angle_ray, distance(data->pl.poz, intersection_point, angle_ray), x);
-
 		x++;
 		angle_ray -= STEPANGLE;
 	}
