@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:45:22 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/19 13:45:28 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:32:59 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	is_allowed_ch(char ch)
 
 char	get_ch_in_dot(int x, int y, char **map)
 {
-
 	if (map && y < strarr_len(map) && y >= 0 && \
 				x < (int)ft_strlen(map[y]) && x >= 0)
 		return (map[y][x]);

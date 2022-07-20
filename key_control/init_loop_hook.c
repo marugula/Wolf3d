@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_control_key.c                                 :+:      :+:    :+:   */
+/*   init_loop_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 15:51:18 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 10:33:32 by tamchoor         ###   ########.fr       */
+/*   Created: 2022/07/20 11:00:33 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:00:43 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_control_key(t_data *data)
+void	init_loop_hook(t_data *data)
 {
-	data->key.direct = 0;
-	data->key.y = 0;
-	data->key.x = 0;
-	data->key.mouse_move = 0;
+	init_control_key(data);
+	mlx_hook(data->window.win, ON_KEYDOWN, 0, control_key_down, data);
+	mlx_hook(data->window.win, ON_KEYUP, 0, control_key_up, data);
+	mlx_hook(data->window.win, BUTTONMOVE, 0, mouse_move, data);
+	mlx_loop_hook(data->window.mlx, redrawing, data);
+	mlx_hook(data->window.win, ON_DESTROY, 0, deal_destroy, 0);
+	mlx_loop(data->window.mlx);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   copy_map_to_array.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 11:26:05 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:26:18 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "analyse_map.h"
 
 int	open_file_map(char *map_name)
@@ -46,25 +58,7 @@ char	**fill_map_array(int fd)
 	return (map_array);
 }
 
-void	print_array_map(char **map_array)
-{
-	int	i = 0;
-
-	while (map_array[i])
-	{
-		write(1, map_array[i], ft_strlen(map_array[i]));
-		write(1, "\n", 1);
-		i++;
-	}
-}
-
-void	print_textures(t_textures *txtrs)
-{
-	printf("NO = %s \n SO = %s \n WE = %s \n EA = %s \n ", txtrs->north,txtrs->south, txtrs->west, txtrs->east);
-	printf("F = %d \n C = %d \n", txtrs->floor, txtrs->ceilling);
-}
-
-void *clear_arr_str(char **str)
+void	*clear_arr_str(char **str)
 {
 	int	i;
 
@@ -78,8 +72,7 @@ void *clear_arr_str(char **str)
 	return (str);
 }
 
-
-char **copy_map_to_array(char *map_name, t_textures *textures)
+char	**copy_map_to_array(char *map_name, t_textures *textures)
 {
 	int			fd;
 	char		**map_array;
@@ -89,15 +82,12 @@ char **copy_map_to_array(char *map_name, t_textures *textures)
 	map_array = fill_map_array(fd);
 	if (!map_array[0])
 		exit_error("Error fill_map_array\n");
-	print_array_map(map_array);
 	*textures = init_texture_struct(map_array);
-	print_textures(textures);
 	game_map = trim_map(map_array);
 	clear_arr_str(map_array);
 	if (game_map == NULL)
 		exit_error("File have not map\n");
 	if (check_game_map(game_map) == VALID_ERR)
 		exit_error("Map incorect\n");
-	// clear_arr_str(game_map);
 	return (game_map);
 }

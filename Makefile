@@ -22,14 +22,14 @@ GNL_S = get_next_line.c get_next_line_utils.c
 GNL_D = gnl/
 
 ANLS_MAP_S = copy_map_to_array.c check_format_map.c init_array_map.c init_texture_struct.c get_color_image_texture.c write_textures_to_struct.c \
-				check_game_map.c trim_game_map.c checker_function.c check_utils.c ft_isspace.c
+				check_game_map.c trim_game_map.c checker_function.c check_utils.c ft_isspace.c check_func_around_symb.c
 
 ANLS_MAP_D = analyse_map/
 
-KEY_C_S = init_control_key.c key_control.c mouse_control.c
+KEY_C_S = init_control_key.c key_control.c mouse_control.c control_pl_poz.c init_loop_hook.c
 KEY_C_D = key_control/
 
-INIT_S = find_pos_sprites.c init_imgs.c init_img_sprites.c init_player.c
+INIT_S = find_pos_sprites.c init_imgs.c init_img_sprites.c init_player.c init_vector.c
 INIT_D = object_and_img_init/
 
 DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D)

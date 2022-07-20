@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:33:02 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/19 13:42:47 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:11:24 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ void	init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr)
 	init_img(&imgs->south, texture.south, mlx_ptr);
 	init_img(&imgs->north, texture.north, mlx_ptr);
 	init_img(&imgs->player_icn, "textures/cat.xpm", mlx_ptr);
+}
+
+t_game_window	init_game_window(void)
+{
+	t_game_window	window;
+
+	window.mlx = mlx_init();
+	if (!window.mlx)
+		exit_error("init_game_window\n");
+	window.win = mlx_new_window(window.mlx, WIDTH, HEIGHT, "CUB3D");
+	if (!window.win)
+		exit_error("init_game_window\n");
+	creat_window_img(&window);
+	return (window);
 }

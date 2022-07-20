@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   analyse_map.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 11:15:53 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:38:01 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ANALYSE_MAP_H
 # define ANALYSE_MAP_H
 
-#include "../cub3d.h"
+# include "../cub3d.h"
 
 # include <fcntl.h>
 
@@ -14,7 +26,7 @@ typedef struct t_move_on_map
 {
 	int	x;
 	int	y;
-} t_dot;
+}	t_dot;
 
 /* check_format_map.c */
 int			check_format_map(char *map_name);
@@ -22,10 +34,8 @@ int			check_format_map(char *map_name);
 /* check_game_map.c */
 int			check_game_map(char **map);
 
-
 /* trim_game_map.c */
 char		**trim_map(char **map);
-
 
 /* check_utils.c */
 int			strarr_len(char **arr);
@@ -33,12 +43,10 @@ int			is_player_ch(char ch);
 int			is_allowed_ch(char ch);
 char		get_ch_in_dot(int x, int y, char **map);
 
-
 /* checker_function.c */
 int			check_all_dot(char **map);
 int			check_side_wals(char **map);
 int			check_first_or_last_line(char *line);
-
 
 /* init_array_map.c */
 char		**init_array_map(void);
@@ -55,9 +63,13 @@ char		*clip_img_txtr_from_line(char *map_line, char *save_txtr);
 int			ignore_spaces(char *map_line);
 int			is_line_texture(char *map_line);
 int			is_line_map(char *map_line);
-void		save_one_texture(char *map_line, t_textures *textures, int txtr_nbr);
+void		save_one_texture(char *map_line, \
+				t_textures *textures, int txtr_nbr);
 
-
+/* check_func_around_symb.c */
+int			check_wall_around_door(t_dot dot, char **map);
+int			check_zero_around_zero(t_dot dot, char **map);
+int			check_space_around_dot(t_dot dot, char **map);
 
 # define NO 0
 # define SO 1

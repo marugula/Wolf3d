@@ -9,11 +9,14 @@
 
 # define HEIGHT			720
 # define WIDTH			1080
-# define FOV			M_PI / 3
+# define FOV			(M_PI / 3)
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
 # define GAMEBOXSIZE	64
+
+# define SPEED_MOUSE_MOVE	0.3
+# define SPEED_PL_MOVE		10
 
 # define SPACEVISIBLE	1000
 
@@ -65,7 +68,6 @@ typedef struct s_key
 	int			y;
 	int			x;
 	int			direct;
-	// int			right;
 }	t_key;
 
 typedef struct s_game_window
@@ -153,11 +155,8 @@ int	ft_atoi_base(char *str, int base);
 
 t_player	init_player_direct_and_poz(char **map);
 
-
-
 /* marugula chainges))) */
 void			game(char **map, t_textures textures);
-t_vector		init_vector(float x, float y);
 
 
 /* init_imgs.c */
@@ -167,6 +166,8 @@ void			creat_window_img(t_game_window *mlx);
 void			init_cat_imgs(t_data *data);
 void			init_minotaur_imgs(t_data *data);
 void			init_door_imgs(t_data *data);
+t_game_window	init_game_window(void);
+
 
 
 
@@ -214,6 +215,13 @@ void	init_sprites_struct(t_data *data);
 
 /* check_utils.c */
 char		get_ch_in_dot(int x, int y, char **map);
+
+/*init_loop_hook.c*/
+void		init_loop_hook(t_data *data);
+
+/* init_vector.c */
+t_vector	init_vector(float x, float y);
+
 
 
 

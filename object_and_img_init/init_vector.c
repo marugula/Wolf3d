@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_control_key.c                                 :+:      :+:    :+:   */
+/*   init_vector.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/28 15:51:18 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 10:33:32 by tamchoor         ###   ########.fr       */
+/*   Created: 2022/07/20 11:08:52 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:13:00 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_control_key(t_data *data)
+t_vector	init_vector(float x, float y)
 {
-	data->key.direct = 0;
-	data->key.y = 0;
-	data->key.x = 0;
-	data->key.mouse_move = 0;
+	t_vector	new;
+
+	new.x = x;
+	new.y = y;
+	return (new);
 }

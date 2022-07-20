@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_texture_struct.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 11:26:44 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:38:48 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "analyse_map.h"
 
 void	set_default_textures(t_textures *textures)
@@ -39,6 +51,5 @@ t_textures	init_texture_struct(char **map_array)
 	set_default_textures(&textures);
 	fill_struct_textures(map_array, &textures);
 	check_all_textures_presented(&textures);
-
 	return (textures);
 }
