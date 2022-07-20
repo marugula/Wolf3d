@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:49:11 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:15:59 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:39:16 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
-
 
 int	is_wall_in_point(char **map, t_vector point)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:11:38 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:14:37 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:39:45 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ t_player	init_player(t_vector poz, float angle)
 	return (ret);
 }
 
-int		y_shift_poz_on_floor(t_slice_sp cat)
+int	y_shift_poz_on_floor(t_slice_sp cat)
 {
 	return ((float)(HEIGHT + slice_height(cat.dist, GAMEBOXSIZE)) / 2 \
-												- slice_height(cat.dist, cat.img->height));
+							- slice_height(cat.dist, cat.img->height));
 }
 
 int	check_intersection_sprite(t_sprite sprite, double angle)
 {
-
 	double		angle_step;
 	int			i;
 
@@ -51,5 +50,5 @@ int	check_intersection_sprite(t_sprite sprite, double angle)
 		i = (int)floor((angle - sprite.right_angle) / angle_step);
 		return (i);
 	}
-	return(-1);
+	return (-1);
 }

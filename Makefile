@@ -37,20 +37,18 @@ RAYCAST_D = raycast/
 
 INCLUDES = -I. -I$(RAYCAST_D)
 
-DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D)
+DIR_SRC = $(OBJS_DIR)$(GNL_D) $(OBJS_DIR)$(ANLS_MAP_D) $(OBJS_DIR)$(KEY_C_D) $(OBJS_DIR)$(INIT_D) $(OBJS_DIR)$(RAYCAST_D)
 
 SOURCES_S = main.c\
 			$(addprefix gnl/, $(GNL_S)) \
 			$(addprefix analyse_map/, $(ANLS_MAP_S)) \
 			$(addprefix key_control/, $(KEY_C_S)) \
 			$(addprefix object_and_img_init/, $(INIT_S)) \
+			$(addprefix raycast/, $(RAYCAST_S)) \
 			handling_errors.c\
 			game.c \
 			paint_engine.c \
-			raycast_utils.c \
-			raycast.c \
 			draw_minimap.c\
-			draw_sprites.c\
 			time_works.c\
 			animation.c
 

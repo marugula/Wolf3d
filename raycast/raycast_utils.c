@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:15:49 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:15:50 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:39:00 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ float	distance(t_vector point_from, t_vector point_to, float angle_ray)
 
 float	distance_pyth(t_vector point_from, t_vector point_to)
 {
-	return (sqrt(pow(point_from.x - point_to.x, 2) + pow(point_from.y - point_to.y, 2)));
+	return (sqrt(pow(point_from.x - point_to.x, 2) + \
+				pow(point_from.y - point_to.y, 2)));
 }
 
 float	correct_distance(float distance, float angle)

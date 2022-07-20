@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:58:37 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:57:02 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:53:29 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@ typedef struct s_raycast
 }	t_raycast;
 
 void		ray_cast(t_data *data);
+/* draw_sprite.c */
+void		draw_sprite_column( \
+			t_data *data, float angle, float dist_to_wall, int x_win_poz);
 
 /* find_intersecpoint.c */
-t_vector	find_intersection_points(t_data *data, float angle_ray, int	*number_column, t_img_info *wall_texture);
+t_vector	find_intersection_points( \
+				t_data *data, float angle_ray, \
+				int	*number_column, t_img_info *wall_texture);
 
 /* slice_init.c */
-t_slice_sp	*add_new_sprite_slice(t_slice_sp *slices, t_sprite sprite, int slice_num, t_player ray_info);
+t_slice_sp	*add_new_sprite_slice( \
+				t_slice_sp *slices, t_sprite sprite, \
+				int slice_num, t_player ray_info);
 
 /* slicelst_utils.c */
 void		*clear_slice_list(t_slice_sp *list);
@@ -46,6 +53,8 @@ float		distance(t_vector point_from, t_vector point_to, float angle_ray);
 float		distance_pyth(t_vector point_from, t_vector point_to);
 float		slice_height(float distance, int height_img);
 int			nbr_of_slice_column(float point);
+float		correct_distance(float distance, float angle);
+
 
 /* raycats_utils2.c */
 int			is_wall_in_point(char **map, t_vector point);

@@ -187,6 +187,8 @@ void			set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *wini
 void			draw_wall_column(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
 void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
 unsigned int	color_shift(int color, float intensive);
+float	intensity(float prop);
+
 
 
 /* raycast.c */
