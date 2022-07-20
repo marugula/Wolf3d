@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:15:43 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 15:34:31 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:15:36 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-# define OPEN_DIST	300
+#define OPEN_DIST	300
 
 void	open_door_animation(t_sprite *door, t_vector pl)
 {
@@ -24,10 +24,10 @@ void	open_door_animation(t_sprite *door, t_vector pl)
 	{
 		door->animation_dir = -1;
 	}
-	if (door->frame + door->animation_dir <= 7 && door->frame + door->animation_dir >= 0)
+	if (door->frame + door->animation_dir <= 7 && \
+		door->frame + door->animation_dir >= 0)
 		door->frame += door->animation_dir;
 }
-
 
 void	sprite_animation(t_sprite *sprites, t_vector pl)
 {

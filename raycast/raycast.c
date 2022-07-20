@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 17:19:44 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:48:32 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,10 @@ t_vector	count_draw_wall(t_data *data, float angle_ray, int x)
 		intersection_point = find_intersection_points \
 			(data, angle_ray, &num_column, &wall_txtr);
 	if (!(intersection_point.x == -1 && intersection_point.y == -1))
-		draw_wall_column(x, num_column, \
+		draw_wall_column(init_clm(x, num_column, \
 			(int) slice_height(correct_distance(distance(data->pl.poz, \
-							intersection_point, angle_ray), \
-							fabs(data->pl.direction - angle_ray)), \
-							wall_txtr.height), &data->window.img, wall_txtr);
+			intersection_point, angle_ray), fabs(data->pl.direction - \
+			angle_ray)), wall_txtr.height)), &data->window.img, wall_txtr);
 	else
 		intersection_point = init_vector(INFINITY, INFINITY);
 	return (intersection_point);

@@ -48,7 +48,9 @@ SOURCES_S = main.c\
 			handling_errors.c\
 			game.c \
 			paint_engine.c \
+			paint_engine_utils.c \
 			draw_minimap.c\
+			draw_minimap_utils.c\
 			time_works.c\
 			animation.c
 

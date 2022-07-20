@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_pos_sprites.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:27:27 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 15:31:26 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:59:26 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	count_sprites_in_map(char **map)
 	return (count);
 }
 
-
-void	init_new_sprite(t_vector poz, t_img_info *tex, int is_door, t_sprite *new_sprite)
+void	init_new_sprite(t_vector poz, \
+			t_img_info *tex, int is_door, t_sprite *new_sprite)
 {
 	new_sprite->poz = init_vector (poz.x * GAMEBOXSIZE + GAMEBOXSIZE / 2, \
 									poz.y * GAMEBOXSIZE + GAMEBOXSIZE / 2);
@@ -73,12 +73,15 @@ void	find_poz_for_sprites(t_data *data)
 		while (data->map[(int)poz.y][(int)poz.x])
 		{
 			if (data->map[(int)poz.y][(int)poz.x] == 'C')
-				init_new_sprite (poz, data->imgs.cat, IS_SPRITE, &data->sprites[count++]);
+				init_new_sprite (poz, data->imgs.cat, \
+				IS_SPRITE, &data->sprites[count++]);
 			if (data->map[(int)poz.y][(int)poz.x] == 'M')
-				init_new_sprite(poz, data->imgs.minotaur, IS_SPRITE, &data->sprites[count++]);
+				init_new_sprite(poz, data->imgs.minotaur, \
+				IS_SPRITE, &data->sprites[count++]);
 			if (data->map[(int)poz.y][(int)poz.x] == 'D')
 				init_new_sprite \
-				(poz, data->imgs.door, find_door_direction(poz, data->map), &data->sprites[count++]);
+				(poz, data->imgs.door, \
+				find_door_direction(poz, data->map), &data->sprites[count++]);
 			poz.x++;
 		}
 		poz.y++;

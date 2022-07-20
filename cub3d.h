@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 19:06:52 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 19:11:32 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -8,12 +20,20 @@
 # include <stdio.h>
 # include <math.h>
 
-# define HEIGHT			720
+/* # define HEIGHT			720
 # define WIDTH			1080
 # define FOV			(M_PI / 3)
 # define STEPANGLE		FOV / WIDTH
 # define TANPI_6		0.57735026
 # define PLANEDIST		(WIDTH / 2) / TANPI_6
+# define GAMEBOXSIZE	64 */
+
+# define HEIGHT			720
+# define WIDTH			1080
+# define FOV			1.0471975511965977
+# define STEPANGLE		0.0009696273622191
+# define TANPI_6		0.57735026
+# define PLANEDIST		935.307450974387714
 # define GAMEBOXSIZE	64
 
 # define SPEED_MOUSE_MOVE	0.3
@@ -23,7 +43,6 @@
 
 # define MINIMAP_H		200
 # define MINIMAP_W		250
-
 
 # define BUTTONPRESS		4
 # define BUTTONRELEASE		5
@@ -42,7 +61,16 @@
 # define IS_DOORORDINAT	2
 # define IS_SPRITE		0
 
-
+enum e_keys
+{
+	a = 0,
+	s,
+	d,
+	w = 13,
+	left = 123,
+	right,
+	esc = 53
+};
 
 typedef struct s_point
 {
@@ -134,7 +162,7 @@ typedef struct s_sprite
 	float		right_angle;
 }	t_sprite;
 
-typedef	struct s_delta_time
+typedef struct s_delta_time
 {
 	unsigned long	prev;
 	unsigned long	pres;
@@ -152,21 +180,27 @@ typedef struct s_map_data
 	t_dt			time;
 }	t_data;
 
-int	return_error(char *str);
-int	exit_error(char *str);
+typedef struct s_struct_for_clm_draw
+{
+	int	x_poz;
+	int	num_column;
+	int	heigth;
+}	t_costil;
 
-int	check_format_map(char *map_name);
-char **copy_map_to_array(char *map_name, t_textures *textures);
+int				return_error(char *str);
+int				exit_error(char *str);
 
-int	ft_isspace(char c);
-int	ft_atoi_base(char *str, int base);
+int				check_format_map(char *map_name);
+char			**copy_map_to_array(char *map_name, t_textures *textures);
+
+int				ft_isspace(char c);
+int				ft_atoi_base(char *str, int base);
 
 t_player		init_player_direct_and_poz(char **map);
 
 /* marugula chainges))) */
 void			game(char **map, t_textures textures);
 int				redrawing(t_data *data);
-
 
 /* init_imgs.c */
 void			init_sides_img(t_imgs *imgs, t_textures texture, void *mlx_ptr);
@@ -177,31 +211,28 @@ void			init_minotaur_imgs(t_data *data);
 void			init_door_imgs(t_data *data);
 t_game_window	init_game_window(void);
 
-
-
-
 /* paint_engine.c */
 unsigned int	get_color_in_pixel(int x, int y, t_img_info img);
-void			change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color);
-void			set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
-void			draw_wall_column(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture);
-void			fill_floor_and_cell_window_img(t_img_info *img, t_textures textures);
+void			change_pixel_in_img(int x, int y, \
+				t_img_info *img, unsigned int color);
+void			draw_wall_column(t_costil info, t_img_info *winimg, \
+				t_img_info texture);
+t_costil		init_clm(int x_poz, int num_column, int heigth);
+void			fill_floor_and_cell_window_img(t_img_info *img, \
+				t_textures textures);
 unsigned int	color_shift(int color, float intensive);
-float	intensity(float prop);
-
-
+float			intensity(float prop);
 
 /* raycast.c */
 void			ray_cast(t_data *data);
 int				is_wall_in_point(char **map, t_vector point);
-float			distance(t_vector point_from, t_vector point_to, float angle_ray);
+float			distance(t_vector point_from, \
+				t_vector point_to, float angle_ray);
 float			distance_pyth(t_vector point_from, t_vector point_to);
-
 
 /* draw_minimap.c */
 void			draw_minimap(t_data *data);
 int				max_len(char **map);
-
 
 /* analyse/utils.c */
 int				strarr_len(char **arr);
@@ -209,10 +240,8 @@ int				strarr_len(char **arr);
 /* check_utils.c */
 char			get_ch_in_dot(int x, int y, char **map);
 
-
 /* find_pos_sprites.c */
 void			init_sprites_struct(t_data *data);
-
 
 /*init_loop_hook.c*/
 void			init_loop_hook(t_data *data);
@@ -230,27 +259,20 @@ float			deltatime_msec(t_dt time);
 void			open_door_animation(t_sprite *door, t_vector pl);
 void			sprite_animation(t_sprite *sprites, t_vector pl);
 
+/* draw_minimap_utils.c */
+float			shift_x(t_vector pixel, \
+				t_player pl, int size_img, float size_cell);
+float			shift_y(t_vector pixel, \
+				t_player pl, int size_img, float size_cell);
+int				max_len(char **map);
+float			count_size_cell(char **map);
 
-
-// int	init_game(void);
-
-enum e_keys
-{
-	a = 0,
-	s,
-	d,
-	w = 13,
-	left = 123,
-	right,
-	esc = 53
-};
-
-void	init_control_key(t_data *data);
-int	deal_destroy(void);
-int	control_pl_dir(t_data *data);
-int	control_pl_poz(t_data *data);
-int	control_key_down(int key, t_data *data);
-int	control_key_up(int key, t_data *data);
-int	mouse_move(int x, int y, t_data *data);
+int				deal_destroy(void);
+int				control_pl_dir(t_data *data);
+void			init_control_key(t_data *data);
+int				control_pl_poz(t_data *data);
+int				control_key_down(int key, t_data *data);
+int				control_key_up(int key, t_data *data);
+int				mouse_move(int x, int y, t_data *data);
 
 #endif

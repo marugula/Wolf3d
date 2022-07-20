@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   time_works.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:48:22 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 15:03:17 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:56:35 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-unsigned long get_time(void)
+unsigned long	get_time(void)
 {
 	struct timeval		tv;
 	unsigned long		time;

@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:36:13 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 12:36:20 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:03:26 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ int	main(int argc, char **argv)
 	check_format_map(argv[1]);
 	map = copy_map_to_array(argv[1], &textures);
 	game(map, textures);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:26:29 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 15:05:34 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:57:32 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_color_map_line(char *map_line)
 		if (map_line[indx] == ',')
 			indx++;
 		else
-			break;
+			break ;
 	}
 	if (count != 3)
 		exit_error("Error clr texture\n");

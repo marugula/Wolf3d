@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 10:47:41 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 15:32:09 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:02:55 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	redrawing(t_data *data)
 {
 	rewrite_time(&data->time);
-	// printf("%f\n", deltatime_msec(data->time));
 	sprite_animation(data->sprites, data->pl.poz);
 	control_pl_dir(data);
 	control_pl_poz(data);
@@ -29,7 +28,6 @@ int	redrawing(t_data *data)
 
 void	init_structs_for_data(char **map, t_textures textures, t_data *data)
 {
-
 	data->window = init_game_window();
 	init_sides_img(&data->imgs, textures, data->window.mlx);
 	init_cat_imgs(data);
@@ -40,7 +38,6 @@ void	init_structs_for_data(char **map, t_textures textures, t_data *data)
 	data->texture = textures;
 	fill_floor_and_cell_window_img(&data->window.img, data->texture);
 	init_sprites_struct(data);
-
 }
 
 void	game(char **map, t_textures textures)

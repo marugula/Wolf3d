@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slicework.c                                        :+:      :+:    :+:   */
+/*   slicelst_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:18:43 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 16:22:58 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:14:48 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*clear_slice_list(t_slice_sp *list)
 {
-	t_slice_sp *temp;
+	t_slice_sp	*temp;
 
 	while (list != NULL)
 	{
@@ -59,9 +59,9 @@ void	swap_value_slice_list(t_slice_sp *slice1, t_slice_sp *slice2)
 	slice1->dist = slice2->dist;
 	slice1->img = slice2->img;
 	slice1->num_slice = slice2->num_slice;
-	slice2->dist =temp.dist;
-	slice2->img =temp.img;
-	slice2->num_slice =temp.num_slice;
+	slice2->dist = temp.dist;
+	slice2->img = temp.img;
+	slice2->num_slice = temp.num_slice;
 }
 
 void	sort_slice_lst(t_slice_sp *slice_lst)
@@ -81,4 +81,3 @@ void	sort_slice_lst(t_slice_sp *slice_lst)
 		}
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 15:58:37 by marugula          #+#    #+#             */
-/*   Updated: 2022/07/20 17:53:29 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:00:08 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ float		distance_pyth(t_vector point_from, t_vector point_to);
 float		slice_height(float distance, int height_img);
 int			nbr_of_slice_column(float point);
 float		correct_distance(float distance, float angle);
-
 
 /* raycats_utils2.c */
 int			is_wall_in_point(char **map, t_vector point);
