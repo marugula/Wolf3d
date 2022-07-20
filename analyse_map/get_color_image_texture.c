@@ -6,7 +6,7 @@
 /*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 11:26:29 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 11:26:34 by tamchoor         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:05:34 by tamchoor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	find_one_color_in_rgb(char *map_line, int *i)
 	int		color;
 
 	indx = 0;
+	if (!map_line)
+		exit_error("Error find_color\n");
 	while (ft_isdigit(map_line[indx]))
 	{
 		tmp_line[indx] = map_line[indx];
@@ -36,6 +38,27 @@ int	find_one_color_in_rgb(char *map_line, int *i)
 	color = ft_atoi(tmp_line);
 	*i += indx + 1;
 	return (color);
+}
+
+void	check_color_map_line(char *map_line)
+{
+	int	count;
+	int	indx;
+
+	indx = 0;
+	count = 0;
+	while (map_line[indx])
+	{
+		while (map_line[indx] && ft_isdigit(map_line[indx]))
+			indx++;
+		count++;
+		if (map_line[indx] == ',')
+			indx++;
+		else
+			break;
+	}
+	if (count != 3)
+		exit_error("Error clr texture\n");
 }
 
 int	save_color_texture(char *map_line, int save_color)
@@ -48,11 +71,13 @@ int	save_color_texture(char *map_line, int save_color)
 
 	if (save_color != -1)
 		exit_error("Error repeat texture instruction\n");
+	save_color = ft_strlen(map_line);
 	i = ignore_spaces(map_line) + 1;
-	i += ignore_spaces(&map_line[i]);
-	r = find_one_color_in_rgb(&map_line[i], &i);
-	g = find_one_color_in_rgb(&map_line[i], &i);
-	b = find_one_color_in_rgb(&map_line[i], &i);
+	i += ignore_spaces(map_line + i);
+	check_color_map_line(map_line + i);
+	r = find_one_color_in_rgb(map_line + i, &i);
+	g = find_one_color_in_rgb(map_line + i, &i);
+	b = find_one_color_in_rgb(map_line + i, &i);
 	rgb = get_hex_color(r, g, b);
 	return (rgb);
 }
