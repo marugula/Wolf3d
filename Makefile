@@ -2,8 +2,8 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra -g
-# FLAGS = -Wall -Werror -Wextra  -fsanitize=address -g
+# FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra  -fsanitize=address -g
 
 LIBRARIES =  -lft -L$(LIBFT_DIRECTORY) -lmlx -lm -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
 

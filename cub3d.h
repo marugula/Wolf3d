@@ -4,6 +4,7 @@
 # include "libft/libft.h"
 # include "minilibx_macos/mlx.h"
 # include "gnl/get_next_line.h"
+# include <sys/time.h>
 # include <stdio.h>
 # include <math.h>
 
@@ -142,6 +143,7 @@ typedef struct s_map_data
 	t_imgs			imgs;
 	t_player		pl;
 	t_key			key;
+	
 }	t_data;
 
 int	return_error(char *str);

@@ -1,168 +1,112 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/marugula/cub3D/Cube3D'
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c main.c -o objs/main.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c gnl/get_next_line.c -o objs/gnl/get_next_line.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c gnl/get_next_line_utils.c -o objs/gnl/get_next_line_utils.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c main.c -o objs/main.o
  
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/copy_map_to_array.c -o objs/analyse_map/copy_map_to_array.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c gnl/get_next_line.c -o objs/gnl/get_next_line.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/check_format_map.c -o objs/analyse_map/check_format_map.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c gnl/get_next_line_utils.c -o objs/gnl/get_next_line_utils.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/init_array_map.c -o objs/analyse_map/init_array_map.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/init_texture_struct.c -o objs/analyse_map/init_texture_struct.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/get_color_image_texture.c -o objs/analyse_map/get_color_image_texture.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/copy_map_to_array.c -o objs/analyse_map/copy_map_to_array.o
  
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/write_textures_to_struct.c -o objs/analyse_map/write_textures_to_struct.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/check_format_map.c -o objs/analyse_map/check_format_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/check_game_map.c -o objs/analyse_map/check_game_map.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/init_array_map.c -o objs/analyse_map/init_array_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/trim_game_map.c -o objs/analyse_map/trim_game_map.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/init_texture_struct.c -o objs/analyse_map/init_texture_struct.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/checker_function.c -o objs/analyse_map/checker_function.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/get_color_image_texture.c -o objs/analyse_map/get_color_image_texture.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/check_utils.c -o objs/analyse_map/check_utils.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c analyse_map/ft_isspace.c -o objs/analyse_map/ft_isspace.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/write_textures_to_struct.c -o objs/analyse_map/write_textures_to_struct.o
  
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c key_control/init_control_key.c -o objs/key_control/init_control_key.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/check_game_map.c -o objs/analyse_map/check_game_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c key_control/key_control.c -o objs/key_control/key_control.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/trim_game_map.c -o objs/analyse_map/trim_game_map.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c key_control/mouse_control.c -o objs/key_control/mouse_control.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/checker_function.c -o objs/analyse_map/checker_function.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c object_and_img_init/find_pos_sprites.c -o objs/object_and_img_init/find_pos_sprites.o
-mkdir -p objs/
- 
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c object_and_img_init/init_imgs.c -o objs/object_and_img_init/init_imgs.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/check_utils.c -o objs/analyse_map/check_utils.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c object_and_img_init/init_img_sprites.c -o objs/object_and_img_init/init_img_sprites.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/ft_isspace.c -o objs/analyse_map/ft_isspace.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c object_and_img_init/init_player.c -o objs/object_and_img_init/init_player.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c analyse_map/check_func_around_symb.c -o objs/analyse_map/check_func_around_symb.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c handling_errors.c -o objs/handling_errors.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c key_control/init_control_key.c -o objs/key_control/init_control_key.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c game.c -o objs/game.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c paint_engine.c -o objs/paint_engine.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c raycast_utils.c -o objs/raycast_utils.o
-mkdir -p objs/
-mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c raycast.c -o objs/raycast.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c key_control/key_control.c -o objs/key_control/key_control.o
  
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c draw_minimap.c -o objs/draw_minimap.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c key_control/mouse_control.c -o objs/key_control/mouse_control.o
 mkdir -p objs/
 mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
-cc -Wall -Werror -Wextra -g  -c draw_sprites.c -o objs/draw_sprites.o
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c key_control/control_pl_poz.c -o objs/key_control/control_pl_poz.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c key_control/init_loop_hook.c -o objs/key_control/init_loop_hook.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c object_and_img_init/find_pos_sprites.c -o objs/object_and_img_init/find_pos_sprites.o
  
-echo "cub3D: \033[0;32mCreating ./libft/libft.a...\033[0m"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./libft/
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c object_and_img_init/init_imgs.c -o objs/object_and_img_init/init_imgs.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c object_and_img_init/init_img_sprites.c -o objs/object_and_img_init/init_img_sprites.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c object_and_img_init/init_player.c -o objs/object_and_img_init/init_player.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c object_and_img_init/init_vector.c -o objs/object_and_img_init/init_vector.o
  
-make[1]: Entering directory `/Users/marugula/cub3D/Cube3D/libft'
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isalpha.c -o ft_isalpha.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isdigit.c -o ft_isdigit.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c handling_errors.c -o objs/handling_errors.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c game.c -o objs/game.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c paint_engine.c -o objs/paint_engine.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c raycast_utils.c -o objs/raycast_utils.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c raycast.c -o objs/raycast.o
+mkdir -p objs/
  
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isalnum.c -o ft_isalnum.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isascii.c -o ft_isascii.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isprint.c -o ft_isprint.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strlen.c -o ft_strlen.o
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c draw_minimap.c -o objs/draw_minimap.o
+mkdir -p objs/
+mkdir -p  objs/gnl/ objs/analyse_map/ objs/key_control/ objs/object_and_img_init/
+cc -Wall -Werror -Wextra  -fsanitize=address -g  -c draw_sprites.c -o objs/draw_sprites.o
  
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_memset.c -o ft_memset.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_bzero.c -o ft_bzero.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_memcpy.c -o ft_memcpy.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_memmove.c -o ft_memmove.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strlcpy.c -o ft_strlcpy.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strlcat.c -o ft_strlcat.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_toupper.c -o ft_toupper.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_tolower.c -o ft_tolower.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strchr.c -o ft_strchr.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strrchr.c -o ft_strrchr.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strncmp.c -o ft_strncmp.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_memchr.c -o ft_memchr.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_memcmp.c -o ft_memcmp.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strnstr.c -o ft_strnstr.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_atoi.c -o ft_atoi.o
- 
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_calloc.c -o ft_calloc.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strdup.c -o ft_strdup.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_substr.c -o ft_substr.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strjoin.c -o ft_strjoin.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strtrim.c -o ft_strtrim.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_split.c -o ft_split.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_itoa.c -o ft_itoa.o
- 
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_strmapi.c -o ft_strmapi.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_striteri.c -o ft_striteri.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_putchar_fd.c -o ft_putchar_fd.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_putstr_fd.c -o ft_putstr_fd.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_putendl_fd.c -o ft_putendl_fd.o
- 
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_putnbr_fd.c -o ft_putnbr_fd.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_isdigit_and_sign.c -o ft_isdigit_and_sign.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstnew.c -o ft_lstnew.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstadd_front.c -o ft_lstadd_front.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstsize.c -o ft_lstsize.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstlast.c -o ft_lstlast.o
- 
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstadd_back.c -o ft_lstadd_back.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstdelone.c -o ft_lstdelone.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstclear.c -o ft_lstclear.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstiter.c -o ft_lstiter.o
-cc -Wall -Wextra -Werror -I libft.h -g -c ft_lstmap.c -o ft_lstmap.o
-ar rcs libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_isdigit_and_sign.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
-make[1]: Leaving directory `/Users/marugula/cub3D/Cube3D/libft'
-echo "cub3D: \033[0;32mCreating ./minilibx_macos/libmlx.a...\033[0m"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -C ./minilibx_macos/
- 
-make[1]: Entering directory `/Users/marugula/cub3D/Cube3D/minilibx_macos'
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_shaders.o mlx_shaders.c
- 
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_new_window.o mlx_new_window.m
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_init_loop.o mlx_init_loop.m
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_new_image.o mlx_new_image.m
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_xpm.o mlx_xpm.c
- 
-cc -O2 -Wno-deprecated-declarations   -c -o mlx_int_str_to_wordtab.o mlx_int_str_to_wordtab.c
-ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o
-ranlib libmlx.a
-make[1]: Leaving directory `/Users/marugula/cub3D/Cube3D/minilibx_macos'
-cc -Wall -Werror -Wextra -g   -lft -L./libft/ -lmlx -lm -L./minilibx_macos/ -framework OpenGL -framework AppKit objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/analyse_map/ft_isspace.o objs/key_control/init_control_key.o objs/key_control/key_control.o objs/key_control/mouse_control.o objs/object_and_img_init/find_pos_sprites.o objs/object_and_img_init/init_imgs.o objs/object_and_img_init/init_img_sprites.o objs/object_and_img_init/init_player.o objs/handling_errors.o objs/game.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o objs/draw_minimap.o objs/draw_sprites.o -o cub3D
+cc -Wall -Werror -Wextra  -fsanitize=address -g   -lft -L./libft/ -lmlx -lm -L./minilibx_macos/ -framework OpenGL -framework AppKit objs/main.o objs/gnl/get_next_line.o objs/gnl/get_next_line_utils.o objs/analyse_map/copy_map_to_array.o objs/analyse_map/check_format_map.o objs/analyse_map/init_array_map.o objs/analyse_map/init_texture_struct.o objs/analyse_map/get_color_image_texture.o objs/analyse_map/write_textures_to_struct.o objs/analyse_map/check_game_map.o objs/analyse_map/trim_game_map.o objs/analyse_map/checker_function.o objs/analyse_map/check_utils.o objs/analyse_map/ft_isspace.o objs/analyse_map/check_func_around_symb.o objs/key_control/init_control_key.o objs/key_control/key_control.o objs/key_control/mouse_control.o objs/key_control/control_pl_poz.o objs/key_control/init_loop_hook.o objs/object_and_img_init/find_pos_sprites.o objs/object_and_img_init/init_imgs.o objs/object_and_img_init/init_img_sprites.o objs/object_and_img_init/init_player.o objs/object_and_img_init/init_vector.o objs/handling_errors.o objs/game.o objs/paint_engine.o objs/raycast_utils.o objs/raycast.o objs/draw_minimap.o objs/draw_sprites.o -o cub3D
 echo "\n\033[7m cub3D: \033[0;32mobject files were created\033[0m"
 echo "\033[7m cub3D: \033[0;32mcub3D was created\033[0m"
+ 
 make: Leaving directory `/Users/marugula/cub3D/Cube3D'
  

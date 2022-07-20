@@ -6,7 +6,7 @@
 /*   By: marugula <marugula@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 12:05:28 by tamchoor          #+#    #+#             */
-/*   Updated: 2022/07/20 12:58:56 by marugula         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:48:21 by marugula         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ int	convet_rad_to_grad(float rad)
 void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 {
 	int	i;
-	float	perp_dir;
-
+	float		perp_dir;
+	t_vector	shift;
 	i = 0;
 	while (sprite != NULL && sprite[i].tex != NULL)
 	{
@@ -174,7 +174,15 @@ void	count_perp_dir_for_sprites(t_sprite *sprite, t_player pl)
 		}
 		else
 			perp_dir = count_perp_angle(angle_between_two_dots(pl.poz, sprite[i].poz, pl.direction), -1);
-		sprite[i].left_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir + M_PI, sprite[i].tex->width), pl.direction);
+
+		printf("  width %d\n", sprite[i].tex[1].width);
+		shift = shift_poz(sprite[i].poz, \
+						perp_dir + M_PI, \
+						sprite[i].tex[0].width);
+		sprite[i].left_angle = angle_between_two_dots(pl.poz, \
+														shift, \
+														pl.direction);
+		shift = shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width);
 		sprite[i].right_angle = angle_between_two_dots(pl.poz, shift_poz(sprite[i].poz, perp_dir, sprite[i].tex->width), pl.direction);
 		if (sprite[i].is_door && fabs(sprite[i].left_angle - sprite[i].right_angle) > M_PI)
 			sprite[i].left_angle = sprite[i].right_angle;
