@@ -1,121 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 10:47:41 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 19:02:55 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-
-
-
-
-
-
-
-t_game_window	init_game_window(void)
+int	redrawing(t_data *data)
 {
-	t_game_window	window;
-
-	window.mlx = mlx_init();
-	if (!window.mlx)
-		exit_error("init_game_window\n");
-	window.win = mlx_new_window(window.mlx, WIDTH, HEIGHT, "CUB3D");
-	if (!window.win)
-		exit_error("init_game_window\n");
-	creat_window_img(&window);
-	return (window);
-}
-
-int	deal_destroy(void)
-{
-	exit (EXIT_SUCCESS);
-}
-
-int	key_control(int key, t_data *data)
-{
-	(void ) data;
-	if (key == 53)
-	{
-		exit (EXIT_SUCCESS);
-	}
-	return (0);
-}
-
-int	key_control_down(int key, t_data *data)
-{
-	int speed = 12;
-	// ->124 <-123
-	if (key == 124)
-	{
-		if (data->pl.direction - (float)2 * (M_PI/2) / 90 <= 0.0f)
-			data->pl.direction = (float) 2 * M_PI;
-		data->pl.direction -= (float)(M_PI/2) / 90;
-	}
-	else if (key == 123)
-	{
-		if (data->pl.direction + (float)(M_PI/2) / 90 >= 2 * M_PI)
-			data->pl.direction = (float) 0.0f;
-		data->pl.direction += (float)(M_PI/2) / 90;
-	}
-	//w 13 a 0 s 1 d 2
-	if (key == 13)
-	{
-		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x + (speed * cos(data->pl.direction)))] == '0')
-			data->pl.poz.x += speed * cos(data->pl.direction);
-		// if (data->map[(int)(data->pl.poz.y - (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
-			data->pl.poz.y -= speed * sin(data->pl.direction);
-	}
-	else if (key == 1)
-	{
-		// if (data->map[(int)data->pl.poz.y][(int)(data->pl.poz.x - (speed * cos(data->pl.direction)))] == '0')
-			data->pl.poz.x -= speed * cos(data->pl.direction);
-		// if (data->map[(int)(data->pl.poz.y + (speed * sin(data->pl.direction)))][(int)data->pl.poz.x] == '0')
-			data->pl.poz.y += speed * sin(data->pl.direction);
-	}
-	// else
-	// {
-	// 	return (0); // чтобы дважды не рисовать
-	// }
-
-	ft_putnbr_fd(key, 2);
-	write(1, "-", 1);
+	rewrite_time(&data->time);
+	sprite_animation(data->sprites, data->pl.poz);
+	control_pl_dir(data);
+	control_pl_poz(data);
 	fill_floor_and_cell_window_img(&data->window.img, data->texture);
 	ray_cast(data);
-	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
+	draw_minimap(data);
+	mlx_put_image_to_window(data->window.mlx, data->window.win, \
+							data->window.img.img, 0, 0);
 	return (0);
 }
 
-int	mouse_move(int x, int y, t_data *data)
+void	init_structs_for_data(char **map, t_textures textures, t_data *data)
 {
-	data->pl.direction -= (x - data->key.press_x) * (float)(M_PI/2) / 90;
-	data->key.press_x = x;
-	data->key.press_y = y;
+	data->window = init_game_window();
+	init_sides_img(&data->imgs, textures, data->window.mlx);
+	init_cat_imgs(data);
+	init_minotaur_imgs(data);
+	init_door_imgs(data);
+	data->map = map;
+	data->pl = init_player_direct_and_poz(map);
+	data->texture = textures;
 	fill_floor_and_cell_window_img(&data->window.img, data->texture);
-	ray_cast(data);
-	mlx_put_image_to_window(data->window.mlx, data->window.win, data->window.img.img, 0, 0);
-
-	return (0);
+	init_sprites_struct(data);
 }
 
-void game(char **map, t_textures textures)
+void	game(char **map, t_textures textures)
 {
 	t_data	data;
 
-	data.window = init_game_window();
-	init_sides_img(&data.imgs, textures, data.window.mlx);
-	data.map = map;
-	// init pl poz
-	data.pl =  init_player_direct_and_poz(map);
-	data.texture = textures;
-	data.key.button = 0;
-	fill_floor_and_cell_window_img(&data.window.img, data.texture);
-
-
+	init_structs_for_data(map, textures, &data);
 	ray_cast(&data);
-
-
-	mlx_put_image_to_window(data.window.mlx, data.window.win, data.window.img.img, 0, 0);
-
-	mlx_key_hook(data.window.win, key_control, &data);
-	mlx_hook(data.window.win, ON_KEYDOWN, 0, key_control_down, &data);
-	mlx_hook(data.window.win, ON_DESTROY, 0, deal_destroy, 0);
-
-	mlx_hook(data.window.win, BUTTONMOVE, 0, mouse_move, &data);
-
-	mlx_loop(data.window.mlx);
+	draw_minimap(&data);
+	mlx_put_image_to_window(data.window.mlx, \
+							data.window.win, data.window.img.img, 0, 0);
+	init_loop_hook(&data);
 }

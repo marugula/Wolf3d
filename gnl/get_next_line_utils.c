@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 11:28:16 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 11:28:20 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	find_index_of_char(char *str, char symbol)
@@ -49,7 +61,7 @@ char	*line_copy(char *dest, const char *src)
 	count = 0;
 	if (!(dest) || !src)
 		return (dest);
-	while (src)
+	while (src[count])
 	{
 		dest[count] = src[count];
 		count++;
@@ -66,6 +78,8 @@ char	*join_lines(char *str1, char *str2)
 
 	if (!str1)
 		len_str1 = 0;
+	else
+		len_str1 = ft_strlen1(str1);
 	if (!str2)
 		return (NULL);
 	str = malloc((len_str1 + ft_strlen1(str2) + 1) * sizeof(char));

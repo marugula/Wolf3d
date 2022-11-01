@@ -14,10 +14,10 @@
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t n)
 {
-	size_t	count;
+	// size_t	count;
 	size_t	sz;
 
-	count = 0;
+	// count = 0;
 	sz = ft_strlen(src);
 	if (sz + 1 < n)
 	{

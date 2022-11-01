@@ -100,7 +100,7 @@ char	**ft_split(char const *s, char c)
 	char	**dest;
 	char	*is_s;
 	size_t	i;
-	size_t	j;
+	// size_t	j;
 	size_t	k;
 
 	if (!s)
@@ -109,7 +109,7 @@ char	**ft_split(char const *s, char c)
 	i = ft_count_str(is_s, c);
 	dest = 0;
 	k = 0;
-	j = 0;
+	// j = 0;
 	dest = (char **) malloc((i + 1) * sizeof(char *));
 	if (!dest)
 		return (NULL);

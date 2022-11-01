@@ -29,11 +29,11 @@ static size_t	ft_itisset(char const s1, char const *set)
 static size_t	ft_strlen_without_set(const char *s, const char *set)
 {
 	size_t	begins;
-	size_t	lens;
+	// size_t	lens;
 	size_t	ends;
 
 	begins = 0;
-	lens = 0;
+	// lens = 0;
 	while (ft_itisset(s[begins], set) != 0 && ft_strlen(s) > begins)
 		begins++;
 	if (ft_strlen(s) == begins)

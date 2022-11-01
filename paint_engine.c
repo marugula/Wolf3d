@@ -1,62 +1,53 @@
-# include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paint_engine.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tamchoor <tamchoor@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/20 18:48:55 by tamchoor          #+#    #+#             */
+/*   Updated: 2022/07/20 19:34:07 by tamchoor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-unsigned int	get_color_in_pixel(int x, int y, t_img_info img)
+#include "cub3d.h"
+
+t_costil	init_clm(int x_poz, int num_column, int heigth)
 {
-	char	*dst;
+	t_costil	strt;
 
-	if (y < 0 || y >= img.height || x < 0 || x >= img.width)
-		return (0);
-	dst = img.addr + (y * img.size_line + x * (img.bits_p_pix / 8));
-	return (*(unsigned int*)dst);
+	strt.x_poz = x_poz;
+	strt.num_column = num_column;
+	strt.heigth = heigth;
+	return (strt);
 }
 
-void	change_pixel_in_img(int x, int y, t_img_info *img, unsigned int color)
+void	draw_wall_column(t_costil info, t_img_info *winimg, t_img_info texture)
 {
-	char	*dst;
+	int					mid_window;
+	int					step;
+	float				prop;
+	int					img_poz;
+	unsigned int		color;
 
-	if (y < 0 || y >= img->height || x < 0 || x >= img->width)
-		return ;
-	dst = img->addr + (y * img->size_line + x * (img->bits_p_pix / 8));
-	*(unsigned int*)dst = color;
-}
-
-unsigned int color_shift(int color, float intensive)
-{
-	unsigned int r = (color >> 16) * intensive;
-	unsigned int b = ((color >> 8) & 0x00FF) * intensive;
-	unsigned int g = (color & 0x0000FF) * intensive;
-	unsigned int newColor = g | (b << 8) | (r << 16);
-	// printf("newColor = %x\n", newColor);
-	return (newColor);
-}
-
-float	intensity(float prop)
-{
-	if (prop > 1)
-		return (0);
-	if (prop < 0)
-		return (1);
-	return (1 - prop);
-}
-
-void	set_column_in_img(int x_poz, int num_column, int heigth, t_img_info *winimg, t_img_info texture)
-{
-	int		y;
-	int		y_poz;
-	float	prop;
-	int		src_y;
-	int		color;
-
-	y_poz = HEIGHT / 2 - heigth / 2;
-	y = 0;
-	prop = (float) texture.height / (float) heigth;
-	while (y < heigth)
+	prop = (float) texture.height / (float) info.heigth;
+	mid_window = HEIGHT / 2;
+	step = 0;
+	while (step < info.heigth / 2 && step < HEIGHT / 2)
 	{
-		src_y = round((double) y * prop);
-		color = get_color_in_pixel(num_column, src_y, texture);
-		if (color != 0)
-			change_pixel_in_img(x_poz, y_poz + y, winimg, color_shift(color, intensity((float) (GAMEBOXSIZE / 1.5) / (float) heigth)));
-		y++;
+		img_poz = round((double)(info.heigth / 2 + step) *prop);
+		color = get_color_in_pixel(info.num_column, img_poz, texture);
+		if (color != 0 && color != 4278190080)
+			change_pixel_in_img(info.x_poz, mid_window + step, winimg, \
+			color_shift(color, \
+			intensity((float)(GAMEBOXSIZE / 1.5) / (float) info.heigth)));
+		img_poz = round((double)(info.heigth / 2 - step) *prop);
+		color = get_color_in_pixel(info.num_column, img_poz, texture);
+		if (color != 0 && color != 4278190080)
+			change_pixel_in_img(info.x_poz, mid_window - step, \
+			winimg, color_shift(color, \
+			intensity((float)(GAMEBOXSIZE / 1.5) / (float) info.heigth)));
+		step++;
 	}
 }
 
@@ -74,9 +65,11 @@ void	fill_floor_and_cell_window_img(t_img_info *img, t_textures textures)
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				change_pixel_in_img(x, y, img, color_shift(textures.ceilling, intesive));
+				change_pixel_in_img(x, y, img, \
+				color_shift(textures.ceilling, intesive));
 			else
-				change_pixel_in_img(x, y, img, color_shift(textures.floor, intesive));
+				change_pixel_in_img(x, y, img, \
+				color_shift(textures.floor, intesive));
 			x++;
 		}
 		y++;
